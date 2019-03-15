@@ -1,3 +1,3 @@
 #include "FarmProduct.h"
 
-class chickenMeat : public FarmProduct{};
+class ChickenMeat : public FarmProduct{};
