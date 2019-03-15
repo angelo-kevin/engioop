@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
 
-class Produk{
+class Product{
 
-}
+};

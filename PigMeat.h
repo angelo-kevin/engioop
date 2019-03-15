@@ -11,4 +11,4 @@ public:
   string getAnimal();
 
   int getHarga();
-}
+};

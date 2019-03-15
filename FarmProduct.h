@@ -1,6 +1,6 @@
 #include "Product.h"
 
-class FarmProduct : public Produk{
+class FarmProduct : public Product{
 protected:
   string tipe; //Bisa egg, meat, atau milk
 public:
@@ -10,4 +10,4 @@ public:
 
   void setTipe();
   string getTipe();
-}
+};
