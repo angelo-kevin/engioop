@@ -1,1 +1,6 @@
-class Player{};
+class Player{
+    private:
+        int x,y;
+    public:
+
+};
