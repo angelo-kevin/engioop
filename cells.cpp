@@ -16,7 +16,7 @@ class Cells{
 };
 
 //GLOBAL VARIABLES:
-vector<vector<Cells*>> gamemap;
+vector<vector<Cells*> > gamemap;
 
 class Barn : public Cells{
     public:
