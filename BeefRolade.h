@@ -1,11 +1,11 @@
-#include "FarmProduct.h"
+#include "SideProduct.h"
 
-class DuckEgg : public FarmProduct{
+class BeefRolade : public SideProduct{
 private:
   string productname;
-  const int harga = 3500;
+  const int harga = 25000;
 public:
-  DuckEgg();
+  BeefRolade();
 
   void setProductName(string name);
   string getProductName();

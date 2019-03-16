@@ -1,3 +1,6 @@
+#ifndef FARMPRODUCT_H
+#define FARMPRODUCT_H
+
 #include "Product.h"
 
 class FarmProduct : public Product{
@@ -6,8 +9,8 @@ protected:
 public:
   FarmProduct(string _tipe);
 
-  virtual int getHarga();
-
-  void setTipe();
+  void setTipe(string _tipe);
   string getTipe();
 };
+
+#endif

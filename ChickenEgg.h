@@ -2,13 +2,13 @@
 
 class ChickenEgg : public FarmProduct{
 private:
-  string animal;
+  string productname;
   const int harga = 2000;
 public:
   ChickenEgg();
 
-  void setAnimal();
-  string getAnimal();
+  void setProductName(string name);
+  string getProductName();
 
   int getHarga();
 };
