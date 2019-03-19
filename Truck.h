@@ -1,8 +1,7 @@
 #include "Facility.h"
 
 class Truck : public Facility{
-    private:
-        char Symbol;
+    //Constructor:
     public:
-        char showSymbol();
+        Truck();
 };
