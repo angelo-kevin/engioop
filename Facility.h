@@ -2,5 +2,6 @@
 
 class Facility : public Cell{
     //Constructor:
-    Facility();
+    public:
+        Facility();
 };
