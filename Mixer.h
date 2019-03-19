@@ -1,8 +1,7 @@
 #include "Facility.h"
 
 class Mixer : public Facility{
-    private:
-        char Symbol;
+    //Constructor:
     public:
-      char showSymbol();
+      Mixer();
 };
