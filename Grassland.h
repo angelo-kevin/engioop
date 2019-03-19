@@ -1,9 +1,9 @@
 #include "Land.h"
 
 class Grassland : public Land{
-    private:
-        char Symbol;
     public:
-        char showSymbol();
+        //Constructor:
+        Grassland();
+        //Method to grow grass:
         void growGrass();
 };
