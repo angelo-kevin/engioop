@@ -1,17 +1,6 @@
 #include "ChickenMeat.h"
 
-ChickenMeat::ChickenMeat() : FarmProduct("Meat"){
+ChickenMeat::ChickenMeat() : FarmProduct(){
   setProductName("ChickenMeat");
-}
-
-void ChickenMeat::setProductName(string name){
-  this->productname = name;
-}
-
-string ChickenMeat::getProductName(){
-  return this->productname;
-}
-
-int ChickenMeat::getHarga(){
-  return this->harga;
+  setHarga(10000);
 }

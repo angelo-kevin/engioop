@@ -1,17 +1,6 @@
 #include "CowMilk.h"
 
-CowMilk::CowMilk() : FarmProduct("Milk"){
+CowMilk::CowMilk() : FarmProduct(){
   setProductName("CowMilk");
-}
-
-void CowMilk::setProductName(string name){
-  this->productname = name;
-}
-
-string CowMilk::getProductName(){
-  return this->productname;
-}
-
-int CowMilk::getHarga(){
-  return this->harga;
+  setHarga(6000);
 }

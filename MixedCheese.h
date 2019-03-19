@@ -1,14 +1,7 @@
 #include "SideProduct.h"
 
 class MixedCheese : public SideProduct{
-private:
-  string productname;
-  const int harga = 18000;
+//kelas untuk produk keju hasil campuran susu kambing dan susu sapi
 public:
-  MixedCheese();
-
-  void setProductName(string name);
-  string getProductName();
-
-  int getHarga();
+  MixedCheese(); //mengisi productname = "MixedCheese" dan harga = 18000
 };

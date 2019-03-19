@@ -1,3 +1,3 @@
 #include "SideProduct.h"
 
-SideProduct::SideProduct() : Product("SideProduct"){}
+SideProduct::SideProduct() : Product(){}

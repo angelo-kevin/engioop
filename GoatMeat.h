@@ -1,14 +1,7 @@
 #include "FarmProduct.h"
 
 class GoatMeat : public FarmProduct{
-private:
-  string productname;
-  const int harga = 11000;
+//Kelas untuk produk daging kambing
 public:
-  GoatMeat();
-
-  void setProductName(string name);
-  string getProductName();
-
-  int getHarga();
+  GoatMeat(); //mengisi productname = "GoatMeat" dan harga = 11000
 };

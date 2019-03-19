@@ -1,14 +1,7 @@
 #include "SideProduct.h"
 
 class BaconOmelette : public SideProduct{
-private:
-  string productname;
-  const int harga = 18000;
+//Kelas untuk produk bacon omelette hasil gabungan daging babi dan telur ayam
 public:
-  BaconOmelette();
-
-  void setProductName(string name);
-  string getProductName();
-
-  int getHarga();
+  BaconOmelette(); //mengisi productname = "BaconOmelette" dan harga = 18000
 };

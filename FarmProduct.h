@@ -4,13 +4,11 @@
 #include "Product.h"
 
 class FarmProduct : public Product{
-protected:
-  string tipe; //Bisa egg, meat, atau milk
+//Kelas untuk produk hasil ternak. Memiliki kelas turunan ChickenEgg,
+//ChickenMeat, CowMeat, CowMilk, DuckEgg, DuckMeat, GoatMeat, GoatMilk,
+//HorseMeat, PigMeat
 public:
-  FarmProduct(string _tipe);
-
-  void setTipe(string _tipe);
-  string getTipe();
+  FarmProduct(); //Konstruktor kosong
 };
 
 #endif

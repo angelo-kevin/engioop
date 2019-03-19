@@ -5,16 +5,19 @@
 using namespace std;
 
 class Product{
+//Kelas dari produk yang bisa didapatkan pada progarm. Memiliki kelas turunan FarmProduct dan SideProduct
 protected:
-  string tipe; //Bisa FarmProduct, bisa SideProduct
+  int harga; //Harga dari produk
+  string productname; //Nama dari produk
 public:
-  Product(string t);
+  Product(); //Construct objek Product dengan harga = 0 dan productname = ""
+  Product(int price, string name); //Construct objek Product dengan harga = price dan productname = name
 
-  virtual int getHarga() = 0;
-  virtual string getProductName() = 0;
+  void setHarga(int price); //Set harga produk dengan price
+  void setProductName(string name); //Set nama produk dengan name
 
-  void setTipe(string t);
-  string getTipe();
+  int getHarga(); //Fungsi untuk mendapatkan harga produk
+  string getProductName(); //Fungsi untuk mendapatkan nama produk
 };
 
 #endif
