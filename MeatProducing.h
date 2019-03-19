@@ -1,3 +1,6 @@
 #include "FarmAnimal.h"
 
-class MeatProducing : public FarmAnimal{};
+class MeatProducing : public FarmAnimal{
+    public:
+        string produce(); //menghasilkan daging
+};

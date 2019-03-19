@@ -1,7 +1,7 @@
 #include "MeatProducing.h"
 
 class Pig : public MeatProducing{
-public:
-      string Produce(); //menghasilkan 'daging'
-      void Sound(); //suara 'petok'
+    public:
+        void move(vector<vector<Cells*> >); //implementasi fungsi pure virtual dari parent
+        void sound(); //suara 'squeak'
 };

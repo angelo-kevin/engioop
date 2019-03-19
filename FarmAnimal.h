@@ -11,16 +11,16 @@ class FarmAnimal{
         int y; //posisi
     public:
         FarmAnimal(int x, int y, bool lapar); //ctor
-        virtual void move(vector<vector<Cells*> > maps) = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
+        virtual void move(vector<vector<Cells*> >) = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
         virtual void sound() = 0; //method pure virtual, mengeluarkan suara
         virtual string produce() = 0; //menghasilkan produk yang direpresentasikan dengan string
 
         //Getter setter
         char showSimbol(); //mengembalikan nilai simbol
-        void revSimbol(); //mengubah nilai simbol dari objek yang akan ditunjukkan di map
+        void revSimbol(char); //mengubah nilai simbol dari objek yang akan ditunjukkan di map
         int getThreshold(); //mengembalikan nilai threshold dari objek
         bool getLapar(); //mengecek apakah objek dari kelas ini lapar atau tidak
-        void setLapar(); //mengubah nilai lapar dari objek
+        void setLapar(bool); //mengubah nilai lapar dari objek
         int getX();
         int getY();
 };
