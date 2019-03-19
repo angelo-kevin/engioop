@@ -2,13 +2,13 @@
 
 class GoatMilk : public FarmProduct{
 private:
-  string animal;
+  string productname;
   const int harga = 8000;
 public:
   GoatMilk();
 
-  void setAnimal();
-  string getAnimal();
+  void setProductName(string name);
+  string getproductname();
 
   int getHarga();
 };

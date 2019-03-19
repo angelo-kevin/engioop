@@ -2,13 +2,13 @@
 
 class PigMeat : public FarmProduct{
 private:
-  string animal;
+  string productname;
   const int harga = 12000;
 public:
   PigMeat();
 
-  void setAnimal();
-  string getAnimal();
+  void setProductName(string name);
+  string getProductName();
 
   int getHarga();
 };

@@ -1,3 +1,6 @@
 #include "Facility.h"
 
-class Well : public Facility{};
+class Well : public Facility{
+    public:
+      char showSymbol();
+};
