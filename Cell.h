@@ -1,5 +1,8 @@
 // Base Class : Cell
 class Cell{
+  private:
+    // Unique symbol for each objects
+    char Symbol;
   public:
     // Base Class Constructor
     Cell();
