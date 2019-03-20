@@ -4,6 +4,6 @@ class Grassland : public Land{
     public:
         //Constructor:
         Grassland();
-        //Method to grow grass:
+        //Method to grow grass chaange symbol into '#'':
         void growGrass();
 };
