@@ -4,3 +4,7 @@
 Barn::Barn(){
     this->Symbol = 'x';
 }
+//Method to grow grass chaange symbol into '#'':
+void Barn::growGrass(){
+    this->Symbol = '@';
+}

@@ -11,3 +11,4 @@ Cell::Cell(){
 char Cell::showSymbol(){
     return this->Symbol;
 }
+

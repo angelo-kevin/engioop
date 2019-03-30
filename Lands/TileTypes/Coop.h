@@ -7,5 +7,7 @@ class Coop : public Land{
     public:
         //Constructor:
         Coop();
+        //Method to grow grass chaange symbol into '#'':
+        void growGrass();
 };
 #endif

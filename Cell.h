@@ -11,5 +11,8 @@ class Cell{
     Cell();
     // Method to show Unique symbol for every types of objects in cell
     char showSymbol();
+
+    //Grassland Virtual Method:
+    virtual void growGrass(){};
 };
 #endif

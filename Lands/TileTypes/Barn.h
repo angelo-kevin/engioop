@@ -6,5 +6,7 @@ class Barn : public Land{
     public:
         //Konstruktor
         Barn();
+        //Method to grow grass chaange symbol into '#'':
+        void growGrass();
 };
 #endif

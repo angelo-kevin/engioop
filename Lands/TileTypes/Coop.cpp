@@ -5,4 +5,8 @@
 Coop::Coop(){
     this->Symbol = 'o';
 }
+//Method to grow grass chaange symbol into '#'':
+void Coop::growGrass(){
+    this->Symbol = '*';
+}
 

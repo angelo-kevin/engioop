@@ -2,44 +2,116 @@
 #include <vector>
 #include <cstring>
 #include <fstream>
+#include "Cell.h"
+#include "Cell.cpp"
+
+#include "Lands/Land.h"
+#include "Facilities/Facility.h"
+
+//tile-types:
+#include "Lands/TileTypes/Barn.h"
+#include "Lands/TileTypes/Grassland.h"
+#include "Lands/TileTypes/Coop.h"
+#include "Lands/TileTypes/Barn.cpp"
+#include "Lands/TileTypes/Grassland.cpp"
+#include "Lands/TileTypes/Coop.cpp"
+//facility-types:
+#include "Facilities/FacilityTypes/Mixer.h"
+#include "Facilities/FacilityTypes/Well.h"
+#include "Facilities/FacilityTypes/Truck.h"
+#include "Facilities/FacilityTypes/Mixer.cpp"
+#include "Facilities/FacilityTypes/Well.cpp"
+#include "Facilities/FacilityTypes/Truck.cpp"
+
+
 
 #define maxsize 256
 using namespace std;
 
-
-
-//CLASSES:
-class Cells{
-    public:
-        virtual ~Cells(){};
-        virtual char showSymbol()=0;
-};
-
 //GLOBAL VARIABLES:
-vector<vector<Cells*> > gamemap;
+vector<vector<Cell*> > gamemap;
 
-class Barn : public Cells{
-    public:
-        char showSymbol(){
-            return 'x';
+//FUNCTIONS:
+
+void classIdentifier(char c, vector<Cell*> &v){
+    //ALSO PUTS IT INTO VECTHOR
+    if (c == '.' || c == '#'){
+        v.push_back(new Grassland());
+    }
+    else if (c == 'o'){
+        v.push_back(new Coop());
+    }
+    else if (c == 'x'){
+        v.push_back(new Barn());
+    }
+    else if (c == 'T'){
+        v.push_back(new Truck());
+    }
+    else if (c == 'W'){
+        v.push_back(new Well());
+    }
+    else if (c == 'M'){
+        v.push_back(new Mixer());
+    }
+}
+
+void loadMap(){
+    ifstream mapfile;
+    string line;
+    int idx;
+    vector<Cell*> tempv;
+    mapfile.open ("mapschema.txt");
+    if (mapfile.is_open())
+    {
+        while ( getline (mapfile,line) )
+        {
+            idx=0;
+            while(line[idx] != '\0'){
+                classIdentifier(line[idx], tempv);
+                //cout<<tempv[idx]->showSymbol()<<endl;
+                idx++;
+            }
+            gamemap.push_back(tempv);
+            tempv.clear();
         }
-};
+    }
 
-class Land : public Cells{
-    public:
-        char showSymbol(){
-            return '.';
+    else cout << "File read error, you fucking shit";
+    mapfile.close();
+}
+
+void printMap(){
+    vector< vector<Cell*> >::iterator row;
+    vector<Cell*>::iterator col;
+    for (row = gamemap.begin(); row != gamemap.end(); row++) {
+        for (col = row->begin(); col != row->end(); col++) {
+            cout<<(*col)->showSymbol();
         }
-};
+        cout<<endl;
+    }
+}
 
-class Coop : public Cells{
-    public:
-        char showSymbol(){
-            return 'o';
-        }
-};
 
-class animul1: public Cells{
+int main(){
+    /*animul1* a = new animul1();
+    gamemap.push_back(a);
+    gamemap.push_back(new animul1());
+    gamemap.push_back(new animul2());
+    cout<<((gamemap.at(0))->showSymbol())<<endl;
+    */
+
+    //CREATE MAP:
+    loadMap();
+    gamemap[0][0]->growGrass();
+    printMap();
+    
+    //Player p;
+    //p.Interact(gamemap[0][0]);
+}
+
+
+/*
+class animul1: public Cell{
     private:
         char* namu;
     public:
@@ -59,7 +131,7 @@ class animul1: public Cells{
         }
 };
 
-class animul2: public Cells{
+class animul2: public Cell{
     private:
         char* namu;
     public:
@@ -93,7 +165,7 @@ class Player{
 
         ~Player(){};
 
-        void Interact(Cells* C){
+        void Interact(Cell* C){
             if (C->showSymbol() == 'a')
                 cout<<"Interacted with animul1"<<endl;
             else if (C->showSymbol() == 'b')
@@ -101,75 +173,4 @@ class Player{
         }
 
 };
-
-//FUNCTIONS:
-
-void classIdentifier(char c, vector<Cells*> &v){
-    //ALSO PUTS IT INTO VECTHOR
-    if (c == '.'){
-        v.push_back(new Land());
-    }
-    else if (c == 'o'){
-        v.push_back(new Coop());
-    }
-    else if (c == 'x'){
-        v.push_back(new Barn());
-    }
-    else if (c == 'a'){
-        v.push_back(new animul1());
-    }
-    else if (c == 'b'){
-        v.push_back(new animul2());
-    }
-}
-void loadMap(){
-    ifstream mapfile;
-    string line;
-    int idx;
-    vector<Cells*> tempv;
-    mapfile.open ("mapschema.txt");
-    if (mapfile.is_open())
-    {
-        while ( getline (mapfile,line) )
-        {
-            idx=0;
-            while(line[idx] != '\0'){
-                classIdentifier(line[idx], tempv);
-                //cout<<tempv[idx]->showSymbol()<<endl;
-                idx++;
-            }
-            gamemap.push_back(tempv);
-            tempv.clear();
-        }
-    }
-
-    else cout << "File read error, you fucking shit";
-    mapfile.close();
-}
-
-void printMap(){
-    vector< vector<Cells*> >::iterator row;
-    vector<Cells*>::iterator col;
-    for (row = gamemap.begin(); row != gamemap.end(); row++) {
-        for (col = row->begin(); col != row->end(); col++) {
-            cout<<(*col)->showSymbol();
-        }
-        cout<<endl;
-    }
-}
-
-
-int main(){
-    /*animul1* a = new animul1();
-    gamemap.push_back(a);
-    gamemap.push_back(new animul1());
-    gamemap.push_back(new animul2());
-    cout<<((gamemap.at(0))->showSymbol())<<endl;
-    */
-
-    //CREATE MAP:
-    loadMap();
-    printMap();
-    Player p;
-    p.Interact(gamemap[0][0]);
-}
+*/
