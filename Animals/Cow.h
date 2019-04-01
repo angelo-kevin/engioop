@@ -6,8 +6,9 @@
 
 class Cow : public MilkProducing, public MeatProducing{
     public:
+        Cow(bool l, int x, int y);
         void move(vector<vector<Cells*> >); //implementasi fungsi pure virtual dari parent
-        void sound(); //suara 'moo'
+        string sound(); //suara 'moo'
 };
 
 #endif
