@@ -63,7 +63,7 @@ void loadMap(){
     mapfile.open ("mapschema.txt");
     if (mapfile.is_open())
     {
-        while ( getline (mapfile,line) )
+        while (getline(mapfile,line) )
         {
             idx=0;
             while(line[idx] != '\0'){

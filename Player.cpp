@@ -2,8 +2,7 @@
 #include<vector>
 #include<string>
 #include<map>
-#include "Land.h"
-#include "Cell.h"
+#include "Player.h"
 using namespace std;
 
 vector<char> arrayProducingAnimal{'a','A'}; //except MeatProducing
@@ -16,24 +15,11 @@ map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
                                     {"cheese", {"milk"}}};
 
 
-class Product:A{
-    private a;
-
-};
-
-
-class Side: public Product {
-
-
-};
-
-
-
 class Player{
     private:
         int row;
         int col;
-        vector<Product> backpack;
+        LinkedList<Product> backpack;
         //int nell; //backpack
         int pouch; // water
     public:
@@ -44,14 +30,14 @@ class Player{
 
         ~Player(){};
 
-        void Talk(Cells* C){
+        void Talk(Cell* C){
             vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),C->showSymbol());
             if (itr!=arrayAnimal.end()){
-                //itr->sound();
+                cout<<itr->sound()<<endl;
             }
         }
 
-        void Interact(Cells* C){
+        void Interact(Cell* C){
             vector<char>::iterator itr=find(arrayProducingAnimal.begin(),arrayProducingAnimal.end(),C->showSymbol());
             vector<char>::iterator itr2=find(arrayFacility.begin(),arrayFacility.end(),C->showSymbol());
 
@@ -74,7 +60,7 @@ class Player{
             */
         }
 
-        void Kill(Cells* C){
+        void Kill(Cell* C){
             vector<char>::iterator itr=find(arrayKillAnimal.begin(),arrayKillAnimal.end(),C->showSymbol());
             if (itr!=arrayKillAnimal.end()){
                 //itr->~dest
@@ -87,7 +73,7 @@ class Player{
 
         }
 
-        void Grow(Cells* C){
+        void Grow(Cell* C){
             vector<char>::iterator itr=find(arrayLand.begin(),arrayLand.end(),C->showSymbol());
             if (itr!=arrayLand.end()){
                 //mapp
@@ -99,7 +85,7 @@ class Player{
             vector<string>::iterator itr=recipe[str].begin();
             vector<Product>::iterator itr;
             while (itr!=recipe[str].end()){
-                vector<Product>::iterator[] itr2=find(backpack.begin(),backpack.end(),*itr); 
+                vector<Product>::iterator itr2=find(backpack.begin(),backpack.end(),*itr); 
                 if(itr2!=backpack.end()){
                     
                 }else{
@@ -111,7 +97,7 @@ class Player{
             }
 
         }
-        void classIdentifier(char c, vector<Cells*> &v){
+        void classIdentifier(char c, vector<Cell*> &v){
         //ALSO PUTS IT INTO VECTHOR
         if (c == '.'){
             v.push_back(new Land());
@@ -123,7 +109,7 @@ class Player{
             v.push_back(new Barn());
         }
         else if (c == '#'){
-            v.push_back(new Grass());
+            v.push_back(new Grassland());
         }
         else if (c == 'M'){
             v.push_back(new Mixer());
@@ -141,34 +127,10 @@ class Player{
             v.push_back(new animul2());
         }
     }
-    void loadMap(){
-        ifstream mapfile;
-        string line;
-        int idx;
-        vector<Cells*> tempv;
-        mapfile.open ("mapschema.txt");
-        if (mapfile.is_open())
-        {
-            while ( getline (mapfile,line) )
-            {
-                idx=0;
-                while(line[idx] != '\0'){
-                    classIdentifier(line[idx], tempv);
-                    //cout<<tempv[idx]->showSymbol()<<endl;
-                    idx++;
-                }
-                gamemap.push_back(tempv);
-                tempv.clear();
-            }
-        }
-
-        else cout << "File read error, you fucking shit";
-        mapfile.close();
-    }
 
     //Ask for position:
 
-    Cells* getPosition(char direction){
+    Cell* getPosition(char direction){
         direction = tolower(direction);
         if (direction == 'n'){
             return gamemap[(this->row)-1][this->col];
@@ -200,4 +162,4 @@ class Player{
             (this->col)--;
         }
     }
-
+}
