@@ -31,6 +31,8 @@
 #include "Animals/Pig.h"
 #include "Animals/Chicken.h"
 
+#include "common.h"
+
 #define maxsize 256
 using namespace std;
 
@@ -110,10 +112,18 @@ void loadMap(){
 }
 
 void printMap(){
-    system(CLEAR);
     vector< vector<Cell*> >::iterator row;
     vector<Cell*>::iterator col;
     int colMax = gamemap[0].size();
+    for(int i = 0; i < colMax * 4 - 15; i++){
+      if(i == (colMax * 4 + 1) / 2){
+        cout << "PETA ENGI'S FARM";
+      } else{
+        cout << " ";
+      }
+    }
+    cout<<endl;
+    
     for(int i = 0; i < colMax * 4 + 1; i++){
       cout << "_";
     }
@@ -200,33 +210,41 @@ void printMap(){
 
 
 int main(){
-    /*animul1* a = new animul1();
-    gamemap.push_back(a);
-    gamemap.push_back(new animul1());
-    gamemap.push_back(new animul2());
-    cout<<((gamemap.at(0))->showSymbol())<<endl;
-    */
-
-    //CREATE MAP:
+    string command = "";
     loadMap();
-    //gamemap[0][0]->growGrass();
-    //gamemap[1][0]->growGrass();
-    FarmAnimal* a1 = new Pig(2, 2, false);
-    gamemap[0][0]->animalOccupy(a1);
+    while(command != "exit"){
+      system(CLEAR);
+      printMap();
+      cin >> command;
+      cout << command;
+      /*animul1* a = new animul1();
+      gamemap.push_back(a);
+      gamemap.push_back(new animul1());
+      gamemap.push_back(new animul2());
+      cout<<((gamemap.at(0))->showSymbol())<<endl;
+      */
 
-    FarmAnimal* a2 = new Chicken(true, 2, 2);
-    gamemap[2][2]->animalOccupy(a2);
+      //CREATE MAP:
 
-    // printLine();
-    printMap();
-    // printLine();
+      //gamemap[0][0]->growGrass();
+      //gamemap[1][0]->growGrass();
+      // FarmAnimal* a1 = new Pig(2, 2, false);
+      // gamemap[0][0]->animalOccupy(a1);
 
-    gamemap[0][0]-> makeUnoccupied();
-    // printMap();
-    // cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
+      // FarmAnimal* a2 = new Chicken(true, 2, 2);
+      // gamemap[2][2]->animalOccupy(a2);
 
-    //Player p;
-    //p.Interact(gamemap[0][0]);
+      // printLine();
+
+      // printLine();
+
+      // gamemap[0][0]-> makeUnoccupied();
+      // printMap();
+      // cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
+
+      //Player p;
+      //p.Interact(gamemap[0][0]);
+    }
 }
 
 
