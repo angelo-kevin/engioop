@@ -8,8 +8,9 @@
 #define MAX_WATER 100
 using namespace std;
 
-vector<char> arrayProducingAnimal{'a','A'}; //except MeatProducing
-vector<char> arrayKillAnimal{'c','C'};
+vector<char> meatProducingAnimal{'B'};
+vector<char> eggProducingAnimal{'C'};
+vector<char> milkProducingAnimal{'S'};
 vector<char> arrayAnimal{'a','A','c','C'};
 vector<char> arrayFacility{'W','T'}; //except mixer;
 vector<char> arrayMixer{'M'};
@@ -17,20 +18,19 @@ vector<char> arrayLand{'L'};
 map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
                                     {"cheese", {"milk"}}};
 
-map<char,vector<FarmAnimal>> liveAnimals; //adding same key will be overide orginal value
-
-template<class T>
+map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
+/*
 struct comparePos
 {
     int key1, key2;
 	comparePos(int x, int y): key1(x),key2(y) { }
 
-	bool operator()(T&  const obj)
+	bool operator()(FarmAnimal& obj)
 	{
 		return (obj.getX() == key1 && obj.getY() == key2);
 	}
 };
-
+*/
 class Player{
     private:
         int row;
@@ -52,31 +52,32 @@ class Player{
         void Talk(char dir){
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
-            vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),cell->showSymbol());
-            if (itr!=arrayAnimal.end()){
-                char c = cell->showSymbol();
-                vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos<FarmAnimal>(*x,*y));
-                cout<<itr->sound()<<endl;
+            if (cell->getOverrideSymbol() != '\0'){
+                //vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),cell->showSymbol());
+                // char c = cell->showSymbol();
+                // vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos(*x,*y));
+                // cout<<itr->sound()<<endl;
+                cout<<cell->getAnimalPtr()->sound<<endl;
+            }else{
+                cout<<"There's no animal.."<<endl;
             }
         }
 
         void Interact(char dir){
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
-            vector<char>::iterator itr=find(arrayProducingAnimal.begin(),arrayProducingAnimal.end(),cell->showSymbol());
-            vector<char>::iterator itr2=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
+            vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
+            vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
+            vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
             char c = cell->showSymbol();
 
-            if (itr!=arrayAnimal.end()){ //get the produced
-                if (isupper(c)){
-                    vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos<FarmAnimal>(*x,*y));
-                    cout<<"Product added"<<endl;
-                    backpack.add(itr->produce());
-                    cell->setSymbol(tolower(c));
-                }else{
-                    cout<<"The animal seems to be hungry."<<endl;
-                }
-            }else if (itr2!=arrayFacility.end()){
+            if (itr2!=milkProducingAnimal.end()){ //get milk produced
+                vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos<FarmAnimal>(*x,*y));
+                cout<<"Product added"<<endl;
+                backpack.add(itr->());
+                cell->getAnimalPtr()->revLapar();
+                cell->getAnimalPtr()->revSimbol();
+            }else if (itr1!=arrayFacility.end()){
                 if (c=='W'){ //Well
                     pouch = MAX_WATER;
                 }else if (c=='T'){//Truck
@@ -106,7 +107,7 @@ class Player{
         
 
         void Kill(Cell* C){
-            vector<char>::iterator itr=find(arrayKillAnimal.begin(),arrayKillAnimal.end(),C->showSymbol());
+            vector<char>::iterator itr=find(meatProducingAnimal.begin(),meatProducingAnimal.end(),C->showSymbol());
             if (itr!=arrayKillAnimal.end()){
                 //itr->~dest
 
@@ -197,6 +198,8 @@ class Player{
             *y=row;
             return gamemap[this->row][(this->col)-1];
         }
+        if (y)
+        return gamemap[y][x];
     }
 
     //Player change position:

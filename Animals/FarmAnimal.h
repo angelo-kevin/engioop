@@ -7,10 +7,7 @@ using namespace std;
 
 //Avoiding circular dependencies with Cell class:
 
-<<<<<<< HEAD
 #include "../engi.h"
-=======
->>>>>>> 1e54d85770a48ae63a4319ba4f95f297ebd2d2d8
 
 class FarmAnimal{
     protected:
