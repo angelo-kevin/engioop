@@ -1,10 +1,11 @@
 #include<iostream>
+#include<algorithm>
 #include<vector>
 #include<string>
+#include<ctype.h>
 #include<map>
 #include "Player.h"
-#include "Cell.h"
-
+#define MAX_WATER 100
 using namespace std;
 
 vector<char> eggProducingAnimal{'C'};
@@ -13,42 +14,64 @@ vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
                                     {"cheese", {"milk"}}};
 
+map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
 
+
+/*
+struct comparePos
+{
+    int key1, key2;
+	comparePos(int x, int y): key1(x),key2(y) { }
+	bool operator()(FarmAnimal& obj)
+	{
+		return (obj.getX() == key1 && obj.getY() == key2);
+	}
+};
+*/
 class Player{
     private:
         int row;
         int col;
         LinkedList<Product> backpack;
+        int score;
         //int nell; //backpack
         int pouch; // water
     public:
         Player(){
             row=0;
             col=0;
+            score=0;
         }
 
         ~Player(){};
 
-        void Talk(Cell* C){
-            vector<char>::iterator itr = find( arrayAnimal.begin(),arrayAnimal.end(),C->showSymbol());
-            if (itr!=arrayAnimal.end()){
-                cout<< itr->sound()<<endl;
+        
+        void Talk(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+
+            if (cell->getOverrideSymbol() != '\0'){ //animal
+                //vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),cell->showSymbol());
+                // char c = cell->showSymbol();
+                // vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos(*x,*y));
+                // cout<<itr->sound()<<endl;
+                cout<<cell->getAnimalPtr()->sound<<endl;
+            }else{
+                cout<<"There's no animal.."<<endl;
             }
         }
 
-        void Interact(Cell* C){
-            vector<char>::iterator itr= find(arrayProducingAnimal.begin(),arrayProducingAnimal.end(),C->showSymbol());
-            vector<char>::iterator itr2=find(arrayFacility.begin(),arrayFacility.end(),C->showSymbol());
+        void Interact(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
-            if (itr!=arrayAnimal.end()){
-                //itr->produce();
-                //backpack;
-            }else if (itr2!=arrayFacility.end()){
-                // truck
-                // water
+            vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
 
-                //itr->prodduce();
-            }
+            if (cell->getOverrideSymbol()!='\0'){
+                vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
+                vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
 
                 if (isupper(cell->getOverrideSymbol())){
                     if (itr2!=milkProducingAnimal.end()){
@@ -63,18 +86,34 @@ class Player{
                     cout<<"Animal's hungry"<<endl;
                 }
 
-            /*
-            if (C->showSymbol() == 'a')
-                cout<<"Interacted with animul1"<<endl;
-            else if (C->showSymbol() == 'b')
-                cout<<"Interacted with animul2"<<endl;
-            */
+            }else if (itr1!=arrayFacility.end()){
+                char c = cell->showSymbol();
+                if (c=='W'){ //Well
+                    pouch = MAX_WATER;
+                }else if (c=='T'){//Truck
+                    int money=0;
+                    for (int i=0; i<backpack.getLength();i++){
+                        money += backpack.getData(i).getHarga();
+                        backpack.removeByIdx(i);
+                    }
+                    backpack.resetIndexing();
+                    cout<<"Money earned : "<<money<<endl;
+                    score+=money;
+                }else if (c=='t'){
+                    cout<<"Truck's not available"<<endl;
+                }else{
+                    cout<<"Cannot interact with the facility."<<endl;
+                }
+            }else{
+                cout<<"Interact Failed."<<endl;
+            }
         }
+        
 
-        void Kill(Cell* C){
-            vector<char>::iterator itr=find(arrayKillAnimal.begin(),arrayKillAnimal.end(),C->showSymbol());
-            if (itr!=arrayKillAnimal.end()){
-                //itr->~dest
+        void Kill(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
             if (cell->getOverrideSymbol() != '\0'){
                 backpack.add(cell->getAnimalPtr()->produceMeat());
@@ -84,108 +123,71 @@ class Player{
             }else{
                 cout<<"There's no animal.."<<endl;
             }
-
-
-            
-
         }
 
-        void Grow(Cell* C){
-            vector<char>::iterator itr=find(arrayLand.begin(),arrayLand.end(),C->showSymbol());
-            if (itr!=arrayLand.end()){
-                //mapp
-            }
-
+        void Grow(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+            cell->growGrass();
         }
 
-        void Mix(string str){ //jenis int 
-            vector<string>::iterator itr=recipe[str].begin();
-            vector<Product>::iterator itr;
-            while (itr!=recipe[str].end()){
-                vector<Product>::iterator itr2=find(backpack.begin(),backpack.end(),*itr); 
-                if(itr2!=backpack.end()){
-                    
+        void Mix(char dir, string menu){ //jenis int
+            int *x, *y; 
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+
+            if (cell->showSymbol()=='M'){
+                map<string, vector<string>>::iterator itr;
+                itr = recipe.find(menu);
+                if (itr!=recipe.end()){
+                    vector<string> ingredients = itr->second;
+                    vector<string>::iterator itr2;
+                    int size = ingredients.size();
+                    Product* arrProduct = new Product[size];
+                    for (int i=0; i<size;i++){
+                        Product P(0,ingredients[i]);
+                        arrProduct[i] = P;
+                    }
+                    backpack.remove(arrProduct,size);
                 }else{
-
+                    cout<<"Menu's not available.."<<endl;
                 }
-                
-                itr++;
-
-            }
-
-        }
-        void classIdentifier(char c, vector<Cell*> &v){
-        //ALSO PUTS IT INTO VECTHOR
-        if (c == '.'){
-            v.push_back(new Land());
-        }
-        else if (c == 'o'){
-            v.push_back(new Coop());
-        }
-        else if (c == 'x'){
-            v.push_back(new Barn());
-        }
-        else if (c == '#'){
-            v.push_back(new Grassland());
-        }
-        else if (c == 'M'){
-            v.push_back(new Mixer());
-        }
-        else if (c == 'W'){
-            v.push_back(new Well());
-        }
-        else if (c == 'T'){
-            v.push_back(new Truck());
-        }
-        else if (c == 'a'){
-            v.push_back(new animul1());
-        }
-        else if (c == 'b'){
-            v.push_back(new animul2());
-        }
-    }
-    void loadMap(){
-        ifstream mapfile;
-        string line;
-        int idx;
-        vector<Cell*> tempv;
-        mapfile.open ("mapschema.txt");
-        if (mapfile.is_open())
-        {
-            while ( getline (mapfile,line) )
-            {
-                idx=0;
-                while(line[idx] != '\0'){
-                    classIdentifier(line[idx], tempv);
-                    //cout<<tempv[idx]->showSymbol()<<endl;
-                    idx++;
-                }
-                gamemap.push_back(tempv);
-                tempv.clear();
             }
         }
+        
 
-        else cout << "File read error, you fucking shit";
-        mapfile.close();
-    }
+        //Ask for position:
 
-    //Ask for position:
+        Cell* getPosition(char direction, int* x, int* y){
+            direction = tolower(direction);
+            int maxRow = gamemap.size();
+            int maxCol = gamemap[0].size();
 
-    Cell* getPosition(char direction){
-        direction = tolower(direction);
-        if (direction == 'n'){
-            return gamemap[(this->row)-1][this->col];
+            if (direction == 'n'){
+                *x=col;
+                *y=row-1;
+            }
+            else if (direction == 'e'){
+                *x=col+1;
+                *y=row;
+            }
+            else if (direction == 's'){
+                *x=col;
+                *y=row+1;
+            }
+            else if (direction == 'w'){
+                *x=col-1;
+                *y=row;
+            }
+
+            if (0<=*y && *y<maxRow && 0<=*x && *x<maxCol){
+                return gamemap[*y][*x];
+            }else{
+                cout<<"Cell is out of range"<<endl;
+                return new Cell();
+            }           
         }
-        else if (direction == 'e'){
-            return gamemap[this->row][(this->col)+1];
-        }
-        else if (direction == 's'){
-            return gamemap[(this->row)+1][this->col];
-        }
-        else if (direction == 'w'){
-            return gamemap[this->row][(this->col)-1];
-        }
-    }
 
         bool canPassed(int tcol, int trow){
             return (gamemap[trow][tcol]->getOverrideSymbol!='\0' && gamemap[trow][tcol]->showSymbol!='M' && gamemap[trow][tcol]->showSymbol!='T' && gamemap[trow][tcol]->showSymbol!='W');
@@ -206,5 +208,4 @@ class Player{
                 col--;
             }
         }
-    }
 }

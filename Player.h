@@ -19,6 +19,8 @@ class Player{
     public:
         Player(); //constructor
         //~Player(); //tidak perlu
+        int getX();
+        int getY();
         void Talk(char); //memanggil method sound dari animal
         void Interact(char); //memanggil method sesuai dengan apa yang ada di sekitar player
         void Kill(char); //destructor meatproducing animal
