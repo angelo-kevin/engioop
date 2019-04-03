@@ -1,7 +1,7 @@
 #include "Pig.h"
 #include "MeatProducing.cpp"
 
-Pig::Pig(bool l, int x, int y): MeatProducing::MeatProducing(x,y,l) {
+Pig::Pig(bool l, int x, int y): FarmAnimal(x,y,l), MeatProducing(x,y,l){
     if (lapar) simbol = 'p';
     else simbol = 'P';
     threshold = 12;

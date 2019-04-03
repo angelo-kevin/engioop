@@ -7,7 +7,7 @@
 class Goat : public MilkProducing, public MeatProducing{
     public:
         Goat(bool l, int x, int y);
-        void move(vector<vector<Cells*> >); //implementasi fungsi pure virtual dari parent
+        void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'mbek'
 };
 
