@@ -28,9 +28,9 @@
 #include "Facilities/FacilityTypes/Truck.cpp"
 */
 //Animal-types:
-// #include "Animals/FarmAnimal.h"
-// #include "Animals/Pig.h"
-// #include "Animals/Chicken.h"
+#include "Animals/FarmAnimal.h"
+#include "Animals/Pig.h"
+#include "Animals/Chicken.h"
 
 #include "common.h"
 #include <algorithm>
@@ -202,7 +202,7 @@ int main(){
     string command = "";
     loadMap();
     FarmAnimal* a1 = new Pig(2, 2, false);
-    cout << a1->producemeat().getProductName() << endl;
+    cout << a1->produceMeat().getProductName() << endl;
     /*
     while(command != "exit"){
       system(CLEAR);
