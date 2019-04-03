@@ -12,20 +12,24 @@
 #include "Lands/TileTypes/Barn.h"
 #include "Lands/TileTypes/Grassland.h"
 #include "Lands/TileTypes/Coop.h"
+/*
 #include "Lands/TileTypes/Barn.cpp"
 #include "Lands/TileTypes/Grassland.cpp"
 #include "Lands/TileTypes/Coop.cpp"
+*/
 //facility-types:
 #include "Facilities/FacilityTypes/Mixer.h"
 #include "Facilities/FacilityTypes/Well.h"
 #include "Facilities/FacilityTypes/Truck.h"
+/*
 #include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Well.cpp"
 #include "Facilities/FacilityTypes/Truck.cpp"
-
+*/
 //Animal-types:
-#include "Animals/FarmAnimal.cpp"
-#include "Animals/Pig.cpp"
+#include "Animals/FarmAnimal.h"
+#include "Animals/Pig.h"
+#include "Animals/Chicken.h"
 
 #define maxsize 256
 using namespace std;
@@ -129,8 +133,13 @@ int main(){
     //gamemap[1][0]->growGrass();
     FarmAnimal* a1 = new Pig(false, 2, 2);
     gamemap[0][0]->animalOccupy(a1);
+
+    FarmAnimal* a2 = new Chicken(true, 2, 2);
+    gamemap[2][2]->animalOccupy(a2);
     printMap();
 
+    gamemap[0][0]-> makeUnoccupied();
+    printMap();
     cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
     
     //Player p;

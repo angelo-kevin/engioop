@@ -3,7 +3,7 @@
 
 #include "EggProducing.h"
 #include "MeatProducing.h"
-
+//#include "EggProducing.cpp"
 class Chicken : public EggProducing, public MeatProducing{
     public:
         Chicken(bool l, int x, int y);
