@@ -131,7 +131,7 @@ int main(){
     gamemap[0][0]->animalOccupy(a1);
     printMap();
 
-    cout<< gamemap[0][0]->getAnimalPtr()->sound() << endl;
+    cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
     
     //Player p;
     //p.Interact(gamemap[0][0]);
