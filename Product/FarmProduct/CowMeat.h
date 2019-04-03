@@ -1,3 +1,6 @@
+#ifndef COWMEAT_H
+#define COWMEAT_H
+
 #include "../FarmProduct.h"
 
 class CowMeat : public FarmProduct{
@@ -5,3 +8,5 @@ class CowMeat : public FarmProduct{
 public:
   CowMeat(); //mengisi productname = "CowMeat" dan harga = 15000
 };
+
+#endif

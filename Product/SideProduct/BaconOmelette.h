@@ -1,3 +1,6 @@
+#ifndef BACONOMELETTE_H
+#define BACONOMELETTE_H
+
 #include "../SideProduct.h"
 
 class BaconOmelette : public SideProduct{
@@ -5,3 +8,5 @@ class BaconOmelette : public SideProduct{
 public:
   BaconOmelette(); //mengisi productname = "BaconOmelette" dan harga = 18000
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef HORSEROLADE_H
+#define HORSEROLADE_H
+
 #include "../SideProduct.h"
 
 class HorseRolade : public SideProduct{
@@ -5,3 +8,5 @@ class HorseRolade : public SideProduct{
 public:
   HorseRolade(); //mengisi productname = "HorseRolade" dan harga = 25000
 };
+
+#endif
