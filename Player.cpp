@@ -196,7 +196,6 @@ class Player{
 
         //Player change position:
         void setPosition(char direction){
-
             direction = tolower(direction);
             if (direction == 'n'){
                 row--;
@@ -210,5 +209,9 @@ class Player{
             else if (direction == 'w'){
                 col--;
             }
+            if (row<0) row=0;
+            if (row>=gamemap.size()) row=gamemap.size()-1;
+            if (col<0) col=0;
+            if (col>=gamemap[0].size()) col=gamemap[0].size()-1;
         }
 }
