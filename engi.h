@@ -2,6 +2,8 @@
 #include <vector>
 #include <cstring>
 #include <fstream>
+
+#include "Player.h"
 #include "LinkedList.h"
 #include "Cell.h"
 #include "Cell.cpp"

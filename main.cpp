@@ -32,6 +32,7 @@
 // #include "Animals/Pig.h"
 // #include "Animals/Chicken.h"
 
+#include "engi.h"
 #include "common.h"
 #include <algorithm>
 #include <unistd.h>
@@ -201,6 +202,7 @@ void printMap(){
 int main(){
     string command = "";
     loadMap();
+    Player mainPlayer;
     while(command != "exit"){
       system(CLEAR);
       printMap();
@@ -213,6 +215,9 @@ int main(){
       cout << command;
       if(command == "talk"){
         cout << "talk" << endl;
+        char c;
+        cin>>c;
+        mainPlayer.talk(c);
       } else if(command == "interact"){
         cout << "interact" << endl;
       } else if(command == "kill"){

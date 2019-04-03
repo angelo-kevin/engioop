@@ -1,4 +1,7 @@
-#include<iostream>
+#ifndef _PLAYER_H
+#define _PLAYER_H
+
+#include <iostream>
 #include<vector>
 #include<string>
 #include "engi.h"
@@ -25,3 +28,5 @@ class Player{
         void setPosition(char); //set the position of player
 
 };
+
+#endif
