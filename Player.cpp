@@ -11,7 +11,7 @@ using namespace std;
 vector<char> eggProducingAnimal{'C'};
 vector<char> milkProducingAnimal{'S'};
 vector<char> arrayFacility{'W','T','M'};
-map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
+map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
                                     {"cheese", {"milk"}}};
 
 map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
@@ -28,6 +28,14 @@ struct comparePos
 	}
 };
 */
+
+Player::Player(){
+    row = 0;
+    col = 0;
+    score = 0;
+    pouch = 0;
+}
+
 Player::Player(int x, int y){
     row=y;
     col=x;
@@ -125,7 +133,7 @@ void Player::Grow(char dir){
 }
 
 void Player::Mix(char dir, string menu){ //jenis int
-    int *x, *y; 
+    int *x, *y;
     Cell* cell = getPosition(dir,x,y);
     if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
@@ -177,7 +185,7 @@ Cell* Player::getPosition(char direction, int* x, int* y){
     }else{
         cout<<"Cell is out of range"<<endl;
         return new Cell();
-    }           
+    }
 }
 
 bool Player::canPassed(int tcol, int trow){
@@ -187,7 +195,7 @@ bool Player::canPassed(int tcol, int trow){
 void Player::setPosition(char direction){
     direction = tolower(direction);
     if (direction == 'n' && 0<=row-1 && canPassed(col,row-1)){
-        row--;  
+        row--;
     }
     else if (direction == 'e' && col+1<gamemap[0].size() && canPassed(col+1,row)){
         col++;

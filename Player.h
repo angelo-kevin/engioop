@@ -18,6 +18,7 @@ class Player{
         int score;
         int pouch; // Kantong air
     public:
+        Player();
         Player(int, int); //constructor
         //~Player(); //tidak perlu
         int getX();
