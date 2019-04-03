@@ -52,7 +52,7 @@ class Player{
         void Talk(char dir){
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
-            if (cell->getOverrideSymbol() != '\0'){
+            if (cell->getOverrideSymbol() != '\0'){ //animal
                 //vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),cell->showSymbol());
                 // char c = cell->showSymbol();
                 // vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos(*x,*y));
@@ -67,10 +67,13 @@ class Player{
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
             vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
-            vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
-            vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
             char c = cell->showSymbol();
 
+            if (cell->getOverrideSymbol!='\0'){
+                vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
+                vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
+
+            }
             if (itr2!=milkProducingAnimal.end()){ //get milk produced
                 vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos<FarmAnimal>(*x,*y));
                 cout<<"Product added"<<endl;
