@@ -14,8 +14,6 @@ string Goat::sound(){
     return "mbek";
 }
 
-FarmProduct Goat::produceegg(){}
-
 FarmProduct Goat::producemeat(){
     return GoatMeat();
 }

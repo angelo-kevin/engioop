@@ -21,5 +21,3 @@ FarmProduct Duck::produceegg(){
 FarmProduct Duck::producemeat(){
     return DuckMeat();
 }
-
-FarmProduct Duck::producemilk(){}

@@ -13,7 +13,6 @@ class Duck : public EggProducing, public MeatProducing{
         string sound(); //suara 'kwek'
         FarmProduct produceegg();
         FarmProduct producemeat();
-        FarmProduct producemilk();
 };
 
 #endif
