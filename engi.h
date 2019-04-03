@@ -1,3 +1,7 @@
+#ifndef _ENGI_H
+#define _ENGI_H
+
+
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -34,3 +38,5 @@
 
 
 extern vector<vector<Cell*> > gamemap;
+
+#endif

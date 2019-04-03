@@ -10,18 +10,18 @@
 #include "Facilities/Facility.h"
 
 //tile-types:
-#include "Lands/TileTypes/Barn.h"
-#include "Lands/TileTypes/Grassland.h"
-#include "Lands/TileTypes/Coop.h"
+// #include "Lands/TileTypes/Barn.h"
+// #include "Lands/TileTypes/Grassland.h"
+// #include "Lands/TileTypes/Coop.h"
 /*
 #include "Lands/TileTypes/Barn.cpp"
 #include "Lands/TileTypes/Grassland.cpp"
 #include "Lands/TileTypes/Coop.cpp"
 */
 //facility-types:
-#include "Facilities/FacilityTypes/Mixer.h"
-#include "Facilities/FacilityTypes/Well.h"
-#include "Facilities/FacilityTypes/Truck.h"
+// #include "Facilities/FacilityTypes/Mixer.h"
+// #include "Facilities/FacilityTypes/Well.h"
+// #include "Facilities/FacilityTypes/Truck.h"
 /*
 #include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Well.cpp"
@@ -33,8 +33,6 @@
 // #include "Animals/Chicken.h"
 
 #include "engi.h"
-#include "common.h"
-#include <algorithm>
 #include <unistd.h>
 
 #define maxsize 256
