@@ -1,7 +1,7 @@
 #ifndef FARMAN_H
 #define FARMAN_H
 
-#include "Landtypes.h"
+#include "../engi.h"
 
 class FarmAnimal{
     protected:

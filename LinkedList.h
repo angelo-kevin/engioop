@@ -158,7 +158,6 @@ class LinkedList{
                 while (i!=size){
                     removeByIdx(*(idx+i));
                     i++;
-                    length--;
                 }
                 resetIndexing();
             }else{
@@ -182,6 +181,7 @@ class LinkedList{
             }
             delNode->next=NULL;
             delete delNode;
+            length--;
         }
 
         /*
@@ -224,7 +224,7 @@ class LinkedList{
         }*/
 
 
-        T get(int _idx) //assume idx is in range //mengembalikan data dari LinkedList di idx tertentu
+        T getData(int _idx) //assume idx is in range //mengembalikan data dari LinkedList di idx tertentu
         {
             if (_idx>=length){
                 cout<<"index out of range"<<endl;
@@ -237,6 +237,10 @@ class LinkedList{
                 // if (ptr->idx == _idx) 
                 return ptr->data;
             }
+        }
+
+        int getLength(){
+            return length;
         }
 
         void Print(){
