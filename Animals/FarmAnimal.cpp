@@ -35,14 +35,14 @@ int FarmAnimal::getY(){
     return y;
 }
 
-FarmProduct FarmAnimal::produceegg(){
+FarmProduct FarmAnimal::produceEgg(){
     return FarmProduct();
 }
 
-FarmProduct FarmAnimal::producemeat(){
+FarmProduct FarmAnimal::produceMeat(){
     return FarmProduct();
 }
 
-FarmProduct FarmAnimal::producemilk(){
+FarmProduct FarmAnimal::produceMilk(){
     return FarmProduct();
 }

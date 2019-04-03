@@ -14,6 +14,6 @@ string Horse::sound(){
     return "neigh";
 }
 
-FarmProduct Horse::producemeat(){
+FarmProduct Horse::produceMeat(){
     return HorseMeat();
 }
