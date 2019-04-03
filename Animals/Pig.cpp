@@ -15,6 +15,6 @@ string Pig::sound(){
     return "squeak";
 }
 
-FarmProduct Pig::producemeat(){
+FarmProduct Pig::produceMeat(){
     return PigMeat();
 }

@@ -15,10 +15,12 @@ vector<char> arrayAnimal{'a','A','c','C'};
 vector<char> arrayFacility{'W','T'}; //except mixer;
 vector<char> arrayMixer{'M'};
 vector<char> arrayLand{'L'};
-map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
+map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
                                     {"cheese", {"milk"}}};
 
 map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
+
+
 /*
 struct comparePos
 {
@@ -52,6 +54,8 @@ class Player{
         void Talk(char dir){
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+
             if (cell->getOverrideSymbol() != '\0'){ //animal
                 //vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),cell->showSymbol());
                 // char c = cell->showSymbol();
@@ -66,159 +70,145 @@ class Player{
         void Interact(char dir){
             int *x, *y;
             Cell* cell = getPosition(dir,x,y);
-            vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
-            char c = cell->showSymbol();
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
-            if (cell->getOverrideSymbol!='\0'){
+            vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
+
+            if (cell->getOverrideSymbol()!='\0'){
                 vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
                 vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
 
-            }
-            if (itr2!=milkProducingAnimal.end()){ //get milk produced
-                vector<FarmAnimal>::iterator itr = find_if(liveAnimals[c].begin(),liveAnimals[c].end(),comparePos<FarmAnimal>(*x,*y));
-                cout<<"Product added"<<endl;
-                backpack.add(itr->());
-                cell->getAnimalPtr()->revLapar();
-                cell->getAnimalPtr()->revSimbol();
+                if (isupper(cell->getOverrideSymbol())){
+                    if (itr2!=milkProducingAnimal.end()){
+                        backpack.add(cell->getAnimalPtr()->producemilk());
+                    }
+                    if (itr3!=eggProducingAnimal.end()){
+                        backpack.add(cell->getAnimalPtr()->producemilk());
+                    }
+                    cell->getAnimalPtr()->revLapar();
+                    cell->getAnimalPtr()->revSimbol();
+                }else{
+                    cout<<"Animal's hungry"<<endl;
+                }
+
             }else if (itr1!=arrayFacility.end()){
+                char c = cell->showSymbol();
                 if (c=='W'){ //Well
                     pouch = MAX_WATER;
                 }else if (c=='T'){//Truck
-                    if (){
-                        int money=0;
-                        for (int i=0; i<backpack.getLength();i++){
-                            money += backpack.getData(i).getHarga();
-                            backpack.removeByIdx(i);
-                        }
-                        backpack.resetIndexing();
-                        cout<<"Money earned : "<<money<<endl;
-                        score+=money;
-                    }else{
-                        cout<<"Truck's not available"<<endl;
+                    int money=0;
+                    for (int i=0; i<backpack.getLength();i++){
+                        money += backpack.getData(i).getHarga();
+                        backpack.removeByIdx(i);
                     }
+                    backpack.resetIndexing();
+                    cout<<"Money earned : "<<money<<endl;
+                    score+=money;
+                }else if (c=='t'){
+                    cout<<"Truck's not available"<<endl;
+                }else{
+                    cout<<"Cannot interact with the facility."<<endl;
                 }
+            }else{
+                cout<<"Interact Failed."<<endl;
             }
-
-            /*
-
-            if (C->showSymbol() == 'a')
-                cout<<"Interacted with animul1"<<endl;
-            else if (C->showSymbol() == 'b')
-                cout<<"Interacted with animul2"<<endl;
-            */
         }
         
 
-        void Kill(Cell* C){
-            vector<char>::iterator itr=find(meatProducingAnimal.begin(),meatProducingAnimal.end(),C->showSymbol());
-            if (itr!=arrayKillAnimal.end()){
-                //itr->~dest
+        void Kill(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
-                //mappp
+            if (cell->getOverrideSymbol() != '\0'){
+                backpack.add(cell->getAnimalPtr()->producemeat());
+                cout<<cell->getAnimalPtr()->sound<<endl;
+                cell->makeUnoccupied();
+                //delete from "livinganimal" list
+            }else{
+                cout<<"There's no animal.."<<endl;
             }
-
-
-
-
         }
 
-        void Grow(Cell* C){
-            vector<char>::iterator itr=find(arrayLand.begin(),arrayLand.end(),C->showSymbol());
-            if (itr!=arrayLand.end()){
-                //mapp
-            }
-
+        void Grow(char dir){
+            int *x, *y;
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+            cell->growGrass();
         }
 
-        void Mix(string str){ //jenis int
-            vector<string>::iterator itr=recipe[str].begin();
-            vector<Product>::iterator itr;
-            while (itr!=recipe[str].end()){
-                vector<Product>::iterator itr2=find(backpack.begin(),backpack.end(),*itr);
-                if(itr2!=backpack.end()){
+        void Mix(char dir, string menu){ //jenis int
+            int *x, *y; 
+            Cell* cell = getPosition(dir,x,y);
+            if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
+            if (cell->showSymbol()=='M'){
+                map<string, vector<string>>::iterator itr;
+                itr = recipe.find(menu);
+                if (itr!=recipe.end()){
+                    vector<string> ingredients = itr->second;
+                    vector<string>::iterator itr2;
+                    int size = ingredients.size();
+                    Product* arrProduct = new Product[size];
+                    for (int i=0; i<size;i++){
+                        Product P(0,ingredients[i]);
+                        arrProduct[i] = P;
+                    }
+                    backpack.remove(arrProduct,size);
                 }else{
-
+                    cout<<"Menu's not available.."<<endl;
                 }
+            }
+        }
+        
 
-                itr++;
+        //Ask for position:
 
+        Cell* getPosition(char direction, int* x, int* y){
+            direction = tolower(direction);
+            int maxRow = gamemap.size();
+            int maxCol = gamemap[0].size();
+
+            if (direction == 'n'){
+                *x=col;
+                *y=row-1;
+            }
+            else if (direction == 'e'){
+                *x=col+1;
+                *y=row;
+            }
+            else if (direction == 's'){
+                *x=col;
+                *y=row+1;
+            }
+            else if (direction == 'w'){
+                *x=col-1;
+                *y=row;
             }
 
+            if (0<=*y && *y<maxRow && 0<=*x && *x<maxCol){
+                return gamemap[*y][*x];
+            }else{
+                cout<<"Cell is out of range"<<endl;
+                return new Cell();
+            }           
         }
-        void classIdentifier(char c, vector<Cell*> &v){
-        //ALSO PUTS IT INTO VECTHOR
-        if (c == '.'){
-            v.push_back(new Land());
-        }
-        else if (c == 'o'){
-            v.push_back(new Coop());
-        }
-        else if (c == 'x'){
-            v.push_back(new Barn());
-        }
-        else if (c == '#'){
-            v.push_back(new Grassland());
-        }
-        else if (c == 'M'){
-            v.push_back(new Mixer());
-        }
-        else if (c == 'W'){
-            v.push_back(new Well());
-        }
-        else if (c == 'T'){
-            v.push_back(new Truck());
-        }
-        else if (c == 'a'){
-            v.push_back(new animul1());
-        }
-        else if (c == 'b'){
-            v.push_back(new animul2());
-        }
-    }
 
-    //Ask for position:
+        //Player change position:
+        void setPosition(char direction){
 
-    Cell* getPosition(char direction, int* x, int* y){
-        direction = tolower(direction);
-        if (direction == 'n'){
-            *x=col;
-            *y=row-1;
-            return gamemap[(this->row)-1][this->col];
+            direction = tolower(direction);
+            if (direction == 'n'){
+                row--;
+            }
+            else if (direction == 'e'){
+                col++;
+            }
+            else if (direction == 's'){
+                row++;
+            }
+            else if (direction == 'w'){
+                col--;
+            }
         }
-        else if (direction == 'e'){
-            *x=col+1;
-            *y=row;
-            return gamemap[this->row][(this->col)+1];
-        }
-        else if (direction == 's'){
-            *x=col;
-            *y=row+1;
-            return gamemap[(this->row)+1][this->col];
-        }
-        else if (direction == 'w'){
-            *x=col-1;
-            *y=row;
-            return gamemap[this->row][(this->col)-1];
-        }
-        if (y)
-        return gamemap[y][x];
-    }
-
-    //Player change position:
-    void setPosition(char direction){
-        direction = tolower(direction);
-        if (direction == 'n'){
-            (this->row)--;
-        }
-        else if (direction == 'e'){
-            (this->col)++;
-        }
-        else if (direction == 's'){
-            (this->row)++;
-        }
-        else if (direction == 'w'){
-            (this->col)--;
-        }
-    }
 }

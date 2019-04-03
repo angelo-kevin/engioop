@@ -13,6 +13,8 @@ public:
   Product(); //Construct objek Product dengan harga = 0 dan productname = ""
   Product(int price, string name); //Construct objek Product dengan harga = price dan productname = name
 
+  bool operator==(Product& p);
+  
   void setHarga(int price); //Set harga produk dengan price
   void setProductName(string name); //Set nama produk dengan name
 

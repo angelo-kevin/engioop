@@ -9,7 +9,7 @@ class Pig : public MeatProducing{
         Pig(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'squeak'
-        FarmProduct producemeat();
+        FarmProduct produceMeat();
 };
 
 #endif

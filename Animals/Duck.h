@@ -11,8 +11,8 @@ class Duck : public EggProducing, public MeatProducing{
         Duck(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'kwek'
-        FarmProduct produceegg();
-        FarmProduct producemeat();
+        FarmProduct produceEgg();
+        FarmProduct produceMeat();
 };
 
 #endif
