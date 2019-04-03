@@ -14,10 +14,10 @@ string Duck::sound(){
     return "kwek";
 }
 
-FarmProduct Duck::produceegg(){
+FarmProduct Duck::produceEgg(){
     return DuckEgg();
 }
 
-FarmProduct Duck::producemeat(){
+FarmProduct Duck::produceMeat(){
     return DuckMeat();
 }

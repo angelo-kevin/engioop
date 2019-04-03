@@ -14,10 +14,10 @@ string Chicken::sound(){
     return "petok";
 } //suara 'petok'
 
-FarmProduct Chicken::produceegg(){
+FarmProduct Chicken::produceEgg(){
     return ChickenEgg();
 }
 
-FarmProduct Chicken::producemeat(){
+FarmProduct Chicken::produceMeat(){
     return ChickenMeat();
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstring>
 #include <fstream>
+#include <ctype.h>
 #include "Cell.h"
 #include "Cell.cpp"
 
@@ -27,11 +28,13 @@
 #include "Facilities/FacilityTypes/Truck.cpp"
 */
 //Animal-types:
-#include "Animals/FarmAnimal.h"
-#include "Animals/Pig.h"
-#include "Animals/Chicken.h"
+// #include "Animals/FarmAnimal.h"
+// #include "Animals/Pig.h"
+// #include "Animals/Chicken.h"
 
 #include "common.h"
+#include <algorithm>
+#include <unistd.h>
 
 #define maxsize 256
 using namespace std;
@@ -123,7 +126,7 @@ void printMap(){
       }
     }
     cout<<endl;
-    
+
     for(int i = 0; i < colMax * 4 + 1; i++){
       cout << "_";
     }
@@ -193,21 +196,7 @@ void printMap(){
 
     cout << "Inventory: " << endl;
     cout << "" << endl;
-
-    cout << "Output: " << endl;
-    cout << "" << endl;
-
-    cout << "Command: ";
-    cout << "" << endl;
 }
-
-// void printLine(){
-//   vector<Cell*>::iterator col;
-//   for (col = row->begin(); col != row->end(); col++) {
-//     cout << "_";
-//   }
-// }
-
 
 int main(){
     string command = "";
@@ -215,8 +204,31 @@ int main(){
     while(command != "exit"){
       system(CLEAR);
       printMap();
+
+      cout << "Command: ";
+      cout << "" << endl;
+
       cin >> command;
+      transform(command.begin(), command.end(), command.begin(), ::tolower);
       cout << command;
+      if(command == "talk"){
+        cout << "talk" << endl;
+      } else if(command == "interact"){
+        cout << "interact" << endl;
+      } else if(command == "kill"){
+        cout << "kill" << endl;
+      } else if(command == "grow"){
+        cout << "grow" << endl;
+      } else if(command == "mix"){
+        cout << "mix" << endl;
+      } else{
+        cout << "Invalid command" << endl;
+      }
+
+      cout << "Output: " << endl;
+      cout << "" << endl;
+
+      sleep(2000);
       /*animul1* a = new animul1();
       gamemap.push_back(a);
       gamemap.push_back(new animul1());
