@@ -12,3 +12,7 @@ void Grassland::growGrass(){
     this->Symbol = '#';
 }
 
+//Method to ungrow grass chaange symbol into '.':
+void Grassland::ungrowGrass(){
+    this->Symbol = '.';
+}

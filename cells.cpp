@@ -12,18 +12,24 @@
 #include "Lands/TileTypes/Barn.h"
 #include "Lands/TileTypes/Grassland.h"
 #include "Lands/TileTypes/Coop.h"
+/*
 #include "Lands/TileTypes/Barn.cpp"
 #include "Lands/TileTypes/Grassland.cpp"
 #include "Lands/TileTypes/Coop.cpp"
+*/
 //facility-types:
 #include "Facilities/FacilityTypes/Mixer.h"
 #include "Facilities/FacilityTypes/Well.h"
 #include "Facilities/FacilityTypes/Truck.h"
+/*
 #include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Well.cpp"
 #include "Facilities/FacilityTypes/Truck.cpp"
-
-
+*/
+//Animal-types:
+#include "Animals/FarmAnimal.h"
+#include "Animals/Pig.h"
+#include "Animals/Chicken.h"
 
 #define maxsize 256
 using namespace std;
@@ -35,8 +41,23 @@ vector<vector<Cell*> > gamemap;
 
 void classIdentifier(char c, vector<Cell*> &v){
     //ALSO PUTS IT INTO VECTHOR
-    if (c == '.' || c == '#'){
+    if (c == '.'){
         v.push_back(new Grassland());
+    }
+    else if (c == '#'){
+        Grassland* temp = new Grassland();
+        temp->growGrass();
+        v.push_back(temp);
+    }
+    else if (c == '@'){
+        Barn* temp = new Barn();
+        temp->growGrass();
+        v.push_back(temp);
+    }
+    else if (c == '*'){
+        Coop* temp = new Coop();
+        temp->growGrass();
+        v.push_back(temp);
     }
     else if (c == 'o'){
         v.push_back(new Coop());
@@ -85,7 +106,13 @@ void printMap(){
     vector<Cell*>::iterator col;
     for (row = gamemap.begin(); row != gamemap.end(); row++) {
         for (col = row->begin(); col != row->end(); col++) {
-            cout<<(*col)->showSymbol();
+            // Check whether this paticular cell is occupied or not:
+            if ((*col)->getOverrideSymbol()  ==  '\0')
+                // If unoccupied: 
+                cout<<(*col)->showSymbol();
+            else
+                // If occupied:
+                cout<<(*col)->getOverrideSymbol();
         }
         cout<<endl;
     }
@@ -102,8 +129,18 @@ int main(){
 
     //CREATE MAP:
     loadMap();
-    gamemap[0][0]->growGrass();
+    //gamemap[0][0]->growGrass();
+    //gamemap[1][0]->growGrass();
+    FarmAnimal* a1 = new Pig(2, 2, false);
+    gamemap[0][0]->animalOccupy(a1);
+
+    FarmAnimal* a2 = new Chicken(true, 2, 2);
+    gamemap[2][2]->animalOccupy(a2);
     printMap();
+
+    gamemap[0][0]-> makeUnoccupied();
+    printMap();
+    cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
     
     //Player p;
     //p.Interact(gamemap[0][0]);

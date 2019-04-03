@@ -5,8 +5,8 @@
 
 class Horse : public MeatProducing{
     public:
-        Horse(bool l, int x, int y);
-        void move(vector<vector<Cells*> >); //implementasi fungsi pure virtual dari parent
+        Horse(int x, int y, bool l);
+        void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'neigh'
 };
 

@@ -1,5 +1,7 @@
 #include "EggProducing.h"
 
-string EggProducing::produce(){
+EggProducing::EggProducing(int x, int y, bool l): FarmAnimal(x,y,l){}
+
+string EggProducing::produceegg(){
     return "telur";
 }

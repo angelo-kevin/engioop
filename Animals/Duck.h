@@ -6,8 +6,8 @@
 
 class Duck : public EggProducing, public MeatProducing{
     public:
-        Duck(bool l, int x, int y);
-        void move(vector<vector<Cells*> >); //implementasi fungsi pure virtual dari parent
+        Duck(int x, int y, bool l);
+        void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'kwek'
 };
 

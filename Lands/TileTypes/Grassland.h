@@ -8,6 +8,8 @@ class Grassland : public Land{
         Grassland();
         //Method to grow grass chaange symbol into '#'':
         void growGrass();
+        //Method to grow grass chaange symbol into '.':
+        void ungrowGrass();
 };
 
 #endif
