@@ -6,7 +6,6 @@
 class MeatProducing : virtual public FarmAnimal{
     public:
         MeatProducing(int, int, bool);
-        string producemeat(); //menghasilkan daging
 };
 
 #endif

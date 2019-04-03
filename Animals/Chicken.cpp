@@ -13,3 +13,13 @@ void Chicken::move(){
 string Chicken::sound(){
     return "petok";
 } //suara 'petok'
+
+FarmProduct Chicken::produceegg(){
+    return ChickenEgg();
+}
+
+FarmProduct Chicken::producemeat(){
+    return ChickenMeat();
+}
+
+FarmProduct Chicken::producemilk(){}

@@ -13,3 +13,13 @@ void Duck::move(){
 string Duck::sound(){
     return "kwek";
 }
+
+FarmProduct Duck::produceegg(){
+    return DuckEgg();
+}
+
+FarmProduct Duck::producemeat(){
+    return DuckMeat();
+}
+
+FarmProduct Duck::producemilk(){}

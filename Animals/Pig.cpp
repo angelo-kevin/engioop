@@ -14,3 +14,11 @@ void Pig::move(){
 string Pig::sound(){
     return "squeak";
 }
+
+FarmProduct Pig::produceegg(){}
+
+FarmProduct Pig::producemeat(){
+    return PigMeat();
+}
+
+FarmProduct Pig::producemilk(){}
