@@ -8,13 +8,9 @@
 #define MAX_WATER 100
 using namespace std;
 
-vector<char> meatProducingAnimal{'B'};
 vector<char> eggProducingAnimal{'C'};
 vector<char> milkProducingAnimal{'S'};
-vector<char> arrayAnimal{'a','A','c','C'};
-vector<char> arrayFacility{'W','T'}; //except mixer;
-vector<char> arrayMixer{'M'};
-vector<char> arrayLand{'L'};
+vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
                                     {"cheese", {"milk"}}};
 
@@ -80,10 +76,10 @@ class Player{
 
                 if (isupper(cell->getOverrideSymbol())){
                     if (itr2!=milkProducingAnimal.end()){
-                        backpack.add(cell->getAnimalPtr()->producemilk());
+                        backpack.add(cell->getAnimalPtr()->produceMilk());
                     }
                     if (itr3!=eggProducingAnimal.end()){
-                        backpack.add(cell->getAnimalPtr()->producemilk());
+                        backpack.add(cell->getAnimalPtr()->produceEgg());
                     }
                     cell->getAnimalPtr()->revLapar();
                     cell->getAnimalPtr()->revSimbol();
@@ -121,7 +117,7 @@ class Player{
             if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
             if (cell->getOverrideSymbol() != '\0'){
-                backpack.add(cell->getAnimalPtr()->producemeat());
+                backpack.add(cell->getAnimalPtr()->produceMeat());
                 cout<<cell->getAnimalPtr()->sound<<endl;
                 cell->makeUnoccupied();
                 //delete from "livinganimal" list
@@ -194,24 +190,23 @@ class Player{
             }           
         }
 
+        bool canPassed(int tcol, int trow){
+            return (gamemap[trow][tcol]->getOverrideSymbol!='\0' && gamemap[trow][tcol]->showSymbol!='M' && gamemap[trow][tcol]->showSymbol!='T' && gamemap[trow][tcol]->showSymbol!='W');
+        }
         //Player change position:
         void setPosition(char direction){
             direction = tolower(direction);
-            if (direction == 'n'){
-                row--;
+            if (direction == 'n' && 0<=row-1 && canPassed(col,row-1)){
+                row--;  
             }
-            else if (direction == 'e'){
+            else if (direction == 'e' && col+1<gamemap[0].size() && canPassed(col+1,row)){
                 col++;
             }
-            else if (direction == 's'){
+            else if (direction == 's' && row+1<gamemap.size() && canPassed(col,row+1)){
                 row++;
             }
-            else if (direction == 'w'){
+            else if (direction == 'w' && 0<=col-1 && canPassed(col-1, row)){
                 col--;
             }
-            if (row<0) row=0;
-            if (row>=gamemap.size()) row=gamemap.size()-1;
-            if (col<0) col=0;
-            if (col>=gamemap[0].size()) col=gamemap[0].size()-1;
         }
 }
