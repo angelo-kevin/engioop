@@ -123,7 +123,7 @@ void printMap(){
       }
     }
     cout<<endl;
-    
+
     for(int i = 0; i < colMax * 4 + 1; i++){
       cout << "_";
     }
@@ -215,7 +215,7 @@ int main(){
     while(command != "exit"){
       system(CLEAR);
       printMap();
-      cin >> command;
+      cin >> tolower(command);
       cout << command;
       /*animul1* a = new animul1();
       gamemap.push_back(a);

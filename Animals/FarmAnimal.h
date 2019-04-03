@@ -1,5 +1,5 @@
-#ifndef FARMAN_H
-#define FARMAN_H
+#ifndef FARMANIMAL_H
+#define FARMANIMAL_H
 #include <vector>
 #include <string>
 #include <cstring>
