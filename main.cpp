@@ -212,17 +212,20 @@ void printMap(){
 int main(){
     string command = "";
     loadMap();
+    FarmAnimal* a1 = new Pig(2, 2, false);
+    cout << a1->producemeat().getProductName() << endl;
+    /*
     while(command != "exit"){
       system(CLEAR);
       printMap();
       cin >> command;
       cout << command;
-      /*animul1* a = new animul1();
+      animul1* a = new animul1();
       gamemap.push_back(a);
       gamemap.push_back(new animul1());
       gamemap.push_back(new animul2());
       cout<<((gamemap.at(0))->showSymbol())<<endl;
-      */
+    
 
       //CREATE MAP:
 
@@ -244,7 +247,7 @@ int main(){
 
       //Player p;
       //p.Interact(gamemap[0][0]);
-    }
+    }*/
 }
 
 

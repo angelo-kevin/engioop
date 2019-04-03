@@ -10,7 +10,6 @@ Facilities/FacilityTypes/Truck.cpp \
 Animals/FarmAnimal.cpp \
 Animals/MeatProducing.cpp \
 Animals/EggProducing.cpp \
-<<<<<<< HEAD
 Animals/MilkProducing.cpp \
 Animals/Chicken.cpp \
 Animals/Cow.cpp \
@@ -18,9 +17,18 @@ Animals/Duck.cpp \
 Animals/Goat.cpp \
 Animals/Horse.cpp \
 Animals/Pig.cpp \
+Product/FarmProduct.cpp \
+Product/Product.cpp \
+Product/SideProduct.cpp \
+Product/FarmProduct/ChickenEgg.cpp \
+Product/FarmProduct/ChickenMeat.cpp \
+Product/FarmProduct/CowMeat.cpp \
+Product/FarmProduct/CowMilk.cpp \
+Product/FarmProduct/DuckEgg.cpp \
+Product/FarmProduct/DuckMeat.cpp \
+Product/FarmProduct/GoatMeat.cpp \
+Product/FarmProduct/GoatMilk.cpp \
+Product/FarmProduct/HorseMeat.cpp \
+Product/FarmProduct/PigMeat.cpp \
 main.cpp \
 -o engiMoonEXE
-=======
-main.cpp \
--o a
->>>>>>> 5cac6f39e88ad9ddaeb6b2c39bbfc50290d8753c
