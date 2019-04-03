@@ -103,6 +103,7 @@ int main(){
     //CREATE MAP:
     loadMap();
     gamemap[0][0]->growGrass();
+    gamemap[1][0]->growGrass();
     printMap();
     
     //Player p;
