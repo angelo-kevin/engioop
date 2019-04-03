@@ -9,5 +9,7 @@ class Coop : public Land{
         Coop();
         //Method to grow grass chaange symbol into '#'':
         void growGrass();
-};
+        //Method to grow grass chaange symbol into 'o':
+        void ungrowGrass();
+};  
 #endif

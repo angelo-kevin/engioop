@@ -27,7 +27,7 @@ class Cell{
 
       // Get the AnimalPointers;
       FarmAnimal* getAnimalPtr();
-      
+
     //Setters:
       // Occupy the map with an animal:
       void animalOccupy(FarmAnimal*);
@@ -38,5 +38,7 @@ class Cell{
       // Make grass grow:
       virtual void growGrass(){};
 
+      // Ungrow the grass:
+      virtual void ungrowGrass(){};
 };
 #endif

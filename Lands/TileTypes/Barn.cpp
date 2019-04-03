@@ -8,3 +8,8 @@ Barn::Barn(){
 void Barn::growGrass(){
     this->Symbol = '@';
 }
+
+//Method to ungrow grass chaange symbol into 'x'':
+void Barn::ungrowGrass(){
+    this->Symbol = 'x';
+}
