@@ -239,7 +239,7 @@ int main(){
       gamemap.push_back(new animul1());
       gamemap.push_back(new animul2());
       cout<<((gamemap.at(0))->showSymbol())<<endl;
-    
+
 
       //CREATE MAP:
 

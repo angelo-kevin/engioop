@@ -43,7 +43,3 @@
     void Cell::makeUnoccupied(){
         this->OverrideSymbol = '\0';
     }
-
-
-
-
