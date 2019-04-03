@@ -3,11 +3,6 @@
 #include<string>
 #include<map>
 #include "Player.h"
-<<<<<<< HEAD
-#include "Cell.h"
-
-=======
->>>>>>> 39f442b2147f87ad07787319d8514f706cf044dd
 using namespace std;
 
 vector<char> arrayProducingAnimal{'a','A'}; //except MeatProducing
@@ -132,33 +127,6 @@ class Player{
             v.push_back(new animul2());
         }
     }
-<<<<<<< HEAD
-    void loadMap(){
-        ifstream mapfile;
-        string line;
-        int idx;
-        vector<Cell*> tempv;
-        mapfile.open ("mapschema.txt");
-        if (mapfile.is_open())
-        {
-            while ( getline (mapfile,line) )
-            {
-                idx=0;
-                while(line[idx] != '\0'){
-                    classIdentifier(line[idx], tempv);
-                    //cout<<tempv[idx]->showSymbol()<<endl;
-                    idx++;
-                }
-                gamemap.push_back(tempv);
-                tempv.clear();
-            }
-        }
-
-        else cout << "File read error, you fucking shit";
-        mapfile.close();
-    }
-=======
->>>>>>> 39f442b2147f87ad07787319d8514f706cf044dd
 
     //Ask for position:
 
