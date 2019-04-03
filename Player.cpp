@@ -3,8 +3,11 @@
 #include<string>
 #include<map>
 #include "Player.h"
+<<<<<<< HEAD
 #include "Cell.h"
 
+=======
+>>>>>>> 39f442b2147f87ad07787319d8514f706cf044dd
 using namespace std;
 
 vector<char> arrayProducingAnimal{'a','A'}; //except MeatProducing
@@ -21,7 +24,7 @@ class Player{
     private:
         int row;
         int col;
-        vector<Product> backpack;
+        LinkedList<Product> backpack;
         //int nell; //backpack
         int pouch; // water
     public:
@@ -35,7 +38,7 @@ class Player{
         void Talk(Cell* C){
             vector<char>::iterator itr=find(arrayAnimal.begin(),arrayAnimal.end(),C->showSymbol());
             if (itr!=arrayAnimal.end()){
-                //itr->sound();
+                cout<<itr->sound()<<endl;
             }
         }
 
@@ -111,7 +114,7 @@ class Player{
             v.push_back(new Barn());
         }
         else if (c == '#'){
-            v.push_back(new Grass());
+            v.push_back(new Grassland());
         }
         else if (c == 'M'){
             v.push_back(new Mixer());
@@ -129,6 +132,7 @@ class Player{
             v.push_back(new animul2());
         }
     }
+<<<<<<< HEAD
     void loadMap(){
         ifstream mapfile;
         string line;
@@ -153,6 +157,8 @@ class Player{
         else cout << "File read error, you fucking shit";
         mapfile.close();
     }
+=======
+>>>>>>> 39f442b2147f87ad07787319d8514f706cf044dd
 
     //Ask for position:
 
@@ -188,4 +194,4 @@ class Player{
             (this->col)--;
         }
     }
-
+}
