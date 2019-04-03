@@ -10,6 +10,9 @@ Product::Product(int price, string name){
   setProductName("");
 }
 
+bool Product::operator==(Product& p){
+  return getProductName() == p.getProductName();
+}
 void Product::setHarga(int price){
   this->harga = price;
 }

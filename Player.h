@@ -2,7 +2,9 @@
 #include<vector>
 #include<string>
 #include "engi.h"
-#include"LinkedList.h"
+#include "LinkedList.h"
+#include "common.h"
+
 
 class Player{
     private:
@@ -16,10 +18,10 @@ class Player{
         //~Player(); //tidak perlu
         void Talk(char); //memanggil method sound dari animal
         void Interact(char); //memanggil method sesuai dengan apa yang ada di sekitar player
-        void Kill(Cell*); //destructor meatproducing animal
-        void Grow(Cell*); //memanggil method growGrass
-        void Mix(string); //menerima parameter string yaitu side product apa yang mau dibuat. Lalu, melihat apakah backpack mempunyai bahan yang lengkap
-        void setPosition(char); //set the position of player
+        void Kill(char); //destructor meatproducing animal
+        void Grow(char); //memanggil method growGrass
+        void Mix(char, string); //menerima parameter string yaitu side product apa yang mau dibuat. Lalu, melihat apakah backpack mempunyai bahan yang lengkap
         Cell* getPosition(char, int*, int*); //ask for Cell in 4 directions surround player
+        void setPosition(char); //set the position of player
 
 };
