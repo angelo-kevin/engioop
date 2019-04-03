@@ -29,3 +29,6 @@
 #include "Product/SideProduct.h"
 
 #include "Animals/FarmAnimal.h"
+
+
+extern vector<vector<Cell*> > gamemap;

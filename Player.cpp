@@ -7,12 +7,9 @@
 
 using namespace std;
 
-vector<char> arrayProducingAnimal{'a','A'}; //except MeatProducing
-vector<char> arrayKillAnimal{'c','C'};
-vector<char> arrayAnimal{'a','A','c','C'};
-vector<char> arrayFacility{'W','T'}; //except mixer;
-vector<char> arrayMixer{'M'};
-vector<char> arrayLand{'L'};
+vector<char> eggProducingAnimal{'C'};
+vector<char> milkProducingAnimal{'S'};
+vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
                                     {"cheese", {"milk"}}};
 
@@ -53,7 +50,18 @@ class Player{
                 //itr->prodduce();
             }
 
-            /*
+                if (isupper(cell->getOverrideSymbol())){
+                    if (itr2!=milkProducingAnimal.end()){
+                        backpack.add(cell->getAnimalPtr()->produceMilk());
+                    }
+                    if (itr3!=eggProducingAnimal.end()){
+                        backpack.add(cell->getAnimalPtr()->produceEgg());
+                    }
+                    cell->getAnimalPtr()->revLapar();
+                    cell->getAnimalPtr()->revSimbol();
+                }else{
+                    cout<<"Animal's hungry"<<endl;
+                }
 
             if (C->showSymbol() == 'a')
                 cout<<"Interacted with animul1"<<endl;
@@ -67,7 +75,13 @@ class Player{
             if (itr!=arrayKillAnimal.end()){
                 //itr->~dest
 
-                //mappp
+            if (cell->getOverrideSymbol() != '\0'){
+                backpack.add(cell->getAnimalPtr()->produceMeat());
+                cout<<cell->getAnimalPtr()->sound<<endl;
+                cell->makeUnoccupied();
+                //delete from "livinganimal" list
+            }else{
+                cout<<"There's no animal.."<<endl;
             }
 
 
@@ -172,20 +186,24 @@ class Player{
         }
     }
 
-    //Player change position:
-    void setPosition(char direction){
-        direction = tolower(direction);
-        if (direction == 'n'){
-            (this->row)--;
+        bool canPassed(int tcol, int trow){
+            return (gamemap[trow][tcol]->getOverrideSymbol!='\0' && gamemap[trow][tcol]->showSymbol!='M' && gamemap[trow][tcol]->showSymbol!='T' && gamemap[trow][tcol]->showSymbol!='W');
         }
-        else if (direction == 'e'){
-            (this->col)++;
-        }
-        else if (direction == 's'){
-            (this->row)++;
-        }
-        else if (direction == 'w'){
-            (this->col)--;
+        //Player change position:
+        void setPosition(char direction){
+            direction = tolower(direction);
+            if (direction == 'n' && 0<=row-1 && canPassed(col,row-1)){
+                row--;  
+            }
+            else if (direction == 'e' && col+1<gamemap[0].size() && canPassed(col+1,row)){
+                col++;
+            }
+            else if (direction == 's' && row+1<gamemap.size() && canPassed(col,row+1)){
+                row++;
+            }
+            else if (direction == 'w' && 0<=col-1 && canPassed(col-1, row)){
+                col--;
+            }
         }
     }
 }
