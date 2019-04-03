@@ -5,7 +5,7 @@
 
 class Pig : public MeatProducing{
     public:
-        Pig(bool l, int x, int y);
+        Pig(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'squeak'
 };

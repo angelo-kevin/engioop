@@ -127,7 +127,7 @@ int main(){
     loadMap();
     //gamemap[0][0]->growGrass();
     //gamemap[1][0]->growGrass();
-    FarmAnimal* a1 = new Pig(false, 2, 2);
+    FarmAnimal* a1 = new Pig(2, 2, false);
     gamemap[0][0]->animalOccupy(a1);
     printMap();
 
