@@ -1,3 +1,6 @@
+#ifndef MIXEDCHEESE_H
+#define MIXEDCHEESE_H
+
 #include "../SideProduct.h"
 
 class MixedCheese : public SideProduct{
@@ -5,3 +8,5 @@ class MixedCheese : public SideProduct{
 public:
   MixedCheese(); //mengisi productname = "MixedCheese" dan harga = 18000
 };
+
+#endif

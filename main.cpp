@@ -28,9 +28,9 @@
 #include "Facilities/FacilityTypes/Truck.cpp"
 */
 //Animal-types:
-// #include "Animals/FarmAnimal.h"
-// #include "Animals/Pig.h"
-// #include "Animals/Chicken.h"
+#include "Animals/FarmAnimal.h"
+#include "Animals/Pig.h"
+#include "Animals/Chicken.h"
 
 #include "engi.h"
 #include <unistd.h>
@@ -200,7 +200,13 @@ void printMap(){
 int main(){
     string command = "";
     loadMap();
+<<<<<<< HEAD
     Player mainPlayer;
+=======
+    FarmAnimal* a1 = new Pig(2, 2, false);
+    cout << a1->produceMeat().getProductName() << endl;
+    /*
+>>>>>>> ff84a16f0d7bbab20797ab5ca6553c325b49f7e4
     while(command != "exit"){
       system(CLEAR);
       printMap();
@@ -211,6 +217,9 @@ int main(){
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
       cout << command;
+<<<<<<< HEAD
+      animul1* a = new animul1();
+=======
       if(command == "talk"){
         cout << "talk" << endl;
         char c;
@@ -233,11 +242,12 @@ int main(){
 
       sleep(2000);
       /*animul1* a = new animul1();
+>>>>>>> 0add118be717ee3b7667e03daf239e21f7bcd245
       gamemap.push_back(a);
       gamemap.push_back(new animul1());
       gamemap.push_back(new animul2());
       cout<<((gamemap.at(0))->showSymbol())<<endl;
-      */
+    
 
       //CREATE MAP:
 
@@ -259,7 +269,7 @@ int main(){
 
       //Player p;
       //p.Interact(gamemap[0][0]);
-    }
+    }*/
 }
 
 
