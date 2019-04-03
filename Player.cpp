@@ -30,14 +30,14 @@ class Player{
         ~Player(){};
 
         void Talk(Cell* C){
-            vector<char>::iterator itr = find(arrayAnimal.begin(),arrayAnimal.end(),C->showSymbol());
+            vector<char>::iterator itr = find( arrayAnimal.begin(),arrayAnimal.end(),C->showSymbol());
             if (itr!=arrayAnimal.end()){
-                cout<<itr->sound()<<endl;
+                cout<< itr->sound()<<endl;
             }
         }
 
         void Interact(Cell* C){
-            vector<char>::iterator itr=find(arrayProducingAnimal.begin(),arrayProducingAnimal.end(),C->showSymbol());
+            vector<char>::iterator itr= find(arrayProducingAnimal.begin(),arrayProducingAnimal.end(),C->showSymbol());
             vector<char>::iterator itr2=find(arrayFacility.begin(),arrayFacility.end(),C->showSymbol());
 
             if (itr!=arrayAnimal.end()){
@@ -63,6 +63,7 @@ class Player{
                     cout<<"Animal's hungry"<<endl;
                 }
 
+            /*
             if (C->showSymbol() == 'a')
                 cout<<"Interacted with animul1"<<endl;
             else if (C->showSymbol() == 'b')
