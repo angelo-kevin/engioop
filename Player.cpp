@@ -11,7 +11,7 @@ vector<char> arrayAnimal{'a','A','c','C'};
 vector<char> arrayFacility{'W','T'}; //except mixer;
 vector<char> arrayMixer{'M'};
 vector<char> arrayLand{'L'};
-map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}}, 
+map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
                                     {"cheese", {"milk"}}};
 
 
@@ -69,7 +69,7 @@ class Player{
             }
 
 
-            
+
 
         }
 
@@ -81,17 +81,17 @@ class Player{
 
         }
 
-        void Mix(string str){ //jenis int 
+        void Mix(string str){ //jenis int
             vector<string>::iterator itr=recipe[str].begin();
             vector<Product>::iterator itr;
             while (itr!=recipe[str].end()){
-                vector<Product>::iterator itr2=find(backpack.begin(),backpack.end(),*itr); 
+                vector<Product>::iterator itr2=find(backpack.begin(),backpack.end(),*itr);
                 if(itr2!=backpack.end()){
-                    
+
                 }else{
 
                 }
-                
+
                 itr++;
 
             }
