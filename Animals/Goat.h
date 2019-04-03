@@ -6,7 +6,7 @@
 
 class Goat : public MilkProducing, public MeatProducing{
     public:
-        Goat(bool l, int x, int y);
+        Goat(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'mbek'
 };
