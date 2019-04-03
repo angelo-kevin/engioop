@@ -1,7 +1,14 @@
 #ifndef FARMAN_H
 #define FARMAN_H
+#include <vector>
+#include <string>
+#include <cstring>
 
-#include "Landtypes.h"
+//#include "../Cell.cpp"
+using namespace std;
+
+//Avoiding circular dependencies with Cell class:
+
 
 class FarmAnimal{
     protected:
@@ -12,7 +19,7 @@ class FarmAnimal{
         int y; //posisi
     public:
         FarmAnimal(int x, int y, bool lapar); //ctor
-        virtual void move(vector<vector<Cells*> >) = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
+        virtual void move() = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
         virtual string sound() = 0; //method pure virtual, mengeluarkan suara
         virtual string produce() = 0; //menghasilkan produk yang direpresentasikan dengan string
 

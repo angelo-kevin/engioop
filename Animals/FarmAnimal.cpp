@@ -1,6 +1,6 @@
 #include "FarmAnimal.h"
 
-FarmAnimal::FarmAnimal(int _x, int _y, bool l){
+FarmAnimal::FarmAnimal(int _x, int _y, bool _l){
     x = _x;
     y = _y;
     lapar = _l;

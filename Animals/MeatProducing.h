@@ -6,6 +6,7 @@
 class MeatProducing : public FarmAnimal{
     public:
         string produce(); //menghasilkan daging
+        MeatProducing(int, int, bool);
 };
 
 #endif
