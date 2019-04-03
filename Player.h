@@ -15,9 +15,10 @@ class Player{
         int col; //posisi y player.
         LinkedList<Product> backpack; //Menampung linkedlist of Product
         //int nell; //backpack
+        int score;
         int pouch; // Kantong air
     public:
-        Player(); //constructor
+        Player(int, int); //constructor
         //~Player(); //tidak perlu
         int getX();
         int getY();
@@ -27,6 +28,7 @@ class Player{
         void Grow(char); //memanggil method growGrass
         void Mix(char, string); //menerima parameter string yaitu side product apa yang mau dibuat. Lalu, melihat apakah backpack mempunyai bahan yang lengkap
         Cell* getPosition(char, int*, int*); //ask for Cell in 4 directions surround player
+        bool canPassed(int,int);
         void setPosition(char); //set the position of player
 
 };
