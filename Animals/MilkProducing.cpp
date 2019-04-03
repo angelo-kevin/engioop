@@ -1,5 +1,7 @@
 #include "MilkProducing.h"
 
-string MilkProducing::produce(){
+MilkProducing::MilkProducing(int x, int y, bool l): FarmAnimal(x,y,l){}
+
+string MilkProducing::producemilk(){
     return "susu";
 }

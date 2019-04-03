@@ -3,9 +3,10 @@
 
 #include "FarmAnimal.h"
 
-class EggProducing : public FarmAnimal{
+class EggProducing : virtual public FarmAnimal{
     public:
-        string produce(); //menghasilkan telur
+        EggProducing(int, int, bool);
+        string produceegg(); //menghasilkan telur
 };
 
 #endif
