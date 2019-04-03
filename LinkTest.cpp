@@ -19,6 +19,6 @@ int main(){
     listOfObject.remove(data,3);
     listOfObject.Print();
 
-    cout<<listOfObject.get(10)<<endl;
+    cout<<listOfObject.getData(10)<<endl;
     return 0;
 }

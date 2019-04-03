@@ -14,3 +14,7 @@ void Pig::move(){
 string Pig::sound(){
     return "squeak";
 }
+
+FarmProduct Pig::producemeat(){
+    return PigMeat();
+}

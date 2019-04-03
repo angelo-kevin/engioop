@@ -5,8 +5,7 @@
 #include <cstring>
 using namespace std;
 
-//Avoiding circular dependencies with Cell class:
-
+#include "../Product/FarmProduct.h"
 
 class FarmAnimal{
     protected:
@@ -19,6 +18,9 @@ class FarmAnimal{
         FarmAnimal(int x, int y, bool lapar);
         virtual void move() = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
         virtual string sound() = 0; //method pure virtual, mengeluarkan suara
+        virtual FarmProduct producemeat();
+        virtual FarmProduct produceegg();
+        virtual FarmProduct producemilk();
 
         //Getter setter
         char showSimbol(); //mengembalikan nilai simbol

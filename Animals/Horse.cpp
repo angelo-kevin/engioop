@@ -13,3 +13,7 @@ void Horse::move(){
 string Horse::sound(){
     return "neigh";
 }
+
+FarmProduct Horse::producemeat(){
+    return HorseMeat();
+}

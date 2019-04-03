@@ -27,3 +27,5 @@
 #include "Product/FarmProduct.h"
 #include "Product/Product.h"
 #include "Product/SideProduct.h"
+
+#include "Animals/FarmAnimal.h"

@@ -13,3 +13,11 @@ void Cow::move(){
 string Cow::sound(){
     return "moo";
 }
+
+FarmProduct Cow::producemeat(){
+    return CowMeat();
+}
+
+FarmProduct Cow::producemilk(){
+    return CowMilk();
+}
