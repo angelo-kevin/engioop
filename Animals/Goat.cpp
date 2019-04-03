@@ -14,10 +14,10 @@ string Goat::sound(){
     return "mbek";
 }
 
-FarmProduct Goat::producemeat(){
+FarmProduct Goat::produceMeat(){
     return GoatMeat();
 }
 
-FarmProduct Goat::producemilk(){
+FarmProduct Goat::produceMilk(){
     return GoatMilk();
 }
