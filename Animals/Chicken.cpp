@@ -21,5 +21,3 @@ FarmProduct Chicken::produceegg(){
 FarmProduct Chicken::producemeat(){
     return ChickenMeat();
 }
-
-FarmProduct Chicken::producemilk(){}

@@ -9,9 +9,7 @@ class Horse : public MeatProducing{
         Horse(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'neigh'
-        FarmProduct produceegg();
         FarmProduct producemeat();
-        FarmProduct producemilk();
 };
 
 #endif

@@ -11,7 +11,6 @@ class Goat : public MilkProducing, public MeatProducing{
         Goat(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
         string sound(); //suara 'mbek'
-        FarmProduct produceegg();
         FarmProduct producemeat();
         FarmProduct producemilk();
 };

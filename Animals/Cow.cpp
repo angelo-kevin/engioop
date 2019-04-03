@@ -14,8 +14,6 @@ string Cow::sound(){
     return "moo";
 }
 
-FarmProduct Cow::produceegg(){}
-
 FarmProduct Cow::producemeat(){
     return CowMeat();
 }

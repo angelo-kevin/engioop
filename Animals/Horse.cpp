@@ -14,10 +14,6 @@ string Horse::sound(){
     return "neigh";
 }
 
-FarmProduct Horse::produceegg(){}
-
 FarmProduct Horse::producemeat(){
     return HorseMeat();
 }
-
-FarmProduct Horse::producemilk(){}
