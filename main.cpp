@@ -34,6 +34,14 @@
 #define maxsize 256
 using namespace std;
 
+#include <cstdlib>
+
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
+
 //GLOBAL VARIABLES:
 vector<vector<Cell*> > gamemap;
 
@@ -102,21 +110,93 @@ void loadMap(){
 }
 
 void printMap(){
+    system(CLEAR);
     vector< vector<Cell*> >::iterator row;
     vector<Cell*>::iterator col;
+    int colMax = gamemap[0].size();
+    for(int i = 0; i < colMax * 4 + 1; i++){
+      cout << "_";
+    }
+
+    cout << "" << endl;
     for (row = gamemap.begin(); row != gamemap.end(); row++) {
+        cout << "| ";
         for (col = row->begin(); col != row->end(); col++) {
             // Check whether this paticular cell is occupied or not:
             if ((*col)->getOverrideSymbol()  ==  '\0')
-                // If unoccupied: 
-                cout<<(*col)->showSymbol();
+                // If unoccupied:
+                cout<<(*col)->showSymbol() << " | ";
             else
                 // If occupied:
-                cout<<(*col)->getOverrideSymbol();
+                cout<<(*col)->getOverrideSymbol() << " | ";
         }
         cout<<endl;
     }
+
+    for(int i = 0; i < colMax * 4 + 1; i++){
+      if(i % 4 == 0){
+        cout << "|";
+      } else{
+        cout << "-";
+      }
+    }
+    cout << "" << endl;
+
+    int moneySpaces = 6; //ganti dengan jumlah digit money
+
+    for(int i = 0; i < colMax * 4; i++){
+      if(i == 0){
+        cout << "| Money: " << 123456;
+      } else if(i >= 9 + moneySpaces){
+        cout << " ";
+      }
+    }
+    cout << "|" << endl;
+
+    for(int i = 0; i < colMax * 4 + 1; i++){
+      if(i == 0 || i == colMax * 4){
+        cout << "|";
+      } else{
+        cout << "_";
+      }
+    }
+    cout << "" << endl;
+
+    int waterSpaces = 3;
+    for(int i = 0; i < colMax * 4; i++){
+      if(i == 0){
+        cout << "| Water: " << 100;
+      } else if(i >= 9 + waterSpaces){
+        cout << " ";
+      }
+    }
+    cout << "|" << endl;
+
+    for(int i = 0; i < colMax * 4 + 1; i++){
+      if(i == 0 || i == colMax * 4){
+        cout << "|";
+      } else{
+        cout << "_";
+      }
+    }
+    cout << "" << endl;
+
+    cout << "Inventory: " << endl;
+    cout << "" << endl;
+
+    cout << "Output: " << endl;
+    cout << "" << endl;
+
+    cout << "Command: ";
+    cout << "" << endl;
 }
+
+// void printLine(){
+//   vector<Cell*>::iterator col;
+//   for (col = row->begin(); col != row->end(); col++) {
+//     cout << "_";
+//   }
+// }
 
 
 int main(){
@@ -136,12 +216,15 @@ int main(){
 
     FarmAnimal* a2 = new Chicken(true, 2, 2);
     gamemap[2][2]->animalOccupy(a2);
+
+    // printLine();
     printMap();
+    // printLine();
 
     gamemap[0][0]-> makeUnoccupied();
-    printMap();
-    cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
-    
+    // printMap();
+    // cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
+
     //Player p;
     //p.Interact(gamemap[0][0]);
 }

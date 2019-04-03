@@ -10,5 +10,5 @@ Animals/Pig.cpp \
 Animals/Chicken.cpp \
 Animals/MeatProducing.cpp \
 Animals/EggProducing.cpp \
-cells.cpp \
--o engiMoonEXE
+main.cpp \
+-o a
