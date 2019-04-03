@@ -3,9 +3,12 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #include "../Product/FarmProduct.h"
+#include "../engi.h"
 
 class FarmAnimal{
     protected:
@@ -30,6 +33,8 @@ class FarmAnimal{
         void revLapar(); //mengubah nilai lapar dari objek
         int getX();
         int getY();
+        void setX(int);
+        void setY(int);
 };
 
 #endif

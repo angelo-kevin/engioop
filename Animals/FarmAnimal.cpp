@@ -1,4 +1,5 @@
 #include "FarmAnimal.h"
+#include "../Cell.h"
 
 FarmAnimal::FarmAnimal(int _x, int _y, bool _l){
     x = _x;
@@ -33,6 +34,14 @@ int FarmAnimal::getX(){
 
 int FarmAnimal::getY(){
     return y;
+}
+
+void FarmAnimal::setX(int _x){
+    x = _x;
+}
+
+void FarmAnimal::setY(int _y){
+    y = _y;
 }
 
 FarmProduct FarmAnimal::produceEgg(){
