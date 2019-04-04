@@ -262,10 +262,10 @@ int main(){
     cout << "             __/ |                                  " << endl;
     cout << "            |___/                                   " << endl;
     cout << "When in game, type exit to quit the game" << endl;
-    cout << "Press enter to start" << endl;
+    cout << "Press enter to start";
+    string command = "";
     cin.ignore();
 
-    string command = "";
     loadMap();
 
     //Construct Player:

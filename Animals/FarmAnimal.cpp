@@ -31,6 +31,7 @@ bool FarmAnimal::getLapar(){
 
 void FarmAnimal::revLapar(){
     lapar = !lapar;
+    revSimbol();
 } //mengubah nilai lapar dari objek
 
 int FarmAnimal::getX(){
