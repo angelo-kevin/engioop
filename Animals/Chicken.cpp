@@ -21,44 +21,49 @@ void Chicken::move(){
         if (x==1){
             row = getX();
             setX(row+1);
-            if (getX()>=gamemap.size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
+            if (getX()>=gamemap.size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || (gamemap[getX()][getY()]->showSymbol()!='o' && gamemap[getX()][getY()]->showSymbol()!='*')){
+                //cout << gamemap[getX()][getY()]->getOverrideSymbol();
                 setX(row);
                 ctr++;
-                cout << "1" << endl;
+                //cout << "1" << endl;
             }
             
         }
         else if (x==2){
             col = getY();
             setY(col+1);
-            if (getY()>=gamemap[0].size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
+            if (getY()>=gamemap[0].size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || (gamemap[getX()][getY()]->showSymbol()!='o' && gamemap[getX()][getY()]->showSymbol()!='*')){
+                //cout << gamemap[getX()][getY()]->getOverrideSymbol();
                 setY(col);
                 ctr++;
-                cout << "2" << endl;
+                //cout << "2" << endl;
             }
             
         }
         else if (x==3){
             row = getX();
             setX(row-1);
-            if (getX()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
+            if (getX()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || (gamemap[getX()][getY()]->showSymbol()!='o' && gamemap[getX()][getY()]->showSymbol()!='*')){
+                //cout << gamemap[getX()][getY()]->getOverrideSymbol();
                 setX(row);
                 ctr++;
-                cout << "3" << endl;
+                //cout << "3" << endl;
             }
             
         }
         else if (x==4){
             col = getY();
             setY(col-1);
-            if (getY()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
+            if (getY()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || (gamemap[getX()][getY()]->showSymbol()!='o' && gamemap[getX()][getY()]->showSymbol()!='*')){
+                //cout << (gamemap[getX()][getY()]->getOverrideSymbol()!='\0') << "LALALAhgvyu" << endl;
                 setY(col);
                 ctr++;
-                cout << "4" << endl;
+                //cout << "jhbubu4" << endl;
             }
             
         }
-        cout << "POSISI NOW:" << getX() <<", " << getY();
+        //cout << "POSISI NOW:" << getX() <<", " << getY()<< endl;
+        //cout << ctr << endl;
     } while (ctr!=0);
 } //implementasi fungsi pure virtual dari parent
 

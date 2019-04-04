@@ -211,7 +211,7 @@ int main(){
     string command = "";
     loadMap();
     FarmAnimal* a1 = new Pig(2, 2, false);
-    cout << a1->produceMeat().getProductName() << endl;
+    //cout << a1->produceMeat().getProductName() << endl;
 
     gamemap[0][0]->growGrass();
     gamemap[1][0]->growGrass();
@@ -220,7 +220,7 @@ int main(){
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
-    printMap();
+    //printMap();
     
     //Construct Player:
     Player mainPlayer(5,5);
@@ -228,11 +228,14 @@ int main(){
 
     while(command != "exit"){
       //system(CLEAR);
-      cout<< a2->getX() << endl;
-      cout<< a2->getY() << endl;
+      //cout<< a2->getX() << endl;
+      //cout<< a2->getY() << endl;
       
-      printMap();
+      gamemap[a2->getX()][a2->getY()]->makeUnoccupied();
+      a2->move();
+      gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
+      printMap();
       cout << "Command: ";
       cout << "" << endl;
 
