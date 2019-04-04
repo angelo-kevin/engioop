@@ -23,13 +23,13 @@ class Cell{
 
     //Getters:
       // Method to show Unique symbol for every types of objects in cell
-      char showSymbol();
+      char showSymbol() const;
 
       // Get the OverrideSymbol;
-      char getOverrideSymbol();
+      char getOverrideSymbol() const;
 
       // Get the AnimalPointers;
-      FarmAnimal* getAnimalPtr();
+      FarmAnimal* getAnimalPtr() const;
 
     //Setters:
       // Occupy the map with an animal:
