@@ -302,7 +302,7 @@ int main(){
     gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
 
     while(command != "exit"){
-      system(CLEAR);
+      //system(CLEAR);
 
       printMap(mainPlayer, tick);
       printLegend();
@@ -315,6 +315,7 @@ int main(){
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       if(command == "talk"){
+        // cout << "talk" << endl;
         cout << "talk" << endl;
         cout << "insert talk direction: ";
         char c;
