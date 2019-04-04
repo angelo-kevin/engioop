@@ -24,6 +24,13 @@ class Player{
         //~Player(); //tidak perlu
         int getX();
         int getY();
+        int getPouch();
+        int getScore();
+        LinkedList<Product> getBackpack();
+        void setPouch(int);
+        void setX(int);
+        void setY(int);
+        void setScore(int);
         void Talk(char); //memanggil method sound dari animal
         void Interact(char); //memanggil method sesuai dengan apa yang ada di sekitar player
         void Kill(char); //destructor meatproducing animal
