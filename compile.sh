@@ -32,5 +32,6 @@ Product/FarmProduct/GoatMeat.cpp \
 Product/FarmProduct/GoatMilk.cpp \
 Product/FarmProduct/HorseMeat.cpp \
 Product/FarmProduct/PigMeat.cpp \
+Player.cpp \
 main.cpp \
 -o engiMoonEXE

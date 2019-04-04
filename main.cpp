@@ -31,7 +31,13 @@
 #include "Animals/Pig.h"
 #include "Animals/Chicken.h"
 
-//#include "engi.h"
+//Player:
+#include "Player.h"
+
+//Product:
+#include "Product/Product.h"
+
+//Miscellaneous Library:
 #include <unistd.h>
 
 #define maxsize 256

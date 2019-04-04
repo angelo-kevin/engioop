@@ -13,6 +13,11 @@ Product::Product(int price, string name){
 bool Product::operator==(Product& p){
   return getProductName() == p.getProductName();
 }
+
+bool Product::operator!=(Product& p){
+  return getProductName() != p.getProductName();
+}
+
 void Product::setHarga(int price){
   this->harga = price;
 }

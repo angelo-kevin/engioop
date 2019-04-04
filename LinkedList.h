@@ -1,4 +1,7 @@
+#ifndef _JESNAT_H
+#define _JESNAT_H
 #include <iostream>
+#include "Product/Product.h"
 using namespace std;
 
 template<class T>
@@ -67,7 +70,7 @@ class LinkedList{
             Node<T>* ptr = head;
             if(ptr!=NULL){
                 int i=0;
-                while(ptr->idx < length-1 && ptr->data!=_data) {
+                while(ptr->idx < length-1 && ptr->data !=_data) {
                     ptr=ptr->next;
                     i++;
                 }
@@ -258,3 +261,5 @@ class LinkedList{
         }
 
 };
+
+#endif

@@ -5,6 +5,8 @@
 #include<ctype.h>
 #include<map>
 #include "Player.h"
+#include "Animals/FarmAnimal.h"
+
 #define MAX_WATER 100
 using namespace std;
 
@@ -56,7 +58,7 @@ void Player::Talk(char dir){
     if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
     if (cell->getOverrideSymbol() != '\0'){ //animal
-        cout<<cell->getAnimalPtr()->sound<<endl;
+        cout<<cell->getAnimalPtr()->sound()<<endl;
     }else{
         cout<<"There's no animal.."<<endl;
     }
@@ -117,7 +119,7 @@ void Player::Kill(char dir){
 
     if (cell->getOverrideSymbol() != '\0'){
         backpack.add(cell->getAnimalPtr()->produceMeat());
-        cout<<cell->getAnimalPtr()->sound<<endl;
+        cout<<cell->getAnimalPtr()->sound()<<endl;
         cell->makeUnoccupied();
         //delete from "livinganimal" list
     }else{
@@ -189,7 +191,7 @@ Cell* Player::getPosition(char direction, int* x, int* y){
 }
 
 bool Player::canPassed(int tcol, int trow){
-    return (gamemap[trow][tcol]->getOverrideSymbol!='\0' && gamemap[trow][tcol]->showSymbol!='M' && gamemap[trow][tcol]->showSymbol!='T' && gamemap[trow][tcol]->showSymbol!='W');
+    return (gamemap[trow][tcol]->getOverrideSymbol()!='\0' && gamemap[trow][tcol]->showSymbol()!='M' && gamemap[trow][tcol]->showSymbol()!='T' && gamemap[trow][tcol]->showSymbol()!='W');
 }
 //Player change position:
 void Player::setPosition(char direction){
