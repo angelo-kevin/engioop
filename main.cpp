@@ -4,24 +4,23 @@
 #include <fstream>
 #include <ctype.h>
 #include "Cell.h"
-#include "Cell.cpp"
 
 #include "Lands/Land.h"
 #include "Facilities/Facility.h"
 
 //tile-types:
-// #include "Lands/TileTypes/Barn.h"
-// #include "Lands/TileTypes/Grassland.h"
-// #include "Lands/TileTypes/Coop.h"
+#include "Lands/TileTypes/Barn.h"
+#include "Lands/TileTypes/Grassland.h"
+#include "Lands/TileTypes/Coop.h"
 /*
 #include "Lands/TileTypes/Barn.cpp"
 #include "Lands/TileTypes/Grassland.cpp"
 #include "Lands/TileTypes/Coop.cpp"
 */
 //facility-types:
-// #include "Facilities/FacilityTypes/Mixer.h"
-// #include "Facilities/FacilityTypes/Well.h"
-// #include "Facilities/FacilityTypes/Truck.h"
+#include "Facilities/FacilityTypes/Mixer.h"
+#include "Facilities/FacilityTypes/Well.h"
+#include "Facilities/FacilityTypes/Truck.h"
 /*
 #include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Well.cpp"
@@ -32,7 +31,7 @@
 #include "Animals/Pig.h"
 #include "Animals/Chicken.h"
 
-#include "engi.h"
+//#include "engi.h"
 #include <unistd.h>
 
 #define maxsize 256
@@ -47,7 +46,8 @@ using namespace std;
 #endif
 
 //GLOBAL VARIABLES:
-vector<vector<Cell*> > gamemap;
+#include "common.h"
+//vector<vector<Cell*> > gamemap;
 
 //FUNCTIONS:
 
@@ -202,6 +202,15 @@ int main(){
     loadMap();
     FarmAnimal* a1 = new Pig(2, 2, false);
     cout << a1->produceMeat().getProductName() << endl;
+
+    gamemap[0][0]->growGrass();
+    gamemap[1][0]->growGrass();
+    gamemap[0][0]->animalOccupy(a1);
+
+    FarmAnimal* a2 = new Chicken(true, 2, 2);
+    gamemap[2][2]->animalOccupy(a2);
+
+    printMap();
     /*
     while(command != "exit"){
       system(CLEAR);

@@ -1,6 +1,8 @@
 #Bashscripts to compile every .cpp file:
 
 g++ \
+Cell.cpp \
+common.cpp \
 Lands/TileTypes/Barn.cpp \
 Lands/TileTypes/Grassland.cpp \
 Lands/TileTypes/Coop.cpp \

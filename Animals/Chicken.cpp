@@ -1,5 +1,5 @@
 #include "Chicken.h"
-
+#include "../common.h"
 Chicken::Chicken(int x, int y, bool l): FarmAnimal(x,y,l), EggProducing(x,y,l), MeatProducing(x,y,l){
     if (lapar) simbol = 'c';
     else simbol = 'C';
