@@ -55,10 +55,6 @@ using namespace std;
 #define CLEAR "clear"
 #endif
 
-//GLOBAL VARIABLES:
-#include "common.h"
-//vector<vector<Cell*> > gamemap;
-
 //FUNCTIONS:
 
 void classIdentifier(char c, vector<Cell*> &v){
@@ -123,7 +119,7 @@ void loadMap(){
     mapfile.close();
 }
 
-void printMap(){
+void printMap(Player p, int time){
     vector< vector<Cell*> >::iterator row;
     vector<Cell*>::iterator col;
     int colMax = gamemap[0].size();
@@ -165,10 +161,15 @@ void printMap(){
     cout << "" << endl;
 
     int moneySpaces = 6; //ganti dengan jumlah digit money
+    int temp = p.getScore();
+    while(temp / 10 > 0){
+      moneySpaces++;
+      temp /= 10;
+    }
 
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
-        cout << "| Money: " << 123456;
+        cout << "| Money: " << p.getScore();
       } else if(i >= 9 + moneySpaces){
         cout << " ";
       }
@@ -184,10 +185,16 @@ void printMap(){
     }
     cout << "" << endl;
 
-    int waterSpaces = 3;
+    int waterSpaces = 0;
+    temp = p.getPouch();
+    while(temp / 10 > 0){
+      waterSpaces++;
+      temp /= 10;
+    }
+
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
-        cout << "| Water: " << 100;
+        cout << "| Water: " << p.getPouch();
       } else if(i >= 9 + waterSpaces){
         cout << " ";
       }
@@ -202,6 +209,15 @@ void printMap(){
       }
     }
     cout << "" << endl;
+
+    for(int i = 0; i < colMax * 4; i++){
+      if(i == 0){
+        cout << "| Time: " << time;
+      } else if(i >= 8){
+        cout << " ";
+      }
+    }
+    cout << "|" << endl;
 }
 
 void printLegend(){
@@ -223,7 +239,9 @@ void printLegend(){
 }
 
 int main(){
-    //system(CLEAR);
+    int tick = 0;
+    vector<FarmAnimal*> animalList;
+    system(CLEAR);
     cout << " _____            _ _      ______                   " << endl;
     cout << "|  ___|          (_| )     |  ___|                  " << endl;
     cout << "| |__ _ __   __ _ _|/ ___  | |_ __ _ _ __ _ __ ___  " << endl;
@@ -242,12 +260,39 @@ int main(){
     loadMap();
 
     system(CLEAR);
-    FarmAnimal* a1 = new Pig(2, 2, false);
-    // cout << a1->produceMeat().getProductName() << endl;
+    for(int i = 0; i < 3; i++){ //Spawn Chicken
+      int x = 0;
+      int y = 0;
+      do{
+        srand(time(0));
+        x = (rand() % (gamemap.size()));
+        y = (rand() % (gamemap[0].size()));
+      } while(gamemap[x][y]->showSymbol() != 'o');
 
-    gamemap[0][0]->growGrass();
-    gamemap[1][0]->growGrass();
-    //gamemap[0][0]->animalOccupy(a1);
+      FarmAnimal* a = new Chicken(x, y, false);
+      animalList.push_back(a);
+      gamemap[a->getX()][a->getY()]->animalOccupy(a);
+    }
+
+    for(int i = 0; i < 4; i++){ //Spawn Duck
+
+    }
+
+    for(int i = 0; i < 8; i++){ //Spawn Cow
+
+    }
+
+    for(int i = 0; i < 7; i++){ //Spawn Goat
+
+    }
+
+    for(int i = 0; i < 5; i++){ //Spawn Pig
+
+    }
+
+    for(int i = 0; i < 4; i++){ //Spawn Horse
+
+    }
 
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
@@ -259,7 +304,7 @@ int main(){
     while(command != "exit"){
       //system(CLEAR);
 
-      printMap();
+      printMap(mainPlayer, tick);
       printLegend();
       cout << endl;
       cout << "Inventory: " << endl;
@@ -270,23 +315,30 @@ int main(){
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       if(command == "talk"){
-        // cout << "talk" << endl;
-        cout << "talk" << endl;
-        cout << "insert talk direction: ";
+        //cout << "insert talk direction: ";
         char c;
         cin >> c;
         mainPlayer.Talk(c);
       } else if(command == "interact"){
-        cout << "insert interact direction: ";
+        //cout << "insert interact direction: ";
         char c;
         cin >> c;
         mainPlayer.Interact(c);
       } else if(command == "kill"){
-        cout << "kill" << endl;
+        // cout << "kill" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Kill(c);
       } else if(command == "grow"){
-        cout << "grow" << endl;
+        // cout << "grow" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Grow(c);
       } else if(command == "mix"){
         cout << "mix" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Grow(c);
       } else if(command == "w" || command == "a" || command == "s" || command == "d"){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         mainPlayer.setPosition(command[0]);
@@ -365,6 +417,7 @@ int main(){
       //Player p;
       //p.Interact(gamemap[0][0]);
     }*/
+    tick++;
 }
 
 

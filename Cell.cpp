@@ -14,17 +14,17 @@
 
 //Getters:
     // Getter for Unique symbol of every types of landtypes/facillities in cell
-    char Cell::showSymbol(){
+    char Cell::showSymbol() const{
         return this->Symbol;
     }
 
     // Getter for Override Symbol:
-    char Cell::getOverrideSymbol(){
+    char Cell::getOverrideSymbol() const{
         return this->OverrideSymbol;
     }
 
     // Getter for AnimalPtr:
-    FarmAnimal* Cell::getAnimalPtr(){
+    FarmAnimal* Cell::getAnimalPtr() const{
         return this->AnimalPtr;
     }
 

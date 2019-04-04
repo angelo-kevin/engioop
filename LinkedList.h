@@ -33,7 +33,7 @@ class Node{
             if (next!=NULL)
                 delete next;
         }
-        bool isNextEmpty(){
+        bool isNextEmpty() const{
             return (next==NULL);
         }
         void Print(){

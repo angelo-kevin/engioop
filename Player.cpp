@@ -73,11 +73,9 @@ void Player::setScore(int s){
 }
 
 void Player::Talk(char dir){
-    int *x, *y;
-    cout<<"talk2"<<x<<y<<endl;
-    Cell* cell = getPosition(dir,x,y);
-    cout<<"talk3"<<endl;
-    if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+    int x=0, y=0;
+    Cell* cell = getPosition(dir,&x,&y);
+    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
 
     if (cell->getOverrideSymbol() != '\0'){ //animal
         cout<<cell->getAnimalPtr()->sound()<<endl;
@@ -87,9 +85,9 @@ void Player::Talk(char dir){
 }
 
 void Player::Interact(char dir){
-    int *x, *y;
-    Cell* cell = getPosition(dir,x,y);
-    if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+    int x=0, y=0;
+    Cell* cell = getPosition(dir,&x,&y);
+    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
 
     vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
 
@@ -106,6 +104,11 @@ void Player::Interact(char dir){
             }
             cell->getAnimalPtr()->revLapar();
             cell->getAnimalPtr()->revSimbol();
+            cout<<"Product is produced"<<endl;
+            cout<<"Backpack List"<<endl;
+            for (int i=0;i<backpack.getLength();i++){
+                cout<<backpack.getData(i).getProductName()<<endl;
+            }
         }else{
             cout<<"Animal's hungry"<<endl;
         }
@@ -114,6 +117,7 @@ void Player::Interact(char dir){
         char c = cell->showSymbol();
         if (c=='W'){ //Well
             pouch = MAX_WATER;
+            cout<<"Water's filled"<<endl;
         }else if (c=='T'){//Truck
             int money=0;
             for (int i=0; i<backpack.getLength();i++){
@@ -135,31 +139,37 @@ void Player::Interact(char dir){
 
 
 void Player::Kill(char dir){
-    int *x, *y;
-    Cell* cell = getPosition(dir,x,y);
-    if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+    int x=0, y=0;
+    Cell* cell = getPosition(dir,&x,&y);
+    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
 
     if (cell->getOverrideSymbol() != '\0'){
         backpack.add(cell->getAnimalPtr()->produceMeat());
         cout<<cell->getAnimalPtr()->sound()<<endl;
         cell->makeUnoccupied();
+        cout<<"Animal's killed"<<endl;
         //delete from "livinganimal" list
+        cout<<"Backpack List"<<endl;
+        for (int i=0;i<backpack.getLength();i++){
+            cout<<backpack.getData(i).getProductName()<<endl;
+        }
     }else{
         cout<<"There's no animal.."<<endl;
     }
 }
 
 void Player::Grow(char dir){
-    int *x, *y;
-    Cell* cell = getPosition(dir,x,y);
-    if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+    int x=0, y=0;
+    Cell* cell = getPosition(dir,&x,&y);
+    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
     cell->growGrass();
+    cout<<"Grass grown"<<endl;
 }
 
 void Player::Mix(char dir, string menu){ //jenis int
-    int *x, *y;
-    Cell* cell = getPosition(dir,x,y);
-    if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
+    int x=0, y=0;
+    Cell* cell = getPosition(dir,&x,&y);
+    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
 
     if (cell->showSymbol()=='M'){
         map<string, vector<string>>::iterator itr;
@@ -174,19 +184,31 @@ void Player::Mix(char dir, string menu){ //jenis int
                 arrProduct[i] = P;
             }
             backpack.remove(arrProduct,size);
+
+            //cout<<"Side Product Produced if remove's success"<<endl;
+            cout<<"Backpack List"<<endl;
+            for (int i=0;i<backpack.getLength();i++){
+                cout<<backpack.getData(i).getProductName()<<endl;
+            }
         }else{
             cout<<"Menu's not available.."<<endl;
         }
     }
 }
 
+/*
+int *x; //address x &x
+int x; //address &x 
+x~&x
+passing x;*/
 
 //Ask for position:
 Cell* Player::getPosition(char direction, int* x, int* y){
-    cout<<"kaka"<<endl;
-    cout<<"talk "<<direction<<" "<<*x<<" "<<*y<<endl;
     direction = tolower(direction);
-    
+<<<<<<< HEAD
+    //*x=3;
+=======
+>>>>>>> 2a4277eb4a258f14f0e6540e625f669c390bfd15
     int maxRow = gamemap.size();
     int maxCol = gamemap[0].size();
 
