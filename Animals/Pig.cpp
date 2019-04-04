@@ -1,5 +1,4 @@
 #include "Pig.h"
-//#include "MeatProducing.cpp"
 
 Pig::Pig(int x, int y, bool l): FarmAnimal(x,y,l), MeatProducing(x,y,l){
     if (lapar) simbol = 'b';
