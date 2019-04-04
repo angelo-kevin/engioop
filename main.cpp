@@ -259,6 +259,7 @@ int main(){
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //printMap();
     
 =======
@@ -270,11 +271,14 @@ int main(){
     cout << "" << endl;
 
 >>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
+=======
+>>>>>>> 4853f7c84362aa21cab1160e458dacd4cd78cd76
     //Construct Player:
     Player mainPlayer(5,5);
-    gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+    // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
 
     while(command != "exit"){
+<<<<<<< HEAD
       //system(CLEAR);
 <<<<<<< HEAD
       //cout<< a2->getX() << endl;
@@ -289,6 +293,15 @@ int main(){
 
       printMap();
 >>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
+=======
+      system(CLEAR);
+
+      printMap();
+      printLegend();
+      cout << endl;
+      cout << "Inventory: " << endl;
+      cout << "" << endl;
+>>>>>>> 4853f7c84362aa21cab1160e458dacd4cd78cd76
 
       printMap();
       cout << "Command: ";
@@ -315,7 +328,7 @@ int main(){
         printMap();
         mainPlayer.setPosition(command[0]);
         printMap();
-        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
+        // gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
         printMap();
       }else{
         cout << "Invalid command" << endl;
