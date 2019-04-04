@@ -259,7 +259,7 @@ int main(){
     gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
 
     while(command != "exit"){
-      system(CLEAR);
+      //system(CLEAR);
 
       printMap();
       printLegend();
@@ -274,7 +274,7 @@ int main(){
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       if(command == "talk"){
-        cout << "talk" << endl;
+        // cout << "talk" << endl;
         char c;
         cin>>c;
         mainPlayer.Talk(c);
