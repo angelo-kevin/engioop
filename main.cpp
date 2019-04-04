@@ -202,16 +202,54 @@ void printMap(){
       }
     }
     cout << "" << endl;
+}
 
-    cout << "Inventory: " << endl;
-    cout << "" << endl;
+void printLegend(){
+  cout << "Keterangan: " << endl;
+  cout << "C: Ayam" << endl;
+  cout << "B: Babi" << endl;
+  cout << "D: Bebek" << endl;
+  cout << "G: Kambing" << endl;
+  cout << "H: Kuda" << endl;
+  cout << "S: Sapi" << endl;
+  cout << "T: Truck" << endl;
+  cout << "M: Mixer" << endl;
+  cout << "W: Well" << endl;
+  cout << endl;
+  cout << "P: Player" << endl;
+  cout << endl;
+  cout << ". : Grassland" << endl;
+  cout << "x : Barn" << endl;
+  cout << "o : Coop" << endl;
+  cout << endl;
+  cout << "*,@,# : Rumput" << endl;
 }
 
 int main(){
+    system(CLEAR);
+    cout << " _____            _ _      ______                   " << endl;
+    cout << "|  ___|          (_| )     |  ___|                  " << endl;
+    cout << "| |__ _ __   __ _ _|/ ___  | |_ __ _ _ __ _ __ ___  " << endl;
+    cout << "|  __| '_ \\ / _` | | / __| |  _/ _` | '__| '_ ` _ \\ " << endl;
+    cout << "| |__| | | | (_| | | \\__ \\ | || (_| | |  | | | | | |" << endl;
+    cout << "\\____/_| |_|\\__, |_| |___/ \\_| \\__,_|_|  |_| |_| |_|" << endl;
+    cout << "             __/ |                                  " << endl;
+    cout << "            |___/                                   " << endl;
+    cout << "Enter any key to start" << endl;
     string command = "";
+    cout << "> ";
+    cin >> command;
+    cout << endl;
+
     loadMap();
+
+    system(CLEAR);
     FarmAnimal* a1 = new Pig(2, 2, false);
+<<<<<<< HEAD
     //cout << a1->produceMeat().getProductName() << endl;
+=======
+    // cout << a1->produceMeat().getProductName() << endl;
+>>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
 
     gamemap[0][0]->growGrass();
     gamemap[1][0]->growGrass();
@@ -220,20 +258,37 @@ int main(){
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
+<<<<<<< HEAD
     //printMap();
     
+=======
+    printMap();
+
+    printLegend();
+
+    cout << "Inventory: " << endl;
+    cout << "" << endl;
+
+>>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
     //Construct Player:
     Player mainPlayer(5,5);
     gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
 
     while(command != "exit"){
       //system(CLEAR);
+<<<<<<< HEAD
       //cout<< a2->getX() << endl;
       //cout<< a2->getY() << endl;
       
       gamemap[a2->getX()][a2->getY()]->makeUnoccupied();
       a2->move();
       gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
+=======
+      cout<< a2->getX() << endl;
+      cout<< a2->getY() << endl;
+
+      printMap();
+>>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
 
       printMap();
       cout << "Command: ";
@@ -256,19 +311,63 @@ int main(){
       } else if(command == "mix"){
         cout << "mix" << endl;
       } else if(command == "n" || command == "w" || command == "e" || command == "s"){
-        gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied(); 
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         printMap();
         mainPlayer.setPosition(command[0]);
         printMap();
-        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy(); 
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
         printMap();
       }else{
         cout << "Invalid command" << endl;
       }
 
-      cout << "Output: " << endl;
-      cout << "" << endl;
 
+    //Construct Player:
+    // Player mainPlayer(5,5);
+    // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+    //
+    // while(command != "exit"){
+    //   //system(CLEAR);
+    //   cout<< a2->getX() << endl;
+    //   cout<< a2->getY() << endl;
+    //
+    //   printMap();
+    //
+    //   cout << "Command: ";
+    //   cout << "" << endl;
+    //
+    //   cin >> command;
+    //   transform(command.begin(), command.end(), command.begin(), ::tolower);
+    //   cout << command;
+    //   if(command == "talk"){
+    //     cout << "talk" << endl;
+    //     char c;
+    //     cin>>c;
+    //     mainPlayer.Talk(c);
+    //   } else if(command == "interact"){
+    //     cout << "interact" << endl;
+    //   } else if(command == "kill"){
+    //     cout << "kill" << endl;
+    //   } else if(command == "grow"){
+    //     cout << "grow" << endl;
+    //   } else if(command == "mix"){
+    //     cout << "mix" << endl;
+    //   } else if(command == "n" || command == "w" || command == "e" || command == "s"){
+    //     gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
+    //     printMap();
+    //     mainPlayer.setPosition(command[0]);
+    //     printMap();
+    //     gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
+    //     printMap();
+    //   }else{
+    //     cout << "Invalid command" << endl;
+    //   }
+    //
+    //   cout << "Output: " << endl;
+    //   cout << "" << endl;
+    //
+    //   //sleep(2000);
+    // }
       //sleep(2000);
     }
       /*animul1* a = new animul1();
@@ -276,26 +375,18 @@ int main(){
       gamemap.push_back(new animul1());
       gamemap.push_back(new animul2());
       cout<<((gamemap.at(0))->showSymbol())<<endl;
-
-
       //CREATE MAP:
-
       //gamemap[0][0]->growGrass();
       //gamemap[1][0]->growGrass();
       // FarmAnimal* a1 = new Pig(2, 2, false);
       // gamemap[0][0]->animalOccupy(a1);
-
       // FarmAnimal* a2 = new Chicken(true, 2, 2);
       // gamemap[2][2]->animalOccupy(a2);
-
       // printLine();
-
       // printLine();
-
       // gamemap[0][0]-> makeUnoccupied();
       // printMap();
       // cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
-
       //Player p;
       //p.Interact(gamemap[0][0]);
     }*/
@@ -322,7 +413,6 @@ class animul1: public Cell{
             return 'a';
         }
 };
-
 class animul2: public Cell{
     private:
         char* namu;
@@ -343,26 +433,21 @@ class animul2: public Cell{
             return 'a';
         }
 };
-
 class Player{
     private:
         int x;
         int y;
-
     public:
         Player(){
             x=0;
             y=0;
         }
-
         ~Player(){};
-
         void Interact(Cell* C){
             if (C->showSymbol() == 'a')
                 cout<<"Interacted with animul1"<<endl;
             else if (C->showSymbol() == 'b')
                 cout<<"Interacted with animul2"<<endl;
         }
-
 };
 */
