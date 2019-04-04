@@ -21,6 +21,10 @@ int FarmAnimal::getThreshold(){
     return threshold;
 } //mengembalikan nilai threshold dari objek
 
+void FarmAnimal::minThreshold(){
+    threshold--;
+}
+
 bool FarmAnimal::getLapar(){
     return lapar;
 } //mengecek apakah objek dari kelas ini lapar atau tidak

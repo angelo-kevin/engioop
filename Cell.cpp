@@ -37,7 +37,7 @@
 
     // Player occupies cell
     void Cell::playerOccupy(){
-        this->OverrideSymbol = '!';
+        this->OverrideSymbol = 'P';
     }
     // Make cell unoccupied
     void Cell::makeUnoccupied(){

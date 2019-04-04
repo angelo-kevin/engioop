@@ -52,9 +52,31 @@ int Player::getY(){
     return row;
 }
 
+int Player::getPouch(){
+    return pouch;
+}
+int Player::getScore(){
+    return score;
+}
+
+void Player::setPouch(int temp){
+    pouch=temp;
+}
+void Player::setX(int x){
+    col=x;
+}
+void Player::setY(int y){
+    row=y;
+}
+void Player::setScore(int s){
+    score = s;
+}
+
 void Player::Talk(char dir){
     int *x, *y;
+    cout<<"talk2"<<x<<y<<endl;
     Cell* cell = getPosition(dir,x,y);
+    cout<<"talk3"<<endl;
     if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
 
     if (cell->getOverrideSymbol() != '\0'){ //animal
@@ -161,15 +183,18 @@ void Player::Mix(char dir, string menu){ //jenis int
 
 //Ask for position:
 Cell* Player::getPosition(char direction, int* x, int* y){
+    cout<<"kaka"<<endl;
+    cout<<"talk "<<direction<<" "<<*x<<" "<<*y<<endl;
     direction = tolower(direction);
+    
     int maxRow = gamemap.size();
     int maxCol = gamemap[0].size();
 
-    if (direction == 'n'){
+    if (direction == 'w'){
         *x=col;
         *y=row-1;
     }
-    else if (direction == 'e'){
+    else if (direction == 'd'){
         *x=col+1;
         *y=row;
     }
@@ -177,7 +202,7 @@ Cell* Player::getPosition(char direction, int* x, int* y){
         *x=col;
         *y=row+1;
     }
-    else if (direction == 'w'){
+    else if (direction == 'a'){
         *x=col-1;
         *y=row;
     }

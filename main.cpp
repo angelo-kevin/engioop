@@ -42,7 +42,7 @@
 #include "Product/Product.h"
 
 //Miscellaneous Library:
-#include <unistd.h>
+//#include <unistd.h>
 
 #define maxsize 256
 using namespace std;
@@ -205,24 +205,21 @@ void printMap(){
 }
 
 void printLegend(){
-  cout << "Keterangan: " << endl;
-  cout << "C: Ayam" << endl;
-  cout << "B: Babi" << endl;
-  cout << "D: Bebek" << endl;
-  cout << "G: Kambing" << endl;
-  cout << "H: Kuda" << endl;
-  cout << "S: Sapi" << endl;
-  cout << "T: Truck" << endl;
-  cout << "M: Mixer" << endl;
-  cout << "W: Well" << endl;
-  cout << endl;
-  cout << "P: Player" << endl;
-  cout << endl;
-  cout << ". : Grassland" << endl;
-  cout << "x : Barn" << endl;
+  cout << "Keterangan:                  Controls:" << endl;
+  cout << "B : Pig                      w : go up" << endl;
+  cout << "C : Chicken                  a : go left" << endl;
+  cout << "D : Duck                     s : go down" << endl;
+  cout << "G : Goat                     d : go right" << endl;
+  cout << "H : Horse" << endl;
+  cout << "S : Cow                      talk     : talk to animal" << endl;
+  cout << "M : Mixer                    interact : interact with things" << endl;
+  cout << "T : Truck                    kill     : kill animal" << endl;
+  cout << "W : Well                     grow     : grow grass" << endl;
+  cout << "P : Player                   mix      : mix ingredients" << endl;
+  cout << "x : Barn                     exit     : exit the game" << endl;
   cout << "o : Coop" << endl;
-  cout << endl;
-  cout << "*,@,# : Rumput" << endl;
+  cout << ". : Grassland" << endl;
+  cout << "*, @, # : Grass" << endl;
 }
 
 int main(){
@@ -235,6 +232,7 @@ int main(){
     cout << "\\____/_| |_|\\__, |_| |___/ \\_| \\__,_|_|  |_| |_| |_|" << endl;
     cout << "             __/ |                                  " << endl;
     cout << "            |___/                                   " << endl;
+    cout << "When in game, type exit to quit the game" << endl;
     cout << "Enter any key to start" << endl;
     string command = "";
     cout << "> ";
@@ -268,18 +266,20 @@ int main(){
       cout << "" << endl;
 
       cout << "Command: ";
-      cout << "" << endl;
-
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       if(command == "talk"){
         cout << "talk" << endl;
+        cout << "insert talk direction: ";
         char c;
-        cin>>c;
+        cin >> c;
         mainPlayer.Talk(c);
       } else if(command == "interact"){
-        cout << "interact" << endl;
+        cout << "insert interact direction: ";
+        char c;
+        cin >> c;
+        mainPlayer.Interact(c);
       } else if(command == "kill"){
         cout << "kill" << endl;
       } else if(command == "grow"){
