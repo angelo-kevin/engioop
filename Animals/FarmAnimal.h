@@ -3,8 +3,8 @@
 #include <vector>
 #include <string>
 #include <cstring>
-#include <cstdlib>
 #include <ctime>
+#include <algorithm>
 using namespace std;
 
 #include "../Product/FarmProduct.h"
