@@ -245,11 +245,7 @@ int main(){
 
     system(CLEAR);
     FarmAnimal* a1 = new Pig(2, 2, false);
-<<<<<<< HEAD
-    //cout << a1->produceMeat().getProductName() << endl;
-=======
     // cout << a1->produceMeat().getProductName() << endl;
->>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
 
     gamemap[0][0]->growGrass();
     gamemap[1][0]->growGrass();
@@ -257,12 +253,6 @@ int main(){
 
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //printMap();
-    
-=======
     printMap();
 
     printLegend();
@@ -270,30 +260,11 @@ int main(){
     cout << "Inventory: " << endl;
     cout << "" << endl;
 
->>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
-=======
->>>>>>> 4853f7c84362aa21cab1160e458dacd4cd78cd76
     //Construct Player:
     Player mainPlayer(5,5);
     // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
 
     while(command != "exit"){
-<<<<<<< HEAD
-      //system(CLEAR);
-<<<<<<< HEAD
-      //cout<< a2->getX() << endl;
-      //cout<< a2->getY() << endl;
-      
-      gamemap[a2->getX()][a2->getY()]->makeUnoccupied();
-      a2->move();
-      gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
-=======
-      cout<< a2->getX() << endl;
-      cout<< a2->getY() << endl;
-
-      printMap();
->>>>>>> d33a8566da7ac59665564cc40c441d4a4fcaf5d1
-=======
       system(CLEAR);
 
       printMap();
@@ -301,7 +272,6 @@ int main(){
       cout << endl;
       cout << "Inventory: " << endl;
       cout << "" << endl;
->>>>>>> 4853f7c84362aa21cab1160e458dacd4cd78cd76
 
       printMap();
       cout << "Command: ";
