@@ -6,6 +6,9 @@
 #include<map>
 #include "Player.h"
 #include "Animals/FarmAnimal.h"
+#include "Product/SideProduct/BaconOmelette.h"
+#include "Product/SideProduct/HorseRolade.h"
+#include "Product/SideProduct/MixedCheese.h"
 
 #define MAX_WATER 100
 using namespace std;
@@ -13,9 +16,9 @@ using namespace std;
 vector<char> eggProducingAnimal{'C','D'};
 vector<char> milkProducingAnimal{'S','G'};
 vector<char> arrayFacility{'W','T','M'};
-map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
-                                    {"cheese", {"milk"}},
-                                    {"fried egg", {"milk"}}};
+map<string, vector<string>> recipe = {{"BaconOmelette", {"PigMeat","ChickenEgg"}},
+                                    {"HorseRolade", {"HorseMeat", "DuckEgg"}},
+                                    {"MixedCheese", {"CowMilk", "DuckMeat"}}};
 
 map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
 
@@ -94,8 +97,8 @@ void Player::Interact(char dir){
     vector<char>::iterator itr1=find(arrayFacility.begin(),arrayFacility.end(),cell->showSymbol());
 
     if (cell->getOverrideSymbol()!='\0'){
-        vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->showSymbol());
-        vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->showSymbol());
+        vector<char>::iterator itr2=find(milkProducingAnimal.begin(),milkProducingAnimal.end(),cell->getOverrideSymbol());
+        vector<char>::iterator itr3=find(eggProducingAnimal.begin(),eggProducingAnimal.end(),cell->getOverrideSymbol());
 
         if (isupper(cell->getOverrideSymbol())){
             if (itr2!=milkProducingAnimal.end()){
@@ -103,10 +106,14 @@ void Player::Interact(char dir){
             }
             if (itr3!=eggProducingAnimal.end()){
                 backpack.add(cell->getAnimalPtr()->produceEgg());
+                
             }
-            cell->getAnimalPtr()->revLapar();
-            cell->getAnimalPtr()->revSimbol();
-            cout<<"Product is produced"<<endl;
+            if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
+                cell->getAnimalPtr()->revLapar();
+                cell->getAnimalPtr()->revSimbol();
+                cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
+            }
+            
             cout<<"Backpack List"<<endl;
             for (int i=0;i<backpack.getLength();i++){
                 cout<<backpack.getData(i).getProductName()<<endl;
@@ -182,6 +189,7 @@ void Player::Mix(char dir, string menu){ //jenis int
     if (cell->showSymbol()=='M'){
         map<string, vector<string>>::iterator itr;
         itr = recipe.find(menu);
+
         if (itr!=recipe.end()){
             vector<string> ingredients = itr->second;
             vector<string>::iterator itr2;
@@ -190,9 +198,33 @@ void Player::Mix(char dir, string menu){ //jenis int
             for (int i=0; i<size;i++){
                 Product P(0,ingredients[i]);
                 arrProduct[i] = P;
+                //cout<<"Hello : "<<size<<" "<<ingredients[i]<<endl;
             }
-            backpack.remove(arrProduct,size);
+                //cout<<"out from loop"<<endl;
 
+                for (int i=0;i<size;i++){
+                    cout<<arrProduct[i].getProductName()<<" ";
+                }
+                cout<<endl;
+
+            if (backpack.foundAll1(arrProduct,size)){
+                backpack.remove(arrProduct,size);
+
+                Product* newProduct;
+                if (menu=="BaconOmelette"){
+                    newProduct = new BaconOmelette();
+                } else if (menu == "HorseRolade"){
+                    newProduct = new HorseRolade();
+                }else if (menu =="MixedCheese"){
+                    newProduct = new MixedCheese();
+                }else{
+                    newProduct = new Product();
+                }
+                backpack.add(*newProduct);
+                cout<<"Product's added"<<endl;
+            }else{
+                cout<<"Ingredients's not complete"<<endl;
+            }
             //cout<<"Side Product Produced if remove's success"<<endl;
             cout<<"Backpack List"<<endl;
             for (int i=0;i<backpack.getLength();i++){
