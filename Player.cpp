@@ -110,13 +110,13 @@ void Player::Interact(char dir){
             }
             if (itr3!=eggProducingAnimal.end()){
                 backpack.add(cell->getAnimalPtr()->produceEgg());
-                
+
             }
             if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
                 cell->getAnimalPtr()->revLapar();
-                cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
+                cout<<"Product is produced"<<endl;
             }
-            
+
         }else{
             cout<<"Animal's hungry"<<endl;
         }
@@ -128,9 +128,14 @@ void Player::Interact(char dir){
             cout<<"Water's filled"<<endl;
         }else if (c=='T'){//Truck
             int money=0;
+            vector<int> temp;
             for (int i=0; i<backpack.getLength();i++){
                 money += backpack.getData(i).getHarga();
-                backpack.removeByIdx(i);
+                temp.push_back(i); //save the index to vector
+            }
+            //delete element from behind
+            for(int i=temp.size()-1; i>=0; i--){
+              backpack.removeByIdx(temp[i]);
             }
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
@@ -159,7 +164,7 @@ void Player::Kill(char dir){
 
         vector<FarmAnimal*>::const_iterator itr = find(animalList.begin(), animalList.end(),cell->getAnimalPtr());
         if (itr!=animalList.end()) animalList.erase(itr);
-    }else{
+    } else{
         cout<<"There's no animal.."<<endl;
     }
 }

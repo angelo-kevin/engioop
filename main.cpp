@@ -239,12 +239,12 @@ void printLegend(){
   cout << "D : Duck                     s : go down" << endl;
   cout << "G : Goat                     d : go right" << endl;
   cout << "H : Horse" << endl;
-  cout << "S : Cow                      talk     : talk to animal" << endl;
-  cout << "M : Mixer                    interact : interact with things" << endl;
-  cout << "T : Truck                    kill     : kill animal" << endl;
-  cout << "W : Well                     grow     : grow grass" << endl;
-  cout << "P : Player                   mix      : mix ingredients" << endl;
-  cout << "x : Barn                     exit     : exit the game" << endl;
+  cout << "S : Cow                      talk (dir)        : talk to animal" << endl;
+  cout << "M : Mixer                    interact (dir)    : interact with things" << endl;
+  cout << "T : Truck                    kill (dir)        : kill animal" << endl;
+  cout << "W : Well                     grow (dir)        : grow grass" << endl;
+  cout << "P : Player                   mix (dir, recipe) : mix ingredients" << endl;
+  cout << "x : Barn                     exit              : exit the game" << endl;
   cout << "o : Coop" << endl;
   cout << ". : Grassland" << endl;
   cout << "*, @, # : Grass" << endl;
@@ -303,7 +303,9 @@ int main(){
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != 'o' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Duck(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
@@ -318,7 +320,9 @@ int main(){
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != '.' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Cow(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
@@ -333,7 +337,9 @@ int main(){
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != '.' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Goat(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
@@ -348,7 +354,9 @@ int main(){
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != 'x' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Pig(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
@@ -363,12 +371,16 @@ int main(){
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != 'x' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Horse(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
+    //Main loop. will loop until "exit" is inputted or all animals died
     while(command != "exit" && animalList.size() > 0){
-      //system(CLEAR);
+      // system(CLEAR);
+      //Erase dead animal
       for(int i = 0; i < animalList.size(); i++){
         if(animalList[i]->getThreshold() <= -5){
           gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
@@ -376,45 +388,54 @@ int main(){
         }
       }
 
+      //Move all animal every 2 ticks
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
       }
+
+      //print the map
       printMap(mainPlayer.getScore(), mainPlayer.getPouch(), tick);
+      //print the legend
       printLegend();
 
+      //if all animal is dead, break from loop and game over
       if(animalList.size() == 0){
         break;
       }
 
       cout << endl;
-      cout << "Inventory: "; mainPlayer.printBackpack();
+      cout << "Inventory: ";
+      mainPlayer.printBackpack();
       cout << "" << endl;
 
       cout << "Command: ";
-
       cin >> command;
+      //lowercase the command input
       transform(command.begin(), command.end(), command.begin(), ::tolower);
-      if(command == "talk"){
+
+      cout << endl;
+      cout << "Output: " << endl;
+      if(command == "talk"){ //talk action
         char c;
-        cin >> c;
+        cin >> c; //direction to talk to
         mainPlayer.Talk(c);
-      } else if(command == "interact"){
+      } else if(command == "interact"){ //interact action
         char c;
-        cin >> c;
+        cin >> c; //direction to interact to
         mainPlayer.Interact(c);
-      } else if(command == "kill"){
+      } else if(command == "kill"){ //kill action
         char c;
-        cin >> c;
+        cin >> c; //direction to kill animal
         mainPlayer.Kill(c);
-      } else if(command == "grow"){
+      } else if(command == "grow"){ //grow action
         mainPlayer.Grow();
-      } else if(command == "mix"){
+      } else if(command == "mix"){ //mix action
         char c;
         cin >> c;
         string menu;
         cin >> menu;
         mainPlayer.Mix(c,menu);
-      } else if(command == "w" || command == "a" || command == "s" || command == "d"){
+      } else if(command == "w" || command == "a" || command == "s" || command == "d"){ //move action
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         mainPlayer.setPosition(command[0]);
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
@@ -434,6 +455,7 @@ int main(){
       }
 
     tick++;
+    //Decrement hunger threshold for all animal
     for(int i = 0; i < animalList.size(); i++){
       animalList[i]->minThreshold();
     }
