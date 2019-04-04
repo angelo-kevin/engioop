@@ -29,6 +29,7 @@ class FarmAnimal{
         char showSimbol(); //mengembalikan nilai simbol
         void revSimbol(); //mengubah nilai simbol dari objek yang akan ditunjukkan di map
         int getThreshold(); //mengembalikan nilai threshold dari objek
+        void minThreshold(); //mengurangi nilai threshold dengan 1
         bool getLapar(); //mengecek apakah objek dari kelas ini lapar atau tidak
         void revLapar(); //mengubah nilai lapar dari objek
         int getX();

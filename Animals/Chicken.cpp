@@ -1,5 +1,4 @@
 #include "Chicken.h"
-#include "../common.h"
 
 Chicken::Chicken(int x, int y, bool l): FarmAnimal(x,y,l), EggProducing(x,y,l), MeatProducing(x,y,l){
     if (lapar) simbol = 'c';
@@ -9,8 +8,14 @@ Chicken::Chicken(int x, int y, bool l): FarmAnimal(x,y,l), EggProducing(x,y,l), 
 
 void Chicken::move(){
     int x;
-    int ctr=0;
+    int ctr;
     int row, col;
+    if (threshold<=0) lapar = true;
+    if (lapar && gamemap[getX()][getY()]->showSymbol()=='*'){
+        gamemap[getX()][getY()]->makeUnoccupied();
+        lapar = false;
+        threshold = 8;
+    }
     do{
         ctr = 0;
         srand(time(0));
