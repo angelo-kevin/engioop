@@ -253,16 +253,10 @@ int main(){
 
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
-    printMap();
-
-    printLegend();
-
-    cout << "Inventory: " << endl;
-    cout << "" << endl;
 
     //Construct Player:
     Player mainPlayer(5,5);
-    // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+    gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
 
     while(command != "exit"){
       system(CLEAR);
@@ -273,13 +267,12 @@ int main(){
       cout << "Inventory: " << endl;
       cout << "" << endl;
 
-      printMap();
       cout << "Command: ";
       cout << "" << endl;
 
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
-      
+
       if(command == "talk"){
         cout << "talk" << endl;
         char c;
@@ -293,13 +286,10 @@ int main(){
         cout << "grow" << endl;
       } else if(command == "mix"){
         cout << "mix" << endl;
-      } else if(command == "n" || command == "w" || command == "e" || command == "s"){
+      } else if(command == "w" || command == "a" || command == "s" || command == "d"){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
-        printMap();
         mainPlayer.setPosition(command[0]);
-        printMap();
-        // gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
-        printMap();
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
       } else if(command == "exit"){
       } else{
         cout << "Invalid command" << endl;

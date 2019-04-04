@@ -196,20 +196,20 @@ bool Player::canPassed(int tcol, int trow){
 //Player change position:
 void Player::setPosition(char direction){
     direction = tolower(direction);
-    if (direction == 'n' && 0<=row-1 && canPassed(col,row-1)){
+    if (direction == 'w' && 0<=row-1 && canPassed(col,row-1)){
         row--;
     }
-    else if (direction == 'e' && col+1<gamemap[0].size() && canPassed(col+1,row)){
+    else if (direction == 'd' && col+1<gamemap[0].size() && canPassed(col+1,row)){
         col++;
     }
     else if (direction == 's' && row+1<gamemap.size() && canPassed(col,row+1)){
         row++;
     }
-    else if (direction == 'w' && 0<=col-1 && canPassed(col-1, row)){
+    else if (direction == 'a' && 0<=col-1 && canPassed(col-1, row)){
         col--;
     }
     else{
         cout << "JESNAT SALAH" << endl;
     }
-    cout<<"Player direction: " << direction <<", curpos: " << row << " " << col << endl; 
+    cout<<"Player direction: " << direction <<", curpos: " << row << " " << col << endl;
 }
