@@ -99,6 +99,33 @@ class LinkedList{
             length++;
         }
 
+        bool foundAll1(T* _data, int size){
+            Node<T>* ptr = head;
+            if (_data==NULL){
+                return 1;
+            }else if (ptr!=NULL){
+                int i=0;
+                bool visited[length];
+                /*
+                cout<<"DATA : ";
+                for (int i=0;i<size;i++){
+                    cout<<_data[i].getProductName()<<" ";
+                }
+                cout<<endl;*/
+                for (int i=0;i<length;i++){
+                    visited[i]=0;
+                }
+                while(i<size && find(*(_data+i),visited)!=-1){ //bug
+                    // cout<<"hhm"<<endl;
+                    visited[find(*(_data+i),visited)]=1;
+                    i++;
+                    // cout<<"i and size"<<i<<" "<<size<<endl;
+                }
+                cout<<"OUT"<<endl;
+                return (i==size);
+            }
+        }
+
         bool foundAll(T* _data, int* index, int size) // initialization : _data and index has been set the size
         { //return whether all item is found and array index of each data found
             Node<T>* ptr = head;
@@ -111,7 +138,7 @@ class LinkedList{
                     visited[i]=0;
                 }
                 //cout<<"size : "<<size<<endl;
-                while(find(*(_data+i),visited)!=-1){ //bug
+                while(i<size && find(*(_data+i),visited)!=-1){ //bug
 
                     *(index+i)=find(*(_data+i),visited); //bug
                     visited[*(index+i)]=1;
@@ -158,6 +185,7 @@ class LinkedList{
 
             if (foundAll(_data,idx,size)){
                 int i=0;
+                cout<<"REMOVE"<<endl;
                 while (i!=size){
                     removeByIdx(*(idx+i));
                     i++;

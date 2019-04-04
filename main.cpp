@@ -400,10 +400,11 @@ int main(){
         cin >> c;
         mainPlayer.Grow(c);
       } else if(command == "mix"){
-        cout << "mix" << endl;
         char c;
         cin >> c;
-        mainPlayer.Grow(c);
+        string menu;
+        cin >> menu;
+        mainPlayer.Mix(c,menu);
       } else if(command == "w" || command == "a" || command == "s" || command == "d"){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         mainPlayer.setPosition(command[0]);

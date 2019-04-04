@@ -6,16 +6,16 @@ Product::Product(){
 }
 
 Product::Product(int price, string name){
-  setHarga(0);
-  setProductName("");
+  setHarga(price);
+  setProductName(name);
 }
 
 bool Product::operator==(Product& p){
-  return getProductName() == p.getProductName();
+  return getProductName().compare(p.getProductName()) == 0 ;
 }
 
 bool Product::operator!=(Product& p){
-  return getProductName() != p.getProductName();
+  return getProductName().compare(p.getProductName()) != 0 ;
 }
 
 void Product::setHarga(int price){
