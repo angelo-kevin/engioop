@@ -273,11 +273,19 @@ int main(){
       animalList.push_back(a);
       gamemap[a->getX()][a->getY()]->animalOccupy(a);
     }
+<<<<<<< HEAD
 
     for(int i = 0; i < 4; i++){ //Spawn Duck
 
     }
 
+=======
+
+    for(int i = 0; i < 4; i++){ //Spawn Duck
+
+    }
+
+>>>>>>> 2a4277eb4a258f14f0e6540e625f669c390bfd15
     for(int i = 0; i < 8; i++){ //Spawn Cow
 
     }
