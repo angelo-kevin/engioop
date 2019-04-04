@@ -260,6 +260,49 @@ int main(){
 
     cout << "Inventory: " << endl;
     cout << "" << endl;
+
+    //Construct Player:
+    Player mainPlayer(5,5);
+    gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+
+    while(command != "exit"){
+      //system(CLEAR);
+      cout<< a2->getX() << endl;
+      cout<< a2->getY() << endl;
+
+      printMap();
+
+      cout << "Command: ";
+      cout << "" << endl;
+
+      cin >> command;
+      transform(command.begin(), command.end(), command.begin(), ::tolower);
+      cout << command;
+      if(command == "talk"){
+        cout << "talk" << endl;
+        char c;
+        cin>>c;
+        mainPlayer.Talk(c);
+      } else if(command == "interact"){
+        cout << "interact" << endl;
+      } else if(command == "kill"){
+        cout << "kill" << endl;
+      } else if(command == "grow"){
+        cout << "grow" << endl;
+      } else if(command == "mix"){
+        cout << "mix" << endl;
+      } else if(command == "n" || command == "w" || command == "e" || command == "s"){
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
+        printMap();
+        mainPlayer.setPosition(command[0]);
+        printMap();
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
+        printMap();
+      }else{
+        cout << "Invalid command" << endl;
+      }
+
+
     //Construct Player:
     // Player mainPlayer(5,5);
     // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
@@ -306,6 +349,8 @@ int main(){
     //
     //   //sleep(2000);
     // }
+      //sleep(2000);
+    }
       /*animul1* a = new animul1();
       gamemap.push_back(a);
       gamemap.push_back(new animul1());

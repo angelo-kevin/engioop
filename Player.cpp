@@ -191,7 +191,7 @@ Cell* Player::getPosition(char direction, int* x, int* y){
 }
 
 bool Player::canPassed(int tcol, int trow){
-    return (gamemap[trow][tcol]->getOverrideSymbol()!='\0' && gamemap[trow][tcol]->showSymbol()!='M' && gamemap[trow][tcol]->showSymbol()!='T' && gamemap[trow][tcol]->showSymbol()!='W');
+    return (gamemap[trow][tcol]->getOverrideSymbol()=='\0' && gamemap[trow][tcol]->showSymbol()!='M' && gamemap[trow][tcol]->showSymbol()!='T' && gamemap[trow][tcol]->showSymbol()!='W');
 }
 //Player change position:
 void Player::setPosition(char direction){
@@ -208,4 +208,8 @@ void Player::setPosition(char direction){
     else if (direction == 'w' && 0<=col-1 && canPassed(col-1, row)){
         col--;
     }
+    else{
+        cout << "JESNAT SALAH" << endl;
+    }
+    cout<<"Player direction: " << direction <<", curpos: " << row << " " << col << endl; 
 }

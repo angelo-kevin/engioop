@@ -36,8 +36,8 @@
     }
 
     // Player occupies cell
-    void Cell::playerOccupy(FarmAnimal* _animalPtr){
-        this->OverrideSymbol = 'P';
+    void Cell::playerOccupy(){
+        this->OverrideSymbol = '!';
     }
     // Make cell unoccupied
     void Cell::makeUnoccupied(){
