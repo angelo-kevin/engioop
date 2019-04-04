@@ -255,8 +255,6 @@ void printLegend(){
 
 int main(){
     int tick = 0;
-
-    vector<FarmAnimal*> animalList;
     system(CLEAR);
     cout << " _____            _ _      ______                   " << endl;
     cout << "|  ___|          (_| )     |  ___|                  " << endl;
@@ -304,11 +302,6 @@ int main(){
       FarmAnimal* a = new Duck(x, y, false);
       animalList.push_back(a);
       gamemap[x][y]->animalOccupy(a);
-    }
-
-
-    for(int i = 0; i < 4; i++){ //Spawn Duck
-
     }
 
     for(int i = 0; i < 8; i++){ //Spawn Cow
@@ -367,7 +360,7 @@ int main(){
     // gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
     while(command != "exit"){
-      //system(CLEAR);
+      // system(CLEAR);
 
       printMap();
       printLegend();
@@ -413,6 +406,9 @@ int main(){
         cout << "Invalid command" << endl;
       }
 
+      for(int i = 0; i < animalList.size(); i++){
+        cout << animalList[i]->showSimbol() << endl;
+      }
 
     //Construct Player:
     // Player mainPlayer(5,5);
