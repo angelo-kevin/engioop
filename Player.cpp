@@ -10,11 +10,12 @@
 #define MAX_WATER 100
 using namespace std;
 
-vector<char> eggProducingAnimal{'C'};
-vector<char> milkProducingAnimal{'S'};
+vector<char> eggProducingAnimal{'C','D'};
+vector<char> milkProducingAnimal{'S','G'};
 vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"mayonaise", {"egg","milk"}},
-                                    {"cheese", {"milk"}}};
+                                    {"cheese", {"milk"}},
+                                    {"fried egg", {"milk"}}};
 
 map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
 
@@ -127,6 +128,11 @@ void Player::Interact(char dir){
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
             score+=money;
+
+            cout<<"Backpack List"<<endl;
+            for (int i=0;i<backpack.getLength();i++){
+                cout<<backpack.getData(i).getProductName()<<endl;
+            }
         }else if (c=='t'){
             cout<<"Truck's not available"<<endl;
         }else{
