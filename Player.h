@@ -38,7 +38,6 @@ class Player{
         Cell* getPosition(char, int*, int*); //ask for Cell in 4 directions surround player
         bool canPassed(int,int);
         void setPosition(char); //set the position of player
-
 };
 
 #endif

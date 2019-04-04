@@ -306,6 +306,11 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
+
+    for(int i = 0; i < 4; i++){ //Spawn Duck
+
+    }
+
     for(int i = 0; i < 8; i++){ //Spawn Cow
       int x = 0;
       int y = 0;
@@ -375,23 +380,30 @@ int main(){
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       if(command == "talk"){
-        // cout << "talk" << endl;
-        cout << "talk" << endl;
-        cout << "insert talk direction: ";
+        //cout << "insert talk direction: ";
         char c;
         cin >> c;
         mainPlayer.Talk(c);
       } else if(command == "interact"){
-        cout << "insert interact direction: ";
+        //cout << "insert interact direction: ";
         char c;
         cin >> c;
         mainPlayer.Interact(c);
       } else if(command == "kill"){
-        cout << "kill" << endl;
+        // cout << "kill" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Kill(c);
       } else if(command == "grow"){
-        cout << "grow" << endl;
+        // cout << "grow" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Grow(c);
       } else if(command == "mix"){
         cout << "mix" << endl;
+        char c;
+        cin >> c;
+        mainPlayer.Grow(c);
       } else if(command == "w" || command == "a" || command == "s" || command == "d"){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         mainPlayer.setPosition(command[0]);
