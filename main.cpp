@@ -272,7 +272,7 @@ int main(){
 
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
-      cout << command;
+      
       if(command == "talk"){
         cout << "talk" << endl;
         char c;
@@ -293,7 +293,8 @@ int main(){
         printMap();
         // gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
         printMap();
-      }else{
+      } else if(command == "exit"){
+      } else{
         cout << "Invalid command" << endl;
       }
 
