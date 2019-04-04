@@ -38,7 +38,7 @@ class Cell{
       // Make cell unoccupied:
       void makeUnoccupied();
 
-      void playerOccupy(FarmAnimal* _animalPtr);
+      void playerOccupy();
 
       // Make grass grow:
       virtual void growGrass(){};

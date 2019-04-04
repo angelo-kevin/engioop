@@ -1,5 +1,9 @@
 #include "Chicken.h"
+#include <iostream>
 #include "../common.h"
+
+using namespace std;
+
 Chicken::Chicken(int x, int y, bool l): FarmAnimal(x,y,l), EggProducing(x,y,l), MeatProducing(x,y,l){
     if (lapar) simbol = 'c';
     else simbol = 'C';
@@ -7,12 +11,12 @@ Chicken::Chicken(int x, int y, bool l): FarmAnimal(x,y,l), EggProducing(x,y,l), 
 }
 
 void Chicken::move(){
-    srand(time(0));
     int x;
-    int ctr;
+    int ctr=0;
     int row, col;
     do{
         ctr = 0;
+        srand(time(0));
         x = (rand()%4)+1;
         if (x==1){
             row = getX();
@@ -20,7 +24,9 @@ void Chicken::move(){
             if (getX()>=gamemap.size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
                 setX(row);
                 ctr++;
+                cout << "1" << endl;
             }
+            
         }
         else if (x==2){
             col = getY();
@@ -28,7 +34,9 @@ void Chicken::move(){
             if (getY()>=gamemap[0].size() || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
                 setY(col);
                 ctr++;
+                cout << "2" << endl;
             }
+            
         }
         else if (x==3){
             row = getX();
@@ -36,7 +44,9 @@ void Chicken::move(){
             if (getX()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
                 setX(row);
                 ctr++;
+                cout << "3" << endl;
             }
+            
         }
         else if (x==4){
             col = getY();
@@ -44,8 +54,11 @@ void Chicken::move(){
             if (getY()<0 || gamemap[getX()][getY()]->getOverrideSymbol()!='\0' || gamemap[getX()][getY()]->showSymbol()!='o' || gamemap[getX()][getY()]->showSymbol()!='*'){
                 setY(col);
                 ctr++;
+                cout << "4" << endl;
             }
+            
         }
+        cout << "POSISI NOW:" << getX() <<", " << getY();
     } while (ctr!=0);
 } //implementasi fungsi pure virtual dari parent
 

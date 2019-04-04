@@ -4,6 +4,10 @@
 #include <fstream>
 #include <ctype.h>
 #include "Cell.h"
+//Include Map:
+#include "common.h"
+//For Transform:
+#include <algorithm>
 
 #include "Lands/Land.h"
 #include "Facilities/Facility.h"
@@ -211,15 +215,22 @@ int main(){
 
     gamemap[0][0]->growGrass();
     gamemap[1][0]->growGrass();
-    gamemap[0][0]->animalOccupy(a1);
+    //gamemap[0][0]->animalOccupy(a1);
 
-    FarmAnimal* a2 = new Chicken(true, 2, 2);
-    gamemap[2][2]->animalOccupy(a2);
+    FarmAnimal* a2 = new Chicken(1,5,true);
+    gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
     printMap();
-    /*
+    
+    //Construct Player:
+    Player mainPlayer(5,5);
+    gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+
     while(command != "exit"){
-      system(CLEAR);
+      //system(CLEAR);
+      cout<< a2->getX() << endl;
+      cout<< a2->getY() << endl;
+      
       printMap();
 
       cout << "Command: ";
@@ -232,7 +243,7 @@ int main(){
         cout << "talk" << endl;
         char c;
         cin>>c;
-        mainPlayer.talk(c);
+        mainPlayer.Talk(c);
       } else if(command == "interact"){
         cout << "interact" << endl;
       } else if(command == "kill"){
@@ -241,14 +252,22 @@ int main(){
         cout << "grow" << endl;
       } else if(command == "mix"){
         cout << "mix" << endl;
-      } else{
+      } else if(command == "n" || command == "w" || command == "e" || command == "s"){
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied(); 
+        printMap();
+        mainPlayer.setPosition(command[0]);
+        printMap();
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy(); 
+        printMap();
+      }else{
         cout << "Invalid command" << endl;
       }
 
       cout << "Output: " << endl;
       cout << "" << endl;
 
-      sleep(2000);
+      //sleep(2000);
+    }
       /*animul1* a = new animul1();
       gamemap.push_back(a);
       gamemap.push_back(new animul1());
