@@ -43,6 +43,7 @@ Player::Player(int x, int y){
     row=y;
     col=x;
     score=0;
+    pouch=0;
 }
 
 int Player::getX(){
@@ -204,7 +205,7 @@ void Player::Mix(char dir, string menu){ //jenis int
 
 /*
 int *x; //address x &x
-int x; //address &x 
+int x; //address &x
 x~&x
 passing x;*/
 

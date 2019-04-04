@@ -123,7 +123,7 @@ void loadMap(){
     mapfile.close();
 }
 
-void printMap(){
+void printMap(int money, int aqua, int tick){
     vector< vector<Cell*> >::iterator row;
     vector<Cell*>::iterator col;
     int colMax = gamemap[0].size();
@@ -164,18 +164,11 @@ void printMap(){
     }
     cout << "" << endl;
 
-    int moneySpaces = 6; //ganti dengan jumlah digit money
-    // cout << "sana" << endl;
-    // cout << "score: " << p.getScore();
-    // int temp = p.getScore();
-    // while(temp / 10 > 0){
-    //   moneySpaces++;
-    //   temp /= 10;
-    // }
+    int moneySpaces = to_string(money).length(); //ganti dengan jumlah digit money
 
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
-        cout << "| Money: " << 123456;
+        cout << "| Money: " << money;
       } else if(i >= 9 + moneySpaces){
         cout << " ";
       }
@@ -191,16 +184,11 @@ void printMap(){
     }
     cout << "" << endl;
 
-    int waterSpaces = 3;
-    // temp = p.getPouch();
-    // while(temp / 10 > 0){
-    //   waterSpaces++;
-    //   temp /= 10;
-    // }
+    int waterSpaces = to_string(aqua).length();
 
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
-        cout << "| Water: " << 100;
+        cout << "| Water: " << aqua;
       } else if(i >= 9 + waterSpaces){
         cout << " ";
       }
@@ -216,10 +204,11 @@ void printMap(){
     }
     cout << "" << endl;
 
+    int timerSpaces = to_string(tick).length();
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
-        cout << "| Tick: 0";
-      } else if(i >= 9){
+        cout << "| Timer: " << tick;
+      } else if(i >= 9 + timerSpaces){
         cout << " ";
       }
     }
@@ -233,6 +222,14 @@ void printMap(){
       }
     }
     cout << "" << endl;
+}
+
+void moveAllAnimals(){
+  for(int i = 0; i<animalList.size(); i++){
+    gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+    animalList[i]->move();
+    gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
+  }
 }
 
 void printLegend(){
@@ -265,12 +262,10 @@ int main(){
     cout << "             __/ |                                  " << endl;
     cout << "            |___/                                   " << endl;
     cout << "When in game, type exit to quit the game" << endl;
-    cout << "Enter any key to start" << endl;
-    string command = "";
-    cout << "> ";
-    cin >> command;
-    cout << endl;
+    cout << "Press enter to start" << endl;
+    cin.ignore();
 
+    string command = "";
     loadMap();
 
     //Construct Player:
@@ -278,23 +273,31 @@ int main(){
     gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
 
     system(CLEAR);
-    for(int i = 0; i < 3; i++){ //Spawn Chicken
+
+    //Bagian Spawn Animal secara random
+    //Spawn 3 Chickens
+    for(int i = 0; i < 3; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
       } while(gamemap[x][y]->showSymbol() != 'o' || (gamemap[x][y]->getOverrideSymbol() != '\0'));
       FarmAnimal* a = new Chicken(x, y, false);
+      //add animal into list of animal
       animalList.push_back(a);
+      //update gamemap
       gamemap[x][y]->animalOccupy(a);
     }
 
-    for(int i = 0; i < 4; i++){ //Spawn Duck
+    //Spawn 4 Ducks
+    for(int i = 0; i < 4; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
@@ -304,10 +307,12 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    for(int i = 0; i < 8; i++){ //Spawn Cow
+    //Spawn 8 Cows
+    for(int i = 0; i < 8; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
@@ -317,10 +322,12 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    for(int i = 0; i < 7; i++){ //Spawn Goat
+    //Spawn 7 Goats
+    for(int i = 0; i < 7; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
@@ -330,10 +337,12 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    for(int i = 0; i < 5; i++){ //Spawn Pig
+    //Spawn 5 Pigs
+    for(int i = 0; i < 5; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
@@ -343,10 +352,12 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    for(int i = 0; i < 4; i++){ //Spawn Horse
+    //Spawn 4 Horses
+    for(int i = 0; i < 4; i++){
       int x = 0;
       int y = 0;
       srand(time(0));
+      //Loop until correct position is found
       do{
         x = (rand() % (gamemap.size()));
         y = (rand() % (gamemap[0].size()));
@@ -356,13 +367,12 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    // FarmAnimal* a2 = new Chicken(1,5,true);
-    // gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
-
     while(command != "exit"){
-      // system(CLEAR);
-
-      printMap();
+      system(CLEAR);
+      if(tick != 0 && tick % 2 == 0){
+        moveAllAnimals();
+      }
+      printMap(mainPlayer.getScore(), mainPlayer.getPouch(), tick);
       printLegend();
       cout << endl;
       cout << "Inventory: " << endl;
@@ -371,7 +381,6 @@ int main(){
       cout << "Command: ";
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
-
       if(command == "talk"){
         //cout << "insert talk direction: ";
         char c;
@@ -403,140 +412,10 @@ int main(){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
       } else if(command == "exit"){
       } else{
+        tick--;
         cout << "Invalid command" << endl;
       }
 
-      for(int i = 0; i < animalList.size(); i++){
-        cout << animalList[i]->showSimbol() << endl;
-      }
-
-    //Construct Player:
-    // Player mainPlayer(5,5);
-    // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
-    //
-    // while(command != "exit"){
-    //   //system(CLEAR);
-    //   cout<< a2->getX() << endl;
-    //   cout<< a2->getY() << endl;
-    //
-    //   printMap();
-    //
-    //   cout << "Command: ";
-    //   cout << "" << endl;
-    //
-    //   cin >> command;
-    //   transform(command.begin(), command.end(), command.begin(), ::tolower);
-    //   cout << command;
-    //   if(command == "talk"){
-    //     cout << "talk" << endl;
-    //     char c;
-    //     cin>>c;
-    //     mainPlayer.Talk(c);
-    //   } else if(command == "interact"){
-    //     cout << "interact" << endl;
-    //   } else if(command == "kill"){
-    //     cout << "kill" << endl;
-    //   } else if(command == "grow"){
-    //     cout << "grow" << endl;
-    //   } else if(command == "mix"){
-    //     cout << "mix" << endl;
-    //   } else if(command == "n" || command == "w" || command == "e" || command == "s"){
-    //     gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
-    //     printMap();
-    //     mainPlayer.setPosition(command[0]);
-    //     printMap();
-    //     gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
-    //     printMap();
-    //   }else{
-    //     cout << "Invalid command" << endl;
-    //   }
-    //
-    //   cout << "Output: " << endl;
-    //   cout << "" << endl;
-    //
-    //   //sleep(2000);
-    // }
-      //sleep(2000);
-    }
-      /*animul1* a = new animul1();
-      gamemap.push_back(a);
-      gamemap.push_back(new animul1());
-      gamemap.push_back(new animul2());
-      cout<<((gamemap.at(0))->showSymbol())<<endl;
-      //CREATE MAP:
-      //gamemap[0][0]->growGrass();
-      //gamemap[1][0]->growGrass();
-      // FarmAnimal* a1 = new Pig(2, 2, false);
-      // gamemap[0][0]->animalOccupy(a1);
-      // FarmAnimal* a2 = new Chicken(true, 2, 2);
-      // gamemap[2][2]->animalOccupy(a2);
-      // printLine();
-      // printLine();
-      // gamemap[0][0]-> makeUnoccupied();
-      // printMap();
-      // cout<< gamemap[0][0]-> getAnimalPtr()->sound() << endl;
-      //Player p;
-      //p.Interact(gamemap[0][0]);
-    }*/
     tick++;
+  }
 }
-
-
-/*
-class animul1: public Cell{
-    private:
-        char* namu;
-    public:
-        animul1(){
-            namu = new char[maxsize];
-            strcpy(namu, "SHIT");
-        }
-        animul1(char* neemu){
-            namu = new char[maxsize];
-            strcpy(namu, neemu);
-        }
-        virtual ~animul1(){
-            delete[] namu;
-        }
-        char showSymbol(){
-            return 'a';
-        }
-};
-class animul2: public Cell{
-    private:
-        char* namu;
-    public:
-        animul2(){
-            namu = new char[maxsize];
-            strcpy(namu, "SHIT");
-            //strcpy(namu, "SHIT");
-        }
-        animul2(char* neemu){
-            namu = new char[maxsize];
-            strcpy(namu, neemu);
-        }
-        virtual ~animul2(){
-            delete[] namu;
-        }
-        char showSymbol(){
-            return 'a';
-        }
-};
-class Player{
-    private:
-        int x;
-        int y;
-    public:
-        Player(){
-            x=0;
-            y=0;
-        }
-        ~Player(){};
-        void Interact(Cell* C){
-            if (C->showSymbol() == 'a')
-                cout<<"Interacted with animul1"<<endl;
-            else if (C->showSymbol() == 'b')
-                cout<<"Interacted with animul2"<<endl;
-        }
-};
-*/
