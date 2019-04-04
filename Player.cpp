@@ -186,7 +186,6 @@ Cell* Player::getPosition(char direction, int* x, int* y){
     cout<<"kaka"<<endl;
     cout<<"talk "<<direction<<" "<<*x<<" "<<*y<<endl;
     direction = tolower(direction);
-
     int maxRow = gamemap.size();
     int maxCol = gamemap[0].size();
 
