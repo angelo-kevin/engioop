@@ -74,7 +74,7 @@ void Player::setScore(int s){
 
 void Player::Talk(char dir){
     int *x, *y;
-    cout<<"talk2"<<endl;
+    cout<<"talk2"<<x<<y<<endl;
     Cell* cell = getPosition(dir,x,y);
     cout<<"talk3"<<endl;
     if (x<0 || *x>=gamemap[0].size() || y<0 || *y>=gamemap.size()) return;
@@ -183,9 +183,10 @@ void Player::Mix(char dir, string menu){ //jenis int
 
 //Ask for position:
 Cell* Player::getPosition(char direction, int* x, int* y){
+    cout<<"kaka"<<endl;
+    cout<<"talk "<<direction<<" "<<*x<<" "<<*y<<endl;
     direction = tolower(direction);
     
-    cout<<"talk "<<direction<<" "<<*x<<" "<<*y<<endl;
     int maxRow = gamemap.size();
     int maxCol = gamemap[0].size();
 
