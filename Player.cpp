@@ -205,10 +205,6 @@ passing x;*/
 //Ask for position:
 Cell* Player::getPosition(char direction, int* x, int* y){
     direction = tolower(direction);
-<<<<<<< HEAD
-    //*x=3;
-=======
->>>>>>> 2a4277eb4a258f14f0e6540e625f669c390bfd15
     int maxRow = gamemap.size();
     int maxCol = gamemap[0].size();
 
