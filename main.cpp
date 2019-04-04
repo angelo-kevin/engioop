@@ -254,23 +254,18 @@ int main(){
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
 
-    printMap();
-
-    printLegend();
-
-    cout << "Inventory: " << endl;
-    cout << "" << endl;
-
     //Construct Player:
     Player mainPlayer(5,5);
-    gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
+    // gamemap[mainPlayer.getX()][mainPlayer.getY()]->playerOccupy();
 
     while(command != "exit"){
-      //system(CLEAR);
-      cout<< a2->getX() << endl;
-      cout<< a2->getY() << endl;
+      system(CLEAR);
 
       printMap();
+      printLegend();
+      cout << endl;
+      cout << "Inventory: " << endl;
+      cout << "" << endl;
 
       cout << "Command: ";
       cout << "" << endl;
@@ -296,7 +291,7 @@ int main(){
         printMap();
         mainPlayer.setPosition(command[0]);
         printMap();
-        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
+        // gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
         printMap();
       }else{
         cout << "Invalid command" << endl;
