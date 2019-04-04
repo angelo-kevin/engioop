@@ -5,7 +5,6 @@
 #include "MeatProducing.h"
 #include "../Product/FarmProduct/ChickenEgg.h"
 #include "../Product/FarmProduct/ChickenMeat.h"
-#include "../common.h"
 
 class Chicken : public EggProducing, public MeatProducing{
     public:
