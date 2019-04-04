@@ -253,6 +253,12 @@ int main(){
 
     FarmAnimal* a2 = new Chicken(1,5,true);
     gamemap[a2->getX()][a2->getY()]->animalOccupy(a2);
+    printMap();
+
+    printLegend();
+
+    cout << "Inventory: " << endl;
+    cout << "" << endl;
 
     //Construct Player:
     Player mainPlayer(5,5);
@@ -267,6 +273,7 @@ int main(){
       cout << "Inventory: " << endl;
       cout << "" << endl;
 
+      printMap();
       cout << "Command: ";
       cout << "" << endl;
 
