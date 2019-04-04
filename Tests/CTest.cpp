@@ -184,6 +184,38 @@
             ASSERT_EQ(pig.getLapar(),true);
         }
 
+        TEST(PlayerTest, test14){
+            Player mainPlayer = Player(4,3);
+            ASSERT_EQ(mainPlayer.getX(),3);
+            ASSERT_EQ(mainPlayer.getY(),3);
+
+        }
+
+        TEST(LinkedListTest, test15){
+            LinkedList<int> listOfObject;
+            int len = listOfObject.getLength();
+            ASSERT_EQ(len,0);
+            vector<int> arr;
+            listOfObject.add(2);
+            listOfObject.add(10);
+            listOfObject.add(20);
+            listOfObject.add(80);
+            listOfObject.add(10);
+            len = listOfObject.getLength();
+            ASSERT_EQ(len,5);
+            ASSERT_EQ(listOfObject.getData(0),2);
+            ASSERT_EQ(listOfObject.getData(1),10);
+            ASSERT_EQ(listOfObject.getData(2),20);
+            ASSERT_EQ(listOfObject.getData(3),80);
+            ASSERT_EQ(listOfObject.getData(4),10);
+            int data[3] = {20,10,80};
+            listOfObject.remove(data,3);
+            len = listOfObject.getLength();
+            ASSERT_EQ(len,2);
+            ASSERT_EQ(listOfObject.getData(0),2);
+            ASSERT_EQ(listOfObject.getData(1),10);
+        }
+
 // RUN TESTS:
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
