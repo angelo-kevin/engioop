@@ -367,8 +367,15 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
-    while(command != "exit"){
+    while(command != "exit" && animalList.size() > 0){
       system(CLEAR);
+      for(int i = 0; i < animalList.size(); i++){
+        if(animalList[i]->getThreshold() <= -5){
+          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+          animalList.erase(animalList.begin() + i);
+        }
+      }
+
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
       }
@@ -382,27 +389,22 @@ int main(){
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
       if(command == "talk"){
-        //cout << "insert talk direction: ";
         char c;
         cin >> c;
         mainPlayer.Talk(c);
       } else if(command == "interact"){
-        //cout << "insert interact direction: ";
         char c;
         cin >> c;
         mainPlayer.Interact(c);
       } else if(command == "kill"){
-        // cout << "kill" << endl;
         char c;
         cin >> c;
         mainPlayer.Kill(c);
       } else if(command == "grow"){
-        // cout << "grow" << endl;
         char c;
         cin >> c;
         mainPlayer.Grow(c);
       } else if(command == "mix"){
-        cout << "mix" << endl;
         char c;
         cin >> c;
         mainPlayer.Grow(c);
@@ -417,5 +419,12 @@ int main(){
       }
 
     tick++;
+    for(int i = 0; i < animalList.size(); i++){
+      animalList[i]->minThreshold();
+    }
   }
+
+  cout << "                 GAME OVER" << endl;
+  cout << "---------------------------------------------" << endl;
+  cout << "   Final score: " << mainPlayer.getScore() << endl;
 }

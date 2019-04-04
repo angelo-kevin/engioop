@@ -36,14 +36,14 @@ Player::Player(){
     row = 0;
     col = 0;
     score = 0;
-    pouch = 0;
+    pouch = 100;
 }
 
 Player::Player(int x, int y){
     row=y;
     col=x;
     score=0;
-    pouch=0;
+    pouch=100;
 }
 
 int Player::getX(){
@@ -171,6 +171,7 @@ void Player::Grow(char dir){
     if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
     cell->growGrass();
     cout<<"Grass grown"<<endl;
+    pouch--;
 }
 
 void Player::Mix(char dir, string menu){ //jenis int
@@ -259,7 +260,5 @@ void Player::setPosition(char direction){
         col--;
     }
     else{
-        cout << "JESNAT SALAH" << endl;
     }
-    cout<<"Player direction: " << direction <<", curpos: " << row << " " << col << endl;
 }
