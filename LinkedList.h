@@ -121,7 +121,6 @@ class LinkedList{
                     i++;
                     // cout<<"i and size"<<i<<" "<<size<<endl;
                 }
-                cout<<"OUT"<<endl;
                 return (i==size);
             }
         }
@@ -185,7 +184,6 @@ class LinkedList{
 
             if (foundAll(_data,idx,size)){
                 int i=0;
-                cout<<"REMOVE"<<endl;
                 while (i!=size){
                     removeByIdx(*(idx+i));
                     i++;

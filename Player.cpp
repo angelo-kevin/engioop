@@ -20,9 +20,6 @@ map<string, vector<string>> recipe = {{"BaconOmelette", {"PigMeat","ChickenEgg"}
                                     {"HorseRolade", {"HorseMeat", "DuckEgg"}},
                                     {"MixedCheese", {"CowMilk", "DuckMeat"}}};
 
-map<char,vector<FarmAnimal*>> liveAnimals; //adding same key will be overide orginal value
-
-
 /*
 struct comparePos
 {
@@ -77,6 +74,13 @@ void Player::setScore(int s){
     score = s;
 }
 
+void Player::printBackpack(){
+    for (int i=0;i<backpack.getLength();i++){
+        cout<<backpack.getData(i).getProductName()<<" ";
+    }
+    cout<<endl;
+}
+
 void Player::Talk(char dir){
     int x=0, y=0;
     Cell* cell = getPosition(dir,&x,&y);
@@ -110,14 +114,9 @@ void Player::Interact(char dir){
             }
             if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
                 cell->getAnimalPtr()->revLapar();
-                cell->getAnimalPtr()->revSimbol();
                 cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
             }
             
-            cout<<"Backpack List"<<endl;
-            for (int i=0;i<backpack.getLength();i++){
-                cout<<backpack.getData(i).getProductName()<<endl;
-            }
         }else{
             cout<<"Animal's hungry"<<endl;
         }
@@ -136,11 +135,6 @@ void Player::Interact(char dir){
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
             score+=money;
-
-            cout<<"Backpack List"<<endl;
-            for (int i=0;i<backpack.getLength();i++){
-                cout<<backpack.getData(i).getProductName()<<endl;
-            }
         }else if (c=='t'){
             cout<<"Truck's not available"<<endl;
         }else{
@@ -162,23 +156,22 @@ void Player::Kill(char dir){
         cout<<cell->getAnimalPtr()->sound()<<endl;
         cell->makeUnoccupied();
         cout<<"Animal's killed"<<endl;
-        //delete from "livinganimal" list
-        cout<<"Backpack List"<<endl;
-        for (int i=0;i<backpack.getLength();i++){
-            cout<<backpack.getData(i).getProductName()<<endl;
-        }
+
+        vector<FarmAnimal*>::const_iterator itr = find(animalList.begin(), animalList.end(),cell->getAnimalPtr());
+        if (itr!=animalList.end()) animalList.erase(itr);
     }else{
         cout<<"There's no animal.."<<endl;
     }
 }
 
-void Player::Grow(char dir){
-    int x=0, y=0;
-    Cell* cell = getPosition(dir,&x,&y);
-    if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
-    cell->growGrass();
-    cout<<"Grass grown"<<endl;
-    pouch--;
+void Player::Grow(){
+    if (pouch>0){
+        gamemap[row][col]->growGrass();
+        cout<<"Grass grown"<<endl;
+        pouch--;
+    }else{
+        cout<<"Refill the pouch first"<<endl;
+    }
 }
 
 void Player::Mix(char dir, string menu){ //jenis int
@@ -202,11 +195,6 @@ void Player::Mix(char dir, string menu){ //jenis int
             }
                 //cout<<"out from loop"<<endl;
 
-                for (int i=0;i<size;i++){
-                    cout<<arrProduct[i].getProductName()<<" ";
-                }
-                cout<<endl;
-
             if (backpack.foundAll1(arrProduct,size)){
                 backpack.remove(arrProduct,size);
 
@@ -224,11 +212,6 @@ void Player::Mix(char dir, string menu){ //jenis int
                 cout<<"Product's added"<<endl;
             }else{
                 cout<<"Ingredients's not complete"<<endl;
-            }
-            //cout<<"Side Product Produced if remove's success"<<endl;
-            cout<<"Backpack List"<<endl;
-            for (int i=0;i<backpack.getLength();i++){
-                cout<<backpack.getData(i).getProductName()<<endl;
             }
         }else{
             cout<<"Menu's not available.."<<endl;
@@ -290,7 +273,5 @@ void Player::setPosition(char direction){
     }
     else if (direction == 'a' && 0<=col-1 && canPassed(col-1, row)){
         col--;
-    }
-    else{
     }
 }

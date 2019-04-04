@@ -368,7 +368,7 @@ int main(){
     }
 
     while(command != "exit" && animalList.size() > 0){
-      system(CLEAR);
+      //system(CLEAR);
       for(int i = 0; i < animalList.size(); i++){
         if(animalList[i]->getThreshold() <= -5){
           gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
@@ -387,7 +387,7 @@ int main(){
       }
 
       cout << endl;
-      cout << "Inventory: " << endl;
+      cout << "Inventory: "; mainPlayer.printBackpack();
       cout << "" << endl;
 
       cout << "Command: ";
@@ -407,9 +407,7 @@ int main(){
         cin >> c;
         mainPlayer.Kill(c);
       } else if(command == "grow"){
-        char c;
-        cin >> c;
-        mainPlayer.Grow(c);
+        mainPlayer.Grow();
       } else if(command == "mix"){
         char c;
         cin >> c;
@@ -419,6 +417,15 @@ int main(){
       } else if(command == "w" || command == "a" || command == "s" || command == "d"){
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
         mainPlayer.setPosition(command[0]);
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
+      } else if(command == "cheats"){
+        int x,y;
+        cin>>y;
+        cin>>x;
+        gamemap[mainPlayer.getY()][mainPlayer.getX()]->makeUnoccupied();
+        cout << "cheats "<<endl;
+        mainPlayer.setX(x);
+        mainPlayer.setY(y);
         gamemap[mainPlayer.getY()][mainPlayer.getX()]->playerOccupy();
       } else if(command == "exit"){
       } else{

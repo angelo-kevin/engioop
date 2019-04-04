@@ -1,6 +1,8 @@
 //includes cell in cpp to prevent undefined reference becoz of forward declaration in cell.h
 #include "FarmAnimal.h"
 #include "../Cell.h"
+#include <iostream>
+using namespace std;
 
 FarmAnimal::FarmAnimal(int _x, int _y, bool _l){
     x = _x;
