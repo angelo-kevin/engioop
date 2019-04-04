@@ -265,11 +265,9 @@ int main(){
     cout << "             __/ |                                  " << endl;
     cout << "            |___/                                   " << endl;
     cout << "When in game, type exit to quit the game" << endl;
-    cout << "Enter any key to start" << endl;
+    cout << "Press enter to start";
     string command = "";
-    cout << "> ";
-    cin >> command;
-    cout << endl;
+    cin.ignore();
 
     loadMap();
 
