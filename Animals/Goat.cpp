@@ -9,7 +9,7 @@ Goat::Goat(int x, int y, bool l): FarmAnimal(x,y,l), MilkProducing(x,y,l), MeatP
 void Goat::move(){
     int row, col;
     int arr[4] = {1,2,3,4};
-    if (threshold<=0) lapar = true;
+    if (threshold<=0 && !lapar) revLapar();
     if (lapar && gamemap[getX()][getY()]->showSymbol()=='#'){
         gamemap[getX()][getY()]->ungrowGrass();
         lapar = false;

@@ -381,11 +381,17 @@ int main(){
       }
       printMap(mainPlayer.getScore(), mainPlayer.getPouch(), tick);
       printLegend();
+
+      if(animalList.size() == 0){
+        break;
+      }
+
       cout << endl;
       cout << "Inventory: " << endl;
       cout << "" << endl;
 
       cout << "Command: ";
+
       cin >> command;
       transform(command.begin(), command.end(), command.begin(), ::tolower);
       if(command == "talk"){
