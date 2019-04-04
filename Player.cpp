@@ -52,6 +52,26 @@ int Player::getY(){
     return row;
 }
 
+int Player::getPouch(){
+    return pouch;
+}
+int Player::getScore(){
+    return score;
+}
+
+void Player::setPouch(int temp){
+    pouch=temp;
+}
+void Player::setX(int x){
+    col=x;
+}
+void Player::setY(int y){
+    row=y;
+}
+void Player::setScore(int s){
+    score = s;
+}
+
 void Player::Talk(char dir){
     int *x, *y;
     Cell* cell = getPosition(dir,x,y);
