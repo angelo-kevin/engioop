@@ -33,7 +33,7 @@ class Node{
             if (next!=NULL)
                 delete next;
         }
-        bool isNextEmpty(){
+        bool isNextEmpty() const{
             return (next==NULL);
         }
         void Print(){
@@ -48,7 +48,7 @@ class LinkedList{
     private:
         Node<T>* head;
         int length;
-    public: 
+    public:
         LinkedList() //constructor
         {
             //cout<<"HHmm"<<endl;
@@ -100,7 +100,7 @@ class LinkedList{
         }
 
         bool foundAll(T* _data, int* index, int size) // initialization : _data and index has been set the size
-        { //return whether all item is found and array index of each data found 
+        { //return whether all item is found and array index of each data found
             Node<T>* ptr = head;
             if (_data==NULL){
                 return 1;
@@ -112,7 +112,7 @@ class LinkedList{
                 }
                 //cout<<"size : "<<size<<endl;
                 while(find(*(_data+i),visited)!=-1){ //bug
-                    
+
                     *(index+i)=find(*(_data+i),visited); //bug
                     visited[*(index+i)]=1;
                     i++;
@@ -128,14 +128,14 @@ class LinkedList{
                     }
                     */
                 }
-                
+
                 return (i==size); //all item found
             }else{//list is empty
                 return 0;
             }
 
         }
-        
+
         void resetIndexing(){
             Node<T>* ptr = head;
             int i=0;
@@ -204,7 +204,7 @@ class LinkedList{
                     //last element
                     if (ptr->next->data == _data){
                         Node* ptrdel = ptr->next;
-                    
+
                         if (ptr->next->next == NULL){ //at the last of elements
                             ptr->next=NULL;
                         }else{
@@ -220,9 +220,9 @@ class LinkedList{
                         cout<<"Data not found!"<<endl;
                     }
                 }else{ //contain only one element
-                    
+
                 }
-                    
+
             }
         }*/
 
@@ -231,13 +231,13 @@ class LinkedList{
         {
             if (_idx>=length){
                 cout<<"index out of range"<<endl;
-                return T(); 
+                return T();
             }else{
                 Node<T>* ptr=head;
                 while(ptr->idx < length && ptr->idx!=_idx) {
                     ptr=ptr->next;
                 }
-                // if (ptr->idx == _idx) 
+                // if (ptr->idx == _idx)
                 return ptr->data;
             }
         }
