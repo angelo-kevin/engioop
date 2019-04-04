@@ -58,9 +58,6 @@ int Player::getPouch(){
 int Player::getScore(){
     return score;
 }
-LinkedList<Product> Player::getBackpack(){
-    return backpack;
-}
 
 void Player::setPouch(int temp){
     pouch=temp;

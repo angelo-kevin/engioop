@@ -26,7 +26,6 @@ class Player{
         int getY();
         int getPouch();
         int getScore();
-        LinkedList<Product> getBackpack();
         void setPouch(int);
         void setX(int);
         void setY(int);
