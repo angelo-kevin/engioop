@@ -3,6 +3,7 @@
 #include <cstring>
 #include <fstream>
 #include <ctype.h>
+#include <sstream>
 #include "Cell.h"
 //Include Map:
 #include "common.h"
@@ -268,6 +269,7 @@ void printLegend(){
 int main(){
     int tick = 0;
     system(CLEAR);
+
     cout << " _____            _ _      ______                   " << endl;
     cout << "|  ___|          (_| )     |  ___|                  " << endl;
     cout << "| |__ _ __   __ _ _|/ ___  | |_ __ _ _ __ _ __ ___  " << endl;
@@ -392,21 +394,29 @@ int main(){
       gamemap[x][y]->animalOccupy(a);
     }
 
+    ostringstream *local=NULL;
     //Main loop. will loop until "exit" is inputted or all animals died
     while(command != "exit" && animalList.size() > 0){
-      // system(CLEAR);
+      // print 'local' content
+      system(CLEAR); 
       //Erase dead animal
-      for(int i = 0; i < animalList.size(); i++){
-        if(animalList[i]->getThreshold() <= -5){
-          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
-          animalList.erase(animalList.begin() + i);
-        }
-      }
+      // system(CLEAR);
 
       //Move all animal every 2 ticks
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
       }
+      //Erase dead animal and eat if hungry
+      for(int i = 0; i < animalList.size(); i++){
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+        animalList[i]->eat();
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
+        if(animalList[i]->getThreshold() <= -5){
+          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+          animalList.erase(animalList.begin() + i);
+        }
+      }
+      
       //Update all facilities:
       updateAllFacilities();
 
@@ -425,13 +435,27 @@ int main(){
       mainPlayer.printBackpack();
       cout << "" << endl;
 
+      cout << "OUTPUT: " << endl;
+      if (local != NULL){
+        cout << local->str() <<endl;
+      }
+      local = new ostringstream();
+
       cout << "Command: ";
       cin >> command;
       //lowercase the command input
       transform(command.begin(), command.end(), command.begin(), ::tolower);
 
       cout << endl;
-      cout << "Output: " << endl;
+
+      auto cout_buff = cout.rdbuf(); // save pointer to cout buffer
+
+      cout.rdbuf(local->rdbuf()); // substitute internal cout buffer with
+      // buffer of 'local' object
+
+      // now cout work with 'local' buffer
+      // you don't see this message
+      // cout << "some message";
       if(command == "talk"){ //talk action
         char c;
         cin >> c; //direction to talk to
@@ -476,6 +500,13 @@ int main(){
     for(int i = 0; i < animalList.size(); i++){
       animalList[i]->minThreshold();
     }
+    // go back to old buffer
+    cout.rdbuf(cout_buff);
+
+    // you will see this message
+    // cout << "back to default buffer\n";
+
+    
   }
 
   cout << "                 GAME OVER" << endl;
