@@ -23,11 +23,11 @@
 */
 //facility-types:
 #include "Facilities/FacilityTypes/Mixer.h"
-#include "Facilities/FacilityTypes/Well.h"
+#include "Facilities/FacilityTypes/Mixer.h"
 #include "Facilities/FacilityTypes/Truck.h"
 /*
 #include "Facilities/FacilityTypes/Mixer.cpp"
-#include "Facilities/FacilityTypes/Well.cpp"
+#include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Truck.cpp"
 */
 //Animal-types:
@@ -88,13 +88,19 @@ void classIdentifier(char c, vector<Cell*> &v){
         v.push_back(new Barn());
     }
     else if (c == 'T'){
-        v.push_back(new Truck());
+        Truck* temp = new Truck();
+        v.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'W'){
-        v.push_back(new Well());
+        Mixer* temp = new Mixer();
+        v.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'M'){
-        v.push_back(new Mixer());
+        Mixer* temp = new Mixer();
+        v.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
 }
 
@@ -242,7 +248,7 @@ void printLegend(){
   cout << "S : Cow                      talk (dir)        : talk to animal" << endl;
   cout << "M : Mixer                    interact (dir)    : interact with things" << endl;
   cout << "T : Truck                    kill (dir)        : kill animal" << endl;
-  cout << "W : Well                     grow (dir)        : grow grass" << endl;
+  cout << "W : Mixer                     grow (dir)        : grow grass" << endl;
   cout << "P : Player                   mix (dir, recipe) : mix ingredients" << endl;
   cout << "x : Barn                     exit              : exit the game" << endl;
   cout << "o : Coop" << endl;

@@ -33,8 +33,8 @@ Product/FarmProduct/GoatMilk.cpp \
 Product/FarmProduct/HorseMeat.cpp \
 Product/FarmProduct/PigMeat.cpp \
 Player.cpp \
-Product/SideProduct/BaconOmelette.cpp\
-Product/SideProduct/HorseRolade.cpp\
-Product/SideProduct/MixedCheese.cpp\
+Product/SideProduct/BaconOmelette.cpp \
+Product/SideProduct/HorseRolade.cpp \
+Product/SideProduct/MixedCheese.cpp \
 main.cpp \
 -o engiMoonEXE

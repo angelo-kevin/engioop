@@ -10,6 +10,8 @@
     Cell::Cell(){
         // Make this cell unoccupied:
         this->OverrideSymbol = '\0';
+        this->AnimalPtr = nullptr;
+        this->FacilityPtr = nullptr;
     }
 
 //Getters:
@@ -28,6 +30,11 @@
         return this->AnimalPtr;
     }
 
+    // Getter for FacilityPtr:
+    Facility* Cell::getFacilityPtr() const{
+        return this->FacilityPtr;
+    }   
+
 //Setters:
     // Animal occupies cell
     void Cell::animalOccupy(FarmAnimal* _animalPtr){
@@ -42,4 +49,9 @@
     // Make cell unoccupied
     void Cell::makeUnoccupied(){
         this->OverrideSymbol = '\0';
+    }
+
+    // Set Facility ptr
+    void Cell::setFacilityPtr(Facility* _facilityPtr){
+        this->FacilityPtr = _facilityPtr;
     }
