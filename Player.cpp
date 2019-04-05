@@ -130,7 +130,7 @@ void Player::Interact(char dir){
         }else if (c=='T'){//Truck
             int money=0;
             Product* arrProduct = new Product[backpack.getLength()];
-            cell->invalidateTruck();
+            //cell->invalidateTruck();
             
             for (int i=0; i<backpack.getLength();i++){
                 money += backpack.getData(i).getHarga();
