@@ -36,7 +36,7 @@ Player::Player(){
     row = 0;
     col = 0;
     score = 0;
-    pouch = 100;
+    pouch = 20;
 }
 
 Player::Player(int x, int y){
@@ -115,7 +115,7 @@ void Player::Interact(char dir){
             if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
                 cell->getAnimalPtr()->revLapar();
                 cell->animalOccupy(cell->getAnimalPtr());
-                cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
+                cout<<"Product is produced"<<endl;
             }
 
         }else{
@@ -130,6 +130,7 @@ void Player::Interact(char dir){
         }else if (c=='T'){//Truck
             int money=0;
             Product* arrProduct = new Product[backpack.getLength()];
+            cell->invalidateTruck();
             
             for (int i=0; i<backpack.getLength();i++){
                 money += backpack.getData(i).getHarga();
@@ -185,7 +186,7 @@ void Player::Mix(char dir, string menu){ //jenis int
     int x=0, y=0;
     Cell* cell = getPosition(dir,&x,&y);
     if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
-
+ 
     if (cell->showSymbol()=='M'){
         map<string, vector<string>>::iterator itr;
         itr = recipe.find(menu);
@@ -223,6 +224,8 @@ void Player::Mix(char dir, string menu){ //jenis int
         }else{
             cout<<"Menu's not available.."<<endl;
         }
+    }else{
+        cout<<"Mixer's not here"<<endl;
     }
 }
 
