@@ -95,7 +95,7 @@ void classIdentifier(char c, vector<Cell*> &v){
         v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'W'){
-        Mixer* temp = new Mixer();
+        Well* temp = new Well();
         v.push_back(temp);
         facilityList.push_back(temp);
         v[v.size()-1]->setFacilityPtr(temp);
@@ -409,7 +409,7 @@ int main(){
       //Erase dead animal and eat if hungry
       for(int i = 0; i < animalList.size(); i++){
         gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
-        animalList[i]->eat();
+        animalList[i]-> eat();
         gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
         if(animalList[i]->getThreshold() <= -5){
           gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
