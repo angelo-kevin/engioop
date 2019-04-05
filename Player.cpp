@@ -110,14 +110,14 @@ void Player::Interact(char dir){
             }
             if (itr3!=eggProducingAnimal.end()){
                 backpack.add(cell->getAnimalPtr()->produceEgg());
-                
+
             }
             if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
                 cell->getAnimalPtr()->revLapar();
                 cell->animalOccupy(cell->getAnimalPtr());
                 cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
             }
-            
+
         }else{
             cout<<"Animal's hungry"<<endl;
         }
@@ -166,7 +166,7 @@ void Player::Kill(char dir){
 
         vector<FarmAnimal*>::const_iterator itr = find(animalList.begin(), animalList.end(),cell->getAnimalPtr());
         if (itr!=animalList.end()) animalList.erase(itr);
-    }else{
+    } else{
         cout<<"There's no animal.."<<endl;
     }
 }
