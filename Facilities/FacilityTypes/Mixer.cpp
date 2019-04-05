@@ -5,6 +5,8 @@
 //Constructor implementation:
 Mixer::Mixer(){
     this->Symbol = 'M';
+    this->isInRest = false;
+    this->restCountdown = 0;
 }
 
 //Make Mixer Invalid:

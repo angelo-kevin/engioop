@@ -8,6 +8,8 @@
 // Constructors:
     // Base Class Constructor
     Cell::Cell(){
+        // Initialize:
+        this->Symbol = '\0';
         // Make this cell unoccupied:
         this->OverrideSymbol = '\0';
         this->AnimalPtr = nullptr;

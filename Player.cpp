@@ -204,7 +204,6 @@ void Player::Mix(char dir, string menu){ //jenis int
             //Invalidate mixer:
             cell->getFacilityPtr()->invalidateFacility();
             vector<string> ingredients = itr->second;
-            vector<string>::iterator itr2;
             int size = ingredients.size();
             Product* arrProduct = new Product[size];
             for (int i=0; i<size;i++){

@@ -5,6 +5,8 @@
 //Constructor implementation:
 Well::Well(){
     this->Symbol = 'W';
+    this->isInRest = false;
+    this->restCountdown = 0;
 }
 
 //Make Well Invalid:

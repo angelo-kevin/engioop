@@ -1,0 +1,16 @@
+[LinkedList.h:46]: (warning) The class 'LinkedList < int >' has 'copy constructor' but lack of 'operator='.
+[LinkedList.h:11]: (warning) The class 'Node < int >' has 'copy constructor' but lack of 'operator='.
+[LinkedList.h:110]: (warning) Suspicious condition. The result of find() is an iterator, but it is not properly checked.
+[LinkedList.h:132]: (warning) Suspicious condition. The result of find() is an iterator, but it is not properly checked.
+[LinkedList.h:20]: (performance) Variable 'data' is assigned in constructor body. Consider performing initialization in initialization list.
+[LinkedList.h:46]: (warning) The class 'LinkedList < Product >' has 'copy constructor' but lack of 'operator='.
+[LinkedList.h:11]: (warning) The class 'Node < Product >' has 'copy constructor' but lack of 'operator='.
+[Player.cpp:151]: (error) Memory leak: arrProduct
+[LinkedList.h:66]: (performance) Function parameter '_data' should be passed by reference.
+[LinkedList.h:18]: (performance) Function parameter '_data' should be passed by reference.
+[Product/Product.cpp:8]: (performance) Function parameter 'name' should be passed by reference.
+[Product/Product.cpp:25]: (performance) Function parameter 'name' should be passed by reference.
+[main.cpp:114]: (style) The scope of the variable 'idx' can be reduced.
+[test.cpp:8]: (style) Struct 'compare' has a constructor with 1 argument that is not explicit.
+[Player.cpp:74]: (style) The function 'setScore' is never used.
+(information) Cppcheck cannot find all the include files (use --check-config for details)

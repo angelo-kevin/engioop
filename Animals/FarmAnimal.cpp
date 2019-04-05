@@ -8,6 +8,8 @@ FarmAnimal::FarmAnimal(int _x, int _y, bool _l){
     x = _x;
     y = _y;
     lapar = _l;
+    simbol = '\0';
+    threshold = -999;
 } //ctor
 
 char FarmAnimal::showSimbol(){
