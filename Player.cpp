@@ -19,7 +19,7 @@ vector<char> milkProducingAnimal{'S','G'};
 vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"BaconOmelette", {"PigMeat","ChickenEgg"}},
                                     {"HorseRolade", {"HorseMeat", "DuckEgg"}},
-                                    {"MixedCheese", {"CowMilk", "DuckMeat"}}};
+                                    {"MixedCheese", {"CowMilk", "GoatMilk"}}};
 
 /*
 struct comparePos
