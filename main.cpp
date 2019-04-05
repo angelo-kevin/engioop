@@ -258,7 +258,7 @@ void printLegend(){
   cout << "S : Cow                      talk (dir)        : talk to animal" << endl;
   cout << "M : Mixer                    interact (dir)    : interact with things" << endl;
   cout << "T : Truck                    kill (dir)        : kill animal" << endl;
-  cout << "W : Mixer                     grow (dir)        : grow grass" << endl;
+  cout << "W : Mixer                    grow (dir)        : grow grass" << endl;
   cout << "P : Player                   mix (dir, recipe) : mix ingredients" << endl;
   cout << "x : Barn                     exit              : exit the game" << endl;
   cout << "o : Coop" << endl;
@@ -511,5 +511,5 @@ int main(){
 
   cout << "                 GAME OVER" << endl;
   cout << "---------------------------------------------" << endl;
-  cout << "   Final score: " << mainPlayer.getScore() << endl;
+  cout << "Final score: " << mainPlayer.getScore() << endl;
 }
