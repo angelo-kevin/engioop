@@ -17,20 +17,12 @@
 #include "Lands/TileTypes/Barn.h"
 #include "Lands/TileTypes/Grassland.h"
 #include "Lands/TileTypes/Coop.h"
-/*
-#include "Lands/TileTypes/Barn.cpp"
-#include "Lands/TileTypes/Grassland.cpp"
-#include "Lands/TileTypes/Coop.cpp"
-*/
+
 //facility-types:
 #include "Facilities/FacilityTypes/Mixer.h"
 #include "Facilities/FacilityTypes/Well.h"
 #include "Facilities/FacilityTypes/Truck.h"
-/*
-#include "Facilities/FacilityTypes/Mixer.cpp"
-#include "Facilities/FacilityTypes/Mixer.cpp"
-#include "Facilities/FacilityTypes/Truck.cpp"
-*/
+
 //Animal-types:
 #include "Animals/FarmAnimal.h"
 #include "Animals/Pig.h"
@@ -45,9 +37,6 @@
 
 //Product:
 #include "Product/Product.h"
-
-//Miscellaneous Library:
-//#include <unistd.h>
 
 #define maxsize 256
 using namespace std;
@@ -129,7 +118,7 @@ void loadMap(){
         }
     }
 
-    else cout << "File read error, you fucking shit";
+    else cout << "File read error";
     mapfile.close();
 }
 
@@ -154,7 +143,7 @@ void printMap(int money, int aqua, int tick){
     for (row = gamemap.begin(); row != gamemap.end(); row++) {
         cout << "| ";
         for (col = row->begin(); col != row->end(); col++) {
-            // Check whether this paticular cell is occupied or not:
+            // Check whether this particular cell is occupied or not:
             if ((*col)->getOverrideSymbol()  ==  '\0')
                 // If unoccupied:
                 cout<<(*col)->showSymbol() << " | ";
@@ -173,8 +162,9 @@ void printMap(int money, int aqua, int tick){
       }
     }
     cout << "" << endl;
-
-    int moneySpaces = to_string(money).length(); //ganti dengan jumlah digit money
+    
+    //jumlah digit yang ada di money
+    int moneySpaces = to_string(money).length();
 
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
@@ -193,7 +183,8 @@ void printMap(int money, int aqua, int tick){
       }
     }
     cout << "" << endl;
-
+    
+    //jumlah digit yang ada di pouch
     int waterSpaces = to_string(aqua).length();
 
     for(int i = 0; i < colMax * 4; i++){
@@ -213,7 +204,8 @@ void printMap(int money, int aqua, int tick){
       }
     }
     cout << "" << endl;
-
+    
+    //jumlah digit yang ada di timer
     int timerSpaces = to_string(tick).length();
     for(int i = 0; i < colMax * 4; i++){
       if(i == 0){
@@ -399,8 +391,6 @@ int main(){
     while(command != "exit" && animalList.size() > 0){
       // print 'local' content
       system(CLEAR); 
-      //Erase dead animal
-      // system(CLEAR);
 
       //Move all animal every 2 ticks
       if(tick != 0 && tick % 2 == 0){
@@ -506,7 +496,6 @@ int main(){
     // you will see this message
     // cout << "back to default buffer\n";
 
-    
   }
 
   cout << "                 GAME OVER" << endl;
