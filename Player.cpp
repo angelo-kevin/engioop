@@ -125,7 +125,11 @@ void Player::Interact(char dir){
 
     }else if (itr1!=arrayFacility.end()){
         char c = cell->showSymbol();
-        if (c=='W'){ //Well
+        if (c=='W' || c=='w'){ //Well
+            if (cell->showSymbol()=='m'){
+                cout << "Well is unavailable"<<endl;
+                return;
+            }
             pouch = MAX_WATER;
             cout<<"Water's filled"<<endl;
             cell->getFacilityPtr()->invalidateFacility();
@@ -188,6 +192,10 @@ void Player::Mix(char dir, string menu){ //jenis int
     Cell* cell = getPosition(dir,&x,&y);
     if (x<0 || x>=gamemap[0].size() || y<0 || y>=gamemap.size()) return;
  
+    if (cell->showSymbol()=='m'){
+        cout << "Mixer is unavailable"<<endl;
+        return;
+    }
     if (cell->showSymbol()=='M'){
         map<string, vector<string>>::iterator itr;
         itr = recipe.find(menu);
