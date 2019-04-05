@@ -12,7 +12,7 @@ void Chicken::move(){
     if (threshold<=0 && !lapar) revLapar();
     if (lapar && gamemap[getX()][getY()]->showSymbol()=='*'){
         gamemap[getX()][getY()]->ungrowGrass();
-        lapar = false;
+        revLapar();
         threshold = 8;
     }
     srand(time(0));
