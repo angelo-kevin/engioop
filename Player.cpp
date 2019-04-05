@@ -6,6 +6,7 @@
 #include<map>
 #include "Player.h"
 #include "Animals/FarmAnimal.h"
+#include "Facilities/Facility.h"
 #include "Product/SideProduct/BaconOmelette.h"
 #include "Product/SideProduct/HorseRolade.h"
 #include "Product/SideProduct/MixedCheese.h"
@@ -127,11 +128,11 @@ void Player::Interact(char dir){
         if (c=='W'){ //Well
             pouch = MAX_WATER;
             cout<<"Water's filled"<<endl;
+            cell->getFacilityPtr()->invalidateFacility();
         }else if (c=='T'){//Truck
             int money=0;
             Product* arrProduct = new Product[backpack.getLength()];
-            cell->invalidateTruck();
-            
+            cell->getFacilityPtr()->invalidateFacility();
             for (int i=0; i<backpack.getLength();i++){
                 money += backpack.getData(i).getHarga();
                 Product P(0,backpack.getData(i).getProductName());
@@ -192,6 +193,8 @@ void Player::Mix(char dir, string menu){ //jenis int
         itr = recipe.find(menu);
 
         if (itr!=recipe.end()){
+            //Invalidate mixer:
+            cell->getFacilityPtr()->invalidateFacility();
             vector<string> ingredients = itr->second;
             vector<string>::iterator itr2;
             int size = ingredients.size();

@@ -6,6 +6,11 @@ class Facility : public Cell{
     //Constructor:
     public:
         //Facility();
+        // invalidateTruck:
+        virtual void invalidateFacility(){};
+
+        // updateFacility:
+        virtual void facilityUpdate(){}
 };
 
 #endif
