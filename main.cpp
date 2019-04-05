@@ -380,17 +380,20 @@ int main(){
     //Main loop. will loop until "exit" is inputted or all animals died
     while(command != "exit" && animalList.size() > 0){
       // system(CLEAR);
-      //Erase dead animal
-      for(int i = 0; i < animalList.size(); i++){
-        if(animalList[i]->getThreshold() <= -5){
-          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
-          animalList.erase(animalList.begin() + i);
-        }
-      }
 
       //Move all animal every 2 ticks
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
+      }
+      //Erase dead animal and eat if hungry
+      for(int i = 0; i < animalList.size(); i++){
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+        animalList[i]->eat();
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
+        if(animalList[i]->getThreshold() <= -5){
+          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+          animalList.erase(animalList.begin() + i);
+        }
       }
 
       //print the map

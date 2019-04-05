@@ -10,6 +10,7 @@ class Cow : public MilkProducing, public MeatProducing{
     public:
         Cow(int x, int y, bool l);
         void move(); //implementasi fungsi pure virtual dari parent
+        void eat(); //makan
         string sound(); //suara 'moo'
         FarmProduct produceMeat();
         FarmProduct produceMilk();

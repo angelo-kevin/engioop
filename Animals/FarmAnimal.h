@@ -21,6 +21,7 @@ class FarmAnimal{
         FarmAnimal(int x, int y, bool lapar);
         virtual void move() = 0; //bergerak secara acak sebesar 1 satuan ke kiri, kanan, atas, maupun bawah
         virtual string sound() = 0; //method pure virtual, mengeluarkan suara
+        virtual void eat() = 0; //makan bila lapar
         virtual FarmProduct produceMeat();
         virtual FarmProduct produceEgg();
         virtual FarmProduct produceMilk();
