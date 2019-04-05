@@ -1,0 +1,23 @@
+[LinkedList.h:78]: (warning) Member variable 'LinkedList < int >::head' is not assigned a value in 'LinkedList < int >::operator='.
+[LinkedList.h:78]: (warning) Member variable 'LinkedList < int >::length' is not assigned a value in 'LinkedList < int >::operator='.
+[LinkedList.h:37]: (warning) Member variable 'Node < int >::next' is not assigned a value in 'Node < int >::operator='.
+[LinkedList.h:37]: (warning) Member variable 'Node < int >::data' is not assigned a value in 'Node < int >::operator='.
+[LinkedList.h:37]: (warning) Member variable 'Node < int >::idx' is not assigned a value in 'Node < int >::operator='.
+[LinkedList.h:78]: (style) 'LinkedList < int >::operator=' should return 'LinkedList < int > &'.
+[LinkedList.h:37]: (style) 'Node < int >::operator=' should return 'Node < int > &'.
+[LinkedList.h:129]: (warning) Suspicious condition. The result of find() is an iterator, but it is not properly checked.
+[LinkedList.h:151]: (warning) Suspicious condition. The result of find() is an iterator, but it is not properly checked.
+[LinkedList.h:78]: (warning) Member variable 'LinkedList < Product >::head' is not assigned a value in 'LinkedList < Product >::operator='.
+[LinkedList.h:78]: (warning) Member variable 'LinkedList < Product >::length' is not assigned a value in 'LinkedList < Product >::operator='.
+[LinkedList.h:37]: (warning) Member variable 'Node < Product >::next' is not assigned a value in 'Node < Product >::operator='.
+[LinkedList.h:37]: (warning) Member variable 'Node < Product >::idx' is not assigned a value in 'Node < Product >::operator='.
+[LinkedList.h:78]: (style) 'LinkedList < Product >::operator=' should return 'LinkedList < Product > &'.
+[LinkedList.h:37]: (style) 'Node < Product >::operator=' should return 'Node < Product > &'.
+[LinkedList.h:20]: (performance) Variable 'data' is assigned in constructor body. Consider performing initialization in initialization list.
+[LinkedList.h:85]: (performance) Function parameter '_data' should be passed by reference.
+[LinkedList.h:18]: (performance) Function parameter '_data' should be passed by reference.
+[Product/Product.cpp:8]: (performance) Function parameter 'name' should be passed by reference.
+[Product/Product.cpp:25]: (performance) Function parameter 'name' should be passed by reference.
+[main.cpp:103]: (style) The scope of the variable 'idx' can be reduced.
+[test.cpp:8]: (style) Struct 'compare' has a constructor with 1 argument that is not explicit.
+(information) Cppcheck cannot find all the include files (use --check-config for details)

@@ -148,6 +148,7 @@ void Player::Interact(char dir){
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
             setScore(getScore()+money);
+            delete[] arrProduct;
         }else if (c=='t'){
             cout<<"Truck's not available"<<endl;
         }else{
@@ -231,12 +232,15 @@ void Player::Mix(char dir, string menu){ //jenis int
             }else{
                 cout<<"Ingredients's not complete"<<endl;
             }
+            delete[] arrProduct;
         }else{
             cout<<"Menu's not available.."<<endl;
         }
     }else{
         cout<<"Mixer's not here"<<endl;
     }
+
+    
 }
 
 /*

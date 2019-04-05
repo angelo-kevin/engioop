@@ -142,13 +142,8 @@ void printMap(int money, int aqua, int tick){
     cout << "" << endl;
     for (row = gamemap.begin(); row != gamemap.end(); ++row) {
         cout << "| ";
-<<<<<<< HEAD
         for (col = row->begin(); col != row->end(); ++col) {
             // Check whether this paticular cell is occupied or not:
-=======
-        for (col = row->begin(); col != row->end(); col++) {
-            // Check whether this particular cell is occupied or not:
->>>>>>> be444dff3e868d1d0b415ee6fe1905a1da24b4f4
             if ((*col)->getOverrideSymbol()  ==  '\0')
                 // If unoccupied:
                 cout<<(*col)->showSymbol() << " | ";

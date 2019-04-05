@@ -11,7 +11,7 @@ Well::Well(){
 
 //Make Well Invalid:
 void Well::invalidateFacility(){
-    this->Symbol = 't';
+    this->Symbol = 'w';
     this->isInRest = true;
     this->restCountdown = 5;
 }
@@ -22,7 +22,7 @@ void Well::facilityUpdate(){
         this->restCountdown--;
         if(this->restCountdown == 0){
             this->isInRest = false;
-            this->Symbol = 'T';
+            this->Symbol = 'W';
         }
     }
 }
