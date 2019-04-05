@@ -8,5 +8,9 @@ using namespace std;
 extern vector<vector<Cell*> > gamemap;
 //After this you need to define it again at .cpp file ONCE
 
+//Vector of farmanimal ptr:
 extern vector<FarmAnimal*> animalList;
+
+//Vector of facilities ptr:
+extern vector<Facility*> facilityList;
 #endif
