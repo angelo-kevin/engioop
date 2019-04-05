@@ -90,16 +90,19 @@ void classIdentifier(char c, vector<Cell*> &v){
     else if (c == 'T'){
         Truck* temp = new Truck();
         v.push_back(temp);
+        facilityList.push_back(temp);
         v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'W'){
         Mixer* temp = new Mixer();
         v.push_back(temp);
+        facilityList.push_back(temp);
         v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'M'){
         Mixer* temp = new Mixer();
         v.push_back(temp);
+        facilityList.push_back(temp);
         v[v.size()-1]->setFacilityPtr(temp);
     }
 }
@@ -235,6 +238,12 @@ void moveAllAnimals(){
     gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
     animalList[i]->move();
     gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
+  }
+}
+
+void updateAllFacilities(){
+  for(int i = 0; i<facilityList.size(); i++){
+    facilityList[i]->updateFacility();
   }
 }
 
@@ -398,6 +407,8 @@ int main(){
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
       }
+      //Update all facilities:
+      updateAllFacilities();
 
       //print the map
       printMap(mainPlayer.getScore(), mainPlayer.getPouch(), tick);

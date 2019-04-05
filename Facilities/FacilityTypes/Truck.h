@@ -14,7 +14,7 @@ class Truck : public Facility{
         Truck();
     //Methods:
         //Make Unused:
-        void invalidateTruck();
-        void truckStatusUpdate();
+        void invalidateFacility();
+        void facilityUpdate();
 };
 #endif

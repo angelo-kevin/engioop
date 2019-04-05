@@ -54,5 +54,11 @@ class Cell{
 
       // Ungrow the grass:
       virtual void ungrowGrass(){};
+
+      // invalidateTruck:
+      virtual void invalidateTruck(){};
+
+      // updateFacility:
+      virtual void updateFacility(){}
 };
 #endif

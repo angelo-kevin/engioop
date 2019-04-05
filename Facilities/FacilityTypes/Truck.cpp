@@ -10,14 +10,14 @@ Truck::Truck(){
 }
 
 //Make Truck Invalid:
-void Truck::invalidateTruck(){
+void Truck::invalidateFacility(){
     this->Symbol = 't';
     this->isInRest = true;
     this->restCountdown = 5;
 }
 
 //Status update for truck:
-void Truck::truckStatusUpdate(){
+void Truck::facilityUpdate(){
     if(this->isInRest){
         this->restCountdown--;
         if(this->restCountdown == 0){
