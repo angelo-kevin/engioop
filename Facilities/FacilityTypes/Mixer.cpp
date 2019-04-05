@@ -11,7 +11,7 @@ Mixer::Mixer(){
 void Mixer::invalidateFacility(){
     this->Symbol = 'm';
     this->isInRest = true;
-    this->restCountdown = 2;
+    this->restCountdown = 3;
 }
 
 //Status update for truck:

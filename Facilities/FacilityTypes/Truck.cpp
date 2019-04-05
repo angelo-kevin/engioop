@@ -13,7 +13,7 @@ Truck::Truck(){
 void Truck::invalidateFacility(){
     this->Symbol = 't';
     this->isInRest = true;
-    this->restCountdown = 5;
+    this->restCountdown = 8;
 }
 
 //Status update for truck:
