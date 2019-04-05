@@ -114,6 +114,7 @@ void Player::Interact(char dir){
             }
             if (itr2!=milkProducingAnimal.end() || itr3!=eggProducingAnimal.end()){
                 cell->getAnimalPtr()->revLapar();
+                cell->animalOccupy(cell->getAnimalPtr());
                 cout<<"Product is produced"<<cell->getOverrideSymbol()<<endl;
             }
             
@@ -128,10 +129,16 @@ void Player::Interact(char dir){
             cout<<"Water's filled"<<endl;
         }else if (c=='T'){//Truck
             int money=0;
+            Product* arrProduct = new Product[backpack.getLength()];
+            
             for (int i=0; i<backpack.getLength();i++){
                 money += backpack.getData(i).getHarga();
-                backpack.removeByIdx(i);
+                Product P(0,backpack.getData(i).getProductName());
+                arrProduct[i] = P;
+                //backpack.removeByIdx(i);
             }
+
+            backpack.remove(arrProduct,backpack.getLength());
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
             score+=money;

@@ -37,7 +37,6 @@ class Node{
             return (next==NULL);
         }
         void Print(){
-            //cout<<"Node :"<<endl;
             cout<<"   idx : "<<idx<<endl;
             cout<<"   data : "<<data<<endl;
         }
@@ -51,7 +50,6 @@ class LinkedList{
     public:
         LinkedList() //constructor
         {
-            //cout<<"HHmm"<<endl;
             head = NULL;
             length = 0;
         }
@@ -70,7 +68,7 @@ class LinkedList{
             Node<T>* ptr = head;
             if(ptr!=NULL){
                 int i=0;
-                while(ptr->idx < length-1 && ptr->data !=_data) {
+                while(ptr->idx < length-1 && (ptr->data !=_data || visited[i])) {
                     ptr=ptr->next;
                     i++;
                 }
@@ -106,22 +104,16 @@ class LinkedList{
             }else if (ptr!=NULL){
                 int i=0;
                 bool visited[length];
-                /*
-                cout<<"DATA : ";
-                for (int i=0;i<size;i++){
-                    cout<<_data[i].getProductName()<<" ";
-                }
-                cout<<endl;*/
                 for (int i=0;i<length;i++){
                     visited[i]=0;
                 }
                 while(i<size && find(*(_data+i),visited)!=-1){ //bug
-                    // cout<<"hhm"<<endl;
                     visited[find(*(_data+i),visited)]=1;
                     i++;
-                    // cout<<"i and size"<<i<<" "<<size<<endl;
                 }
                 return (i==size);
+            }else{
+                return false;
             }
         }
 
@@ -133,26 +125,15 @@ class LinkedList{
             }else if (ptr!=NULL){
                 int i=0;
                 bool visited[length];
-                for (int i=0;i<length;i++){
+                for (i=0;i<length;i++){
                     visited[i]=0;
                 }
-                //cout<<"size : "<<size<<endl;
+                i=0;
                 while(i<size && find(*(_data+i),visited)!=-1){ //bug
 
                     *(index+i)=find(*(_data+i),visited); //bug
                     visited[*(index+i)]=1;
                     i++;
-                    /*
-                    cout<<"VISITED : ";
-                    for (int i=0;i<length;i++){
-                        cout<<visited[i]<<" ";
-                    }
-                    cout<<endl;*/
-                    /*
-                    if (_data+i==NULL){
-                        cout<<"MAsuk"<<*(_data+i)<<endl;
-                    }
-                    */
                 }
 
                 return (i==size); //all item found
@@ -175,12 +156,6 @@ class LinkedList{
         {
             int* idx= new int (size);
             Node<T>* ptr = head;
-            /*
-            cout<<"DATA : ";
-            for (int i=0;i<3;i++){
-                cout<<_data[i]<<" ";
-            }
-            cout<<endl;*/
 
             if (foundAll(_data,idx,size)){
                 int i=0;
@@ -212,45 +187,6 @@ class LinkedList{
             delete delNode;
             length--;
         }
-
-        /*
-        void remove(T _data) //mengahapus elemen T pertama dari LinkedList
-        {
-
-            if(head!=NULL){
-                Node* ptr = head;
-
-                if (ptr->data==_data){
-
-                }
-                if (!ptr->isNextEmpty()){
-                    while((ptr->next)->idx < length && (ptr->next)->data!=_data) {
-                        ptr=ptr->next;
-                    }
-                    //last element
-                    if (ptr->next->data == _data){
-                        Node* ptrdel = ptr->next;
-
-                        if (ptr->next->next == NULL){ //at the last of elements
-                            ptr->next=NULL;
-                        }else{
-                            ptr->next = ptr->next->next;
-                            ptr = ptr->next;
-                            while(ptr!=NULL){
-                                ptr->id-=1;
-                                ptr=ptr->next;
-                            }
-                        }
-                        delete ptrdel;
-                    }else{
-                        cout<<"Data not found!"<<endl;
-                    }
-                }else{ //contain only one element
-
-                }
-
-            }
-        }*/
 
 
         T getData(int _idx) //assume idx is in range //mengembalikan data dari LinkedList di idx tertentu
