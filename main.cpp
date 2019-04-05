@@ -244,7 +244,7 @@ void moveAllAnimals(){
 
 void updateAllFacilities(){
   for(int i = 0; i<facilityList.size(); i++){
-    facilityList[i]->updateFacility();
+    facilityList[i]->facilityUpdate();
   }
 }
 
