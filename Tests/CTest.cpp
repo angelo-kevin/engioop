@@ -13,6 +13,24 @@
 #include "../Animals/Goat.h"
 #include "../Animals/Horse.h"
 #include "../Animals/Pig.h"
+#include "../Player.h"
+#include "../LinkedList.h"
+#include "../Product/Product.h"
+#include "../Product/FarmProduct.h"
+#include "../Product/SideProduct.h"
+#include "../Product/FarmProduct/ChickenEgg.h"
+#include "../Product/FarmProduct/ChickenMeat.h"
+#include "../Product/FarmProduct/CowMeat.h"
+#include "../Product/FarmProduct/CowMilk.h"
+#include "../Product/FarmProduct/DuckEgg.h"
+#include "../Product/FarmProduct/DuckMeat.h"
+#include "../Product/FarmProduct/GoatMeat.h"
+#include "../Product/FarmProduct/GoatMilk.h"
+#include "../Product/FarmProduct/HorseMeat.h"
+#include "../Product/FarmProduct/PigMeat.h"
+#include "../Product/SideProduct/BaconOmelette.h"
+#include "../Product/SideProduct/HorseRolade.h"
+#include "../Product/SideProduct/MixedCheese.h"
 #include <gtest/gtest.h>
 
 //Cell: 
@@ -82,6 +100,8 @@
             ASSERT_EQ(temp->showSymbol(), 'T');
         }
 
+//Animals: --------------------------------------------------
+    //Animal Species:
         TEST(ChickenTest, test8){
             Chicken chick = Chicken(2,5,true);
             ASSERT_EQ(chick.getLapar(),true);
@@ -184,9 +204,11 @@
             ASSERT_EQ(pig.getLapar(),true);
         }
 
+//Player JESNAT Test --------------------------------------------------
+    //Player test:
         TEST(PlayerTest, test14){
             Player mainPlayer = Player(4,3);
-            ASSERT_EQ(mainPlayer.getX(),3);
+            ASSERT_EQ(mainPlayer.getX(),4);
             ASSERT_EQ(mainPlayer.getY(),3);
 
         }
@@ -215,7 +237,86 @@
             ASSERT_EQ(listOfObject.getData(0),2);
             ASSERT_EQ(listOfObject.getData(1),10);
         }
+//TESTS FOR PRODUCTS --------------------------------------------------
+    //FarmProduct Tests:
+        TEST(ChickenEgg, test16){
+            ChickenEgg* temp = new ChickenEgg();
+            ASSERT_EQ(temp->getHarga(),2000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(), "ChickenEgg");
+        }
 
+        TEST(ChickenMeat, test17){
+            ChickenMeat* temp = new ChickenMeat();
+            ASSERT_EQ(temp->getHarga(),10000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(), "ChickenMeat");
+        }
+
+
+        TEST(CowMeat, test18){
+            CowMeat* temp = new CowMeat();
+            ASSERT_EQ(temp->getHarga(),15000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"CowMeat");
+        }
+
+        TEST(CowMilk, test19){
+            CowMilk* temp = new CowMilk();
+            ASSERT_EQ(temp->getHarga(),6000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"CowMilk");
+        }
+
+        TEST(DuckEgg, test20){
+            DuckEgg* temp = new DuckEgg();
+            ASSERT_EQ(temp->getHarga(),3500); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"DuckEgg");
+        }
+
+        TEST(DuckMeat, test21){
+            DuckMeat* temp = new DuckMeat();
+            ASSERT_EQ(temp->getHarga(),13000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"DuckMeat");
+        }
+
+        TEST(GoatMeat, test22){
+            GoatMeat* temp = new GoatMeat();
+            ASSERT_EQ(temp->getHarga(),11000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"GoatMeat");
+        }
+
+        TEST(GoatMilk, test23){
+            GoatMilk* temp = new GoatMilk();
+            ASSERT_EQ(temp->getHarga(),8000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"GoatMilk");
+        }
+
+        TEST(HorseMeat, test24){
+            HorseMeat* temp = new HorseMeat();
+            ASSERT_EQ(temp->getHarga(),15000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"HorseMeat");
+        }
+
+        TEST(PigMeat, test25){
+            PigMeat* temp = new PigMeat();
+            ASSERT_EQ(temp->getHarga(),12000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"PigMeat");
+        }
+    // Side Product:
+        TEST(BaconOmelette, test26){
+            BaconOmelette* temp = new BaconOmelette();
+            ASSERT_EQ(temp->getHarga(),18000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"BaconOmelette");
+        }
+
+        TEST(MixedCheese, test27){
+            MixedCheese* temp = new MixedCheese();
+            ASSERT_EQ(temp->getHarga(),18000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"MixedCheese");
+        }
+
+        TEST(HorseRolade, test28){
+            HorseRolade* temp = new HorseRolade();
+            ASSERT_EQ(temp->getHarga(),25000); // Sudah termasuk setter
+            ASSERT_EQ(temp->getProductName(),"HorseRolade");
+        }
 // RUN TESTS:
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

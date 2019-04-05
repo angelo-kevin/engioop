@@ -32,6 +32,9 @@ Product/FarmProduct/GoatMeat.cpp \
 Product/FarmProduct/GoatMilk.cpp \
 Product/FarmProduct/HorseMeat.cpp \
 Product/FarmProduct/PigMeat.cpp \
+Product/SideProduct/BaconOmelette.cpp \
+Product/SideProduct/HorseRolade.cpp \
+Product/SideProduct/MixedCheese.cpp \
 Player.cpp \
 Tests/CTest.cpp \
 -L/usr/lib/ -lgtest -lgtest_main -pthread -o engiMoonTest
