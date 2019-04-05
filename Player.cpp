@@ -147,7 +147,7 @@ void Player::Interact(char dir){
             backpack.remove(arrProduct,backpack.getLength());
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
-            score+=money;
+            setScore(getScore()+money);
         }else if (c=='t'){
             cout<<"Truck's not available"<<endl;
         }else{
