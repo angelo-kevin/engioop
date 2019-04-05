@@ -207,9 +207,18 @@
 //Player JESNAT Test --------------------------------------------------
     //Player test:
         TEST(PlayerTest, test14){
+            ostringstream *local=NULL;
             Player mainPlayer = Player(4,3);
             ASSERT_EQ(mainPlayer.getX(),4);
             ASSERT_EQ(mainPlayer.getY(),3);
+            /*
+            local = new ostringstream();
+            auto cout_buff = cout.rdbuf(); // save pointer to cout buffer
+            cout.rdbuf(local->rdbuf());
+            cout.rdbuf(cout_buff);*/
+            ASSERT_EQ(mainPlayer.getScore(),0);
+            mainPlayer.setPouch(9);
+            ASSERT_EQ(mainPlayer.getPouch(),9);
 
         }
 
