@@ -19,7 +19,7 @@ vector<char> milkProducingAnimal{'S','G'};
 vector<char> arrayFacility{'W','T','M'};
 map<string, vector<string>> recipe = {{"BaconOmelette", {"PigMeat","ChickenEgg"}},
                                     {"HorseRolade", {"HorseMeat", "DuckEgg"}},
-                                    {"MixedCheese", {"CowMilk", "DuckMeat"}}};
+                                    {"MixedCheese", {"CowMilk", "GoatMilk"}}};
 
 /*
 struct comparePos
@@ -147,7 +147,7 @@ void Player::Interact(char dir){
             backpack.remove(arrProduct,backpack.getLength());
             backpack.resetIndexing();
             cout<<"Money earned : "<<money<<endl;
-            score+=money;
+            setScore(getScore()+money);
         }else if (c=='t'){
             cout<<"Truck's not available"<<endl;
         }else{

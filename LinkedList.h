@@ -33,6 +33,18 @@ class Node{
             if (next!=NULL)
                 delete next;
         }
+
+        Node<T> operator=(const Node<T>& node){
+            Node<T> n;
+            if (!node.isNextEmpty()){
+                n.next = new Node<T>(*(node.next));
+            }else{
+                n.next = NULL;
+            }
+            n.data = node.data;
+            n.idx = node.idx;
+        }
+
         bool isNextEmpty() const{
             return (next==NULL);
         }
@@ -61,6 +73,13 @@ class LinkedList{
         {
             if (head!=NULL)
                 delete head;
+        }
+
+        LinkedList<T> operator=(const LinkedList<T>& L){
+            LinkedList<T> Li;
+            Li.head = new Node<T>(*(L.head));
+            Li.length = L.length;
+            return Li;
         }
 
         int find(T _data, bool* visited)
