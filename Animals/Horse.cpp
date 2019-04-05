@@ -9,12 +9,6 @@ Horse::Horse(int x, int y, bool l): FarmAnimal(x,y,l), MeatProducing(x,y,l){
 void Horse::move(){
     int row, col;
     int arr[4] = {1,2,3,4};
-    if (threshold<=0 && !lapar) revLapar();
-    if (lapar && gamemap[getX()][getY()]->showSymbol()=='@'){
-        gamemap[getX()][getY()]->ungrowGrass();
-        revLapar();
-        threshold = 12;
-    }
     srand(time(0));
     random_shuffle(begin(arr), end(arr));
     for (int x=0; x<4; x++){
@@ -52,6 +46,15 @@ void Horse::move(){
         }
     }
 } //implementasi fungsi pure virtual dari parent
+
+void Horse::eat(){
+    if (threshold<=0 && !lapar) revLapar();
+    if (lapar && gamemap[getX()][getY()]->showSymbol()=='@'){
+        gamemap[getX()][getY()]->ungrowGrass();
+        revLapar();
+        threshold = 12;
+    }
+}
 
 string Horse::sound(){
     return "neigh";

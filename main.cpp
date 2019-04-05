@@ -24,11 +24,11 @@
 */
 //facility-types:
 #include "Facilities/FacilityTypes/Mixer.h"
-#include "Facilities/FacilityTypes/Well.h"
+#include "Facilities/FacilityTypes/Mixer.h"
 #include "Facilities/FacilityTypes/Truck.h"
 /*
 #include "Facilities/FacilityTypes/Mixer.cpp"
-#include "Facilities/FacilityTypes/Well.cpp"
+#include "Facilities/FacilityTypes/Mixer.cpp"
 #include "Facilities/FacilityTypes/Truck.cpp"
 */
 //Animal-types:
@@ -89,13 +89,22 @@ void classIdentifier(char c, vector<Cell*> &v){
         v.push_back(new Barn());
     }
     else if (c == 'T'){
-        v.push_back(new Truck());
+        Truck* temp = new Truck();
+        v.push_back(temp);
+        facilityList.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'W'){
-        v.push_back(new Well());
+        Mixer* temp = new Mixer();
+        v.push_back(temp);
+        facilityList.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
     else if (c == 'M'){
-        v.push_back(new Mixer());
+        Mixer* temp = new Mixer();
+        v.push_back(temp);
+        facilityList.push_back(temp);
+        v[v.size()-1]->setFacilityPtr(temp);
     }
 }
 
@@ -233,6 +242,12 @@ void moveAllAnimals(){
   }
 }
 
+void updateAllFacilities(){
+  for(int i = 0; i<facilityList.size(); i++){
+    facilityList[i]->updateFacility();
+  }
+}
+
 void printLegend(){
   cout << "Keterangan:                  Controls:" << endl;
   cout << "B : Pig                      w : go up" << endl;
@@ -243,7 +258,7 @@ void printLegend(){
   cout << "S : Cow                      talk (dir)        : talk to animal" << endl;
   cout << "M : Mixer                    interact (dir)    : interact with things" << endl;
   cout << "T : Truck                    kill (dir)        : kill animal" << endl;
-  cout << "W : Well                     grow (dir)        : grow grass" << endl;
+  cout << "W : Mixer                     grow (dir)        : grow grass" << endl;
   cout << "P : Player                   mix (dir, recipe) : mix ingredients" << endl;
   cout << "x : Barn                     exit              : exit the game" << endl;
   cout << "o : Coop" << endl;
@@ -385,17 +400,25 @@ int main(){
       // print 'local' content
       system(CLEAR); 
       //Erase dead animal
-      for(int i = 0; i < animalList.size(); i++){
-        if(animalList[i]->getThreshold() <= -5){
-          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
-          animalList.erase(animalList.begin() + i);
-        }
-      }
+      // system(CLEAR);
 
       //Move all animal every 2 ticks
       if(tick != 0 && tick % 2 == 0){
         moveAllAnimals();
       }
+      //Erase dead animal and eat if hungry
+      for(int i = 0; i < animalList.size(); i++){
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+        animalList[i]->eat();
+        gamemap[animalList[i]->getX()][animalList[i]->getY()]->animalOccupy(animalList[i]);
+        if(animalList[i]->getThreshold() <= -5){
+          gamemap[animalList[i]->getX()][animalList[i]->getY()]->makeUnoccupied();
+          animalList.erase(animalList.begin() + i);
+        }
+      }
+      
+      //Update all facilities:
+      updateAllFacilities();
 
       //print the map
       printMap(mainPlayer.getScore(), mainPlayer.getPouch(), tick);
