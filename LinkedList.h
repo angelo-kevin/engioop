@@ -76,10 +76,10 @@ class LinkedList{
         }
 
         LinkedList<T> operator=(const LinkedList<T>& L){
-            LinkedList<T> L;
-            L.head = new Node<T>(*(L.head));
-            L.length = L.length;
-            return L;
+            LinkedList<T> Li;
+            Li.head = new Node<T>(*(L.head));
+            Li.length = L.length;
+            return Li;
         }
 
         int find(T _data, bool* visited)
